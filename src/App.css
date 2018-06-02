@@ -2,39 +2,21 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
 .Form {
   width: 300px;
   margin: 0 auto;
 }
 
 .Form-Button {
-  display: block;
-  margin-left: 20px;
   background-color: lightgray;
 }
 
+.Form-Buttom-Picture {
+  display: block;
+  margin-left: 20px;
+}
+
 .Form-Input {
-  /* width: 300px; */
   width: 100%;
   margin: 5px auto;
 }
@@ -43,17 +25,6 @@
   height: 100px;
   resize: none;
 }
-
-/* input.Form-Input-About[type='text']::-webkit-input-placeholder {
-  vertical-align: text-top;
-  font: 70px;
-  text-align: top;
-} */
-
-/* input.Form-Input-About::placeholder {
-  color: red;
-  vertical-align: top;
-} */
 
 .Social-Media-Type {
   vertical-align: top;
@@ -65,7 +36,7 @@
 }
 
 .Social-Media-Type > p{
-  margin: 0 0 1em 0;
+  margin: 0 0 5px 0;
 }
 
 @keyframes App-logo-spin {
