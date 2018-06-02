@@ -22,6 +22,52 @@
   font-size: large;
 }
 
+.Form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.Form-Button {
+  display: block;
+  margin-left: 20px;
+  background-color: lightgray;
+}
+
+.Form-Input {
+  /* width: 300px; */
+  width: 100%;
+  margin: 5px auto;
+}
+
+.Form-Input-About {
+  height: 100px;
+  resize: none;
+}
+
+/* input.Form-Input-About[type='text']::-webkit-input-placeholder {
+  vertical-align: text-top;
+  font: 70px;
+  text-align: top;
+} */
+
+/* input.Form-Input-About::placeholder {
+  color: red;
+  vertical-align: top;
+} */
+
+.Social-Media-Type {
+  vertical-align: top;
+}
+
+.Social-Media-Type {
+  display: inline-block;
+  margin: 0px 15px;
+}
+
+.Social-Media-Type > p{
+  margin: 0 0 1em 0;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
