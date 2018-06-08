@@ -1,4 +1,7 @@
 # :basketball: Bounce
+
+[![Build Status](https://travis-ci.org/ubclaunchpad/bounce-front-end.svg?branch=master)](https://travis-ci.org/ubclaunchpad/bounce-front-end)
+
 Frontend for our application that brings people together based on common interests.
 
 ## Installation
