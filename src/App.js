@@ -3,23 +3,6 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import { template } from 'handlebars';
 
-const information = {
-  clubName: ''
-};
-
-const onFormSubmit = (e) => {
-  e.preventDefault();
-
-  const info = e.target.elements.clubName.value;
-
-  if (info) {
-    information.clubName = info;
-    e.target.elements.clubName.value = '';
-  }
-  console.log(e);
-  console.log(information);
-};
-
 class App extends Component {
   constructor(props) {
     super(props);
