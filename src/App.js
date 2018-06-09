@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import './App.css';
-import { template } from 'handlebars';
 
 class App extends Component {
   constructor(props) {
