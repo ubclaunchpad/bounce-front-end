@@ -32,7 +32,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <form onSubmit={onFormSubmit} className="Form">
+        <form onSubmit={this.handleSubmit} className="Form">
           <h1>Add Club</h1>
           <input type="text" name="clubName" placeholder="Club Name" className="Form-Input"
           value={this.state.clubName}
