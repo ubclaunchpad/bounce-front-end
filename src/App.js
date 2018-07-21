@@ -1,17 +1,23 @@
-/* eslint-disable-next-line no-unused-vars */
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import './App.css';
-import BounceClient from './Client';
+import BounceClubClient from './Club';
+/* eslint-enable no-unused-vars */
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             clubName: '',
+            tags: '',
             about: '',
+            meetingLocation: '',
+            meetingTimes: '',
+            website: '',
+            events: '',
         };
 
-        this.client = new BounceClient(this.props.url);
+        this.club = new BounceClubClient(this.props.url);
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -19,6 +25,14 @@ class App extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+
+        this.club.createClub(this.state.clubName, 
+            this.state.tags, 
+            this.state.about, 
+            this.state.meetingLocation, 
+            this.state.meetingTimes, 
+            this.state.website, 
+            this.state.events);
     }
 
     handleInputChange(event) {
@@ -38,7 +52,7 @@ class App extends Component {
                     <h1>Add Club</h1>
                     <input type="text" name="clubName" placeholder="Club Name" className="Form-Input"
                         value={this.state.clubName}
-                        onChange={this.handleInputChange} />
+                        onChange={this.handleInputChange}/>
                     <button className="Form-Button Form-Buttom-Picture">Add pictures</button>
                     <input type="text" name="tags" placeholder="Tags" className="Form-Input" />
                     <textarea rows="4" cols="50" name="about" placeholder="About"
@@ -59,10 +73,10 @@ class App extends Component {
                             <button className="Form-Button">+</button>
                         </div>
                     </div>
-                    <input type="text" name="meetingLocation" placeholder="Meeting location" className="Form-Input" />
-                    <input type="text" name="meetingTimes" placeholder="Meeting times" className="Form-Input" />
-                    <input type="text" name="website" placeholder="website URL" className="Form-Input" />
-                    <input type="text" name="events" placeholder="Events" className="Form-Input" />
+                    <input type="text" name="meetingLocation" placeholder="Meeting location" className="Form-Input"/>
+                    <input type="text" name="meetingTimes" placeholder="Meeting times" className="Form-Input"/>
+                    <input type="text" name="website" placeholder="website URL" className="Form-Input"/>
+                    <input type="text" name="events" placeholder="Events" className="Form-Input"/>
                     <button>
                         submit
                     </button>
