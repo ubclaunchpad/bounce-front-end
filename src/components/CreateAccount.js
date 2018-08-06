@@ -109,13 +109,10 @@ class CreateAccount extends Component {
             /[.\-_]+/
         ];
         for (let i in regexes) {
-            while (true) {
-                let match = username.match(regexes[i]);
-                if (match !== null) {
-                    username = username.replace(match[0], '');
-                } else {
-                    break;
-                }
+            let match = username.match(regexes[i]);
+            while (match !== null) {
+                username = username.replace(match[0], '');
+                match = username.match(regexes[i]);
             }
         }
         return username.length === 0;
@@ -136,15 +133,12 @@ class CreateAccount extends Component {
             /[.\-!@#$%^&*?_+ ]+/
         ];
         for (let i in regexes) {
+            let match = password.match(regexes[i]);
             let count = 0;
-            while (true) {
-                let match = password.match(regexes[i]);
-                if (match !== null) {
-                    password = password.replace(match[0], '');
-                    count++;
-                } else {
-                    break;
-                }
+            while (match !== null) {
+                password = password.replace(match[0], '');
+                match = password.match(regexes[i]);
+                count++;
             }
             if (count === 0) {
                 return false;
@@ -158,7 +152,7 @@ class CreateAccount extends Component {
      * @param {String} email
      */
     validateEmail(email) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email.toLowerCase());
     }
 
