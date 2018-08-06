@@ -1,45 +1,30 @@
-.App {
-  text-align: center;
+body h1 {
+  color: #0CD3FE;
 }
 
-.Form {
-  width: 300px;
-  margin: 0 auto;
+.home > h1 {
+  color: #7F7F7F;
 }
 
-.Form-Button {
-  background-color: lightgray;
+.home > p {
+  color: #7F7F7F;
 }
 
-.Form-Buttom-Picture {
-  display: block;
-  margin-left: 20px;
+input.form-control {
+  border-radius: 4em;
 }
 
-.Form-Input {
-  width: 100%;
-  margin: 5px auto;
+.btn {
+  border-color: #7F7F7F;
+  border-radius: 4em;
 }
 
-.Form-Input-About {
-  height: 100px;
-  resize: none;
+.btn.btn-primary {
+  background-color: #73E5D6;
 }
 
-.Social-Media-Type {
-  vertical-align: top;
+.btn.btn-secondary {
+  background-color: white;
 }
 
-.Social-Media-Type {
-  display: inline-block;
-  margin: 0px 15px;
-}
-
-.Social-Media-Type > p{
-  margin: 0 0 5px 0;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+/*# sourceMappingURL=App.css.map */

@@ -1,18 +1,19 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import '../css/SignIn.css';
 import { UNAUTHORIZED, SIGNIN_ERROR } from '../constants';
 import CreateAccount from './CreateAccount';
+import { Redirect } from 'react-router-dom';
 /* eslint-enable no-unused-vars */
 
 class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isSignedIn: false,
             username: '',
             password: '',
             errorMsg: undefined,
-            accountCreated: true,
+            accountCreated: this.props.accountCreated,
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,6 +46,7 @@ class SignIn extends Component {
             if (response.ok) {
                 // Trigger a page transition in the parent component
                 this.props.onSignIn(isNewAccount, this.state.username);
+                this.setState({ 'isSignedIn': true });
             } else if (response.status === 401) {
                 // The users's credentials are invalid
                 this.setState({ errorMsg: UNAUTHORIZED });
@@ -89,6 +91,9 @@ class SignIn extends Component {
     }
 
     render() {
+        if (this.state.isSignedIn) {
+            return <Redirect to='/' />;
+        }
         if (!this.state.accountCreated) {
             return <CreateAccount
                 client={this.props.client}
@@ -98,28 +103,38 @@ class SignIn extends Component {
         const error = this.state.errorMsg ? <p>{this.state.errorMsg}</p> : undefined;
 
         return (
-            <div className='UserSignIn'>
-                <form onSubmit={this.handleSubmit}>
-                    <h1 className='signinComponent'>Sign In</h1>
+            <form onSubmit={this.handleSubmit}>
+                <h1>Sign In</h1>
 
-                    {error}
+                {error}
 
-                    <input type='text' name='username'
+                <div className='form-group'>
+                    <label>Username</label>
+                    <input type='text'
+                        name='username'
                         placeholder='Username'
-                        className='signinComponent'
+                        className='form-control'
                         value={this.state.username}
                         onChange={this.handleInput} />
+                </div>
 
-                    <input type='password' name='password'
+                <div className='form-group'>
+                    <label>Password</label>
+                    <input type='password'
+                        name='password'
                         placeholder='Password'
-                        className='signinComponent'
+                        className='form-control'
                         value={this.state.password}
                         onChange={this.handleInput} />
+                </div>
 
-                    <button>Sign In</button>
-                    <button onClick={this.handleCreateAccountClick}>Create Account</button>
-                </form>
-            </div>
+                <button className='btn btn-primary'>Sign In</button>
+                <button
+                    onClick={this.handleCreateAccountClick}
+                    className='btn btn-secondary'>
+                    Create Account
+                </button>
+            </form>
         );
     }
 }
