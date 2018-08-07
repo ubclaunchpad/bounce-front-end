@@ -47,7 +47,6 @@ class App extends Component {
         return <SignIn
             onSignIn={this.onSignIn}
             client={this.props.client}
-            accountCreated={true}
         />;
     }
 
@@ -55,10 +54,9 @@ class App extends Component {
      * Returns a SignIn component that defaults to the CreateAccount form.
      */
     getCreateAccountPage() {
-        return <SignIn
+        return <CreateAccount
             onSignIn={this.onSignIn}
             client={this.props.client}
-            accountCreated={false}
         />;
     }
 

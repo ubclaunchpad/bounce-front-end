@@ -21,7 +21,11 @@ class Home extends Component {
         return (
             <div className='container home'>
                 <h1>Huddle: Find a club that matches you</h1>
-                <p>Find a club, get involved, and make new friends! Find a club in less time.</p>
+                <p>
+                    Find a club, get involved, and make new friends!
+                    Find a club in less time.
+                </p>
+
                 <img src={LargeLogo} />
                 <br />
 

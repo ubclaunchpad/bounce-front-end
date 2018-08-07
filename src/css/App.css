@@ -28,4 +28,25 @@ input.form-control {
   color: #0CD3FE;
 }
 
+form {
+  text-align: left;
+}
+
+form > input {
+  width: 50%;
+  min-width: 6em;
+}
+
+form > label {
+  color: #DDDDDD;
+}
+
+form > h1 {
+  text-align: center;
+}
+
+button {
+  margin-right: 0.5em;
+}
+
 /*# sourceMappingURL=App.css.map */
