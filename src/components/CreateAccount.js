@@ -257,10 +257,8 @@ class CreateAccount extends Component {
 
         return (
             <div className='container'>
-
                 <PageHeader>Create an Account</PageHeader>
                 {errorMsg}
-
                 <form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label>Name</Label>
