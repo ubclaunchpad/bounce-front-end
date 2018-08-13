@@ -8,6 +8,7 @@ import {
     Label,
     PageHeader,
 } from 'react-bootstrap';
+/* eslint-enable no-unused-vars */
 
 import {
     EMAIL_WARNING,

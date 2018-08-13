@@ -14,6 +14,7 @@ import {
     PageHeader,
     Row,
 } from 'react-bootstrap';
+/* eslint-enable no-unused-vars */
 
 import {
     CLUB_ALREADY_EXISTS,

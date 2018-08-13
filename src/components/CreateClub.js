@@ -8,6 +8,7 @@ import {
     PageHeader
 } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
+/* eslint-enable no-unused-vars */
 
 import {
     CLUB_ALREADY_EXISTS, UNEXPECTED_ERROR
