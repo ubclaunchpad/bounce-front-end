@@ -42,6 +42,9 @@ class ViewClub extends Component {
         this.renderAsUneditable = this.renderAsUneditable.bind(this);
     }
 
+    /**
+     * Fetches club info after the page has rendered.
+     */
     componentDidMount() {
         // Fetch the club's info after rendering
         this.props.client.getClub(this.props.name)

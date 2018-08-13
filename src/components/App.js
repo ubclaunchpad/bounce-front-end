@@ -64,10 +64,17 @@ class App extends Component {
         />;
     }
 
+    /**
+     * Returns the CreatClub page.
+     */
     getCreateClubPage() {
         return <CreateClub client={this.props.client} />;
     }
 
+    /**
+     * Returns the ViewClub page.
+     * @param {Object} filter provides the club name based on the URI
+     */
     getViewClubPage(filter) {
         const name = decodeURIComponent(filter.match.params.name);
         return <ViewClub
@@ -76,6 +83,9 @@ class App extends Component {
         />;
     }
 
+    /**
+     * Returns the Home page.
+     */
     getHomePage() {
         return <Home
             isSignedIn={this.state.isSignedIn}
