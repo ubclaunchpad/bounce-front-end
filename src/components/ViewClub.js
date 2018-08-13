@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-/* eslint-enable no-unused-vars */
 import {
     CLUB_ALREADY_EXISTS, UNEXPECTED_ERROR, RESOURCE_NOT_FOUND, CLUB_UPDATED, INVALID_INFO
 } from '../constants';
@@ -18,6 +17,7 @@ import {
     ButtonGroup,
     FormGroup
 } from 'react-bootstrap';
+/* eslint-enable no-unused-vars */
 
 class ViewClub extends Component {
     constructor(props) {

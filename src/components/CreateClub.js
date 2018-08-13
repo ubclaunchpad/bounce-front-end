@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-/* eslint-enable no-unused-vars */
 import {
     CLUB_ALREADY_EXISTS, UNEXPECTED_ERROR
 } from '../constants';
@@ -12,6 +11,7 @@ import {
     PageHeader
 } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
+/* eslint-enable no-unused-vars */
 
 
 class CreateClub extends Component {

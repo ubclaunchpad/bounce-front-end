@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-/* eslint-enable no-unused-vars */
 import { Link } from 'react-router-dom';
 import Clubs from './Clubs';
 import LargeLogo from '../media/large-logo.png';
@@ -8,6 +7,7 @@ import '../css/Home.css';
 import {
     Button, Row, Col
 } from 'react-bootstrap';
+/* eslint-enable no-unused-vars */
 
 class Home extends Component {
     constructor(props) {

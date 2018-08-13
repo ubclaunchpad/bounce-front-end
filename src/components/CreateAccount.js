@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-/* eslint-enable no-unused-vars */
 import {
     INVALID_INFO,
     USERNAME_OR_EMAIL_TAKEN,
@@ -17,6 +16,7 @@ import {
     Alert,
     Label
 } from 'react-bootstrap';
+/* eslint-enable no-unused-vars */
 
 class CreateAccount extends Component {
     constructor(props) {

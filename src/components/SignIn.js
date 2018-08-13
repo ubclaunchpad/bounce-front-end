@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-/* eslint-enable no-unused-vars */
 import { UNAUTHORIZED, SIGNIN_ERROR } from '../constants';
-import CreateAccount from './CreateAccount';
 import { Redirect } from 'react-router-dom';
 import { FormGroup, PageHeader, Label } from 'react-bootstrap';
+/* eslint-enable no-unused-vars */
 
 class SignIn extends Component {
     constructor(props) {
