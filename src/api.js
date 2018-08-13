@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import jwtDecode from 'jwt-decode';
 
 export default class BounceClient {
     constructor(url) {
@@ -45,7 +46,7 @@ export default class BounceClient {
         if (!this.token) {
             return null;
         }
-        return JSON.parse(atob(this.token.split('.')[1]));
+        return jwtDecode(this.token).id;
     }
 
     /**
