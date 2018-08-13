@@ -207,7 +207,6 @@ class CreateAccount extends Component {
         }
 
         let errorMsg, usernameWarning, emailWarning, passwordWarning;
-        let buttonClass = 'primary';
         let usernameClass = 'has-';
         let emailClass = 'has-';
         let passwordClass = 'has-';
@@ -217,9 +216,10 @@ class CreateAccount extends Component {
             errorMsg = <Alert bsStyle='warning'> {this.state.errorMsg} </Alert>;
         }
         // Disable submit button if input is invalid
-        if (!this.state.usernameIsValid | !this.state.passwordIsValid || !this.state.emailIsValid) {
-            buttonClass += ' disabled';
-        }
+        const submitDisabled = (
+            !this.state.usernameIsValid ||
+            !this.state.passwordIsValid ||
+            !this.state.emailIsValid);
         // Signal the validity of each input if it's been filled in
         if (this.state.usernameIsValid !== undefined) {
             if (this.state.usernameIsValid) {
@@ -297,7 +297,12 @@ class CreateAccount extends Component {
                     </FormGroup>
 
                     <br />
-                    <Button bsStyle={buttonClass}>Create Account</Button>
+                    <Button
+                        bsStyle='primary'
+                        disabled={submitDisabled}
+                        onClick={this.handleSubmit}>
+                        Create Account
+                    </Button>
                     <Button
                         onClick={this.handleSignInClick}
                         bsStyle='secondary'>

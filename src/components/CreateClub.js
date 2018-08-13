@@ -50,7 +50,7 @@ class CreateClub extends Component {
             if (response.ok) {
                 // Redirect to the Club page
                 this.setState({ goToClubPage: true });
-            } else if (response.status == 409) {
+            } else if (response.status === 409) {
                 // A club with that name already exists
                 this.setState({ errorMsg: CLUB_ALREADY_EXISTS });
             } else {

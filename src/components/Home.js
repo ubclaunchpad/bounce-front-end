@@ -34,7 +34,7 @@ class Home extends Component {
                     </Col>
 
                     <Col>
-                        <img src={LargeLogo} className='large-logo' />
+                        <img src={LargeLogo} alt='logo' className='large-logo' />
                     </Col>
 
                 </Row>

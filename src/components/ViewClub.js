@@ -57,7 +57,7 @@ class ViewClub extends Component {
                             twitterUrl: body.twitterUrl,
                         });
                     });
-                } else if (response.status == 404) {
+                } else if (response.status === 404) {
                     this.setState({
                         msg: RESOURCE_NOT_FOUND,
                         isSuccess: false
@@ -93,7 +93,7 @@ class ViewClub extends Component {
                         memberships: body,
                     });
                 });
-            } else if (response.status != 404) {
+            } else if (response.status !== 404) {
                 this.setState({
                     msg: UNEXPECTED_ERROR,
                     isSuccess: false
