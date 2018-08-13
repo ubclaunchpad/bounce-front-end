@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
+/* eslint-enable no-unused-vars */
 import { UNAUTHORIZED, SIGNIN_ERROR } from '../constants';
 import CreateAccount from './CreateAccount';
 import { Redirect } from 'react-router-dom';
-/* eslint-enable no-unused-vars */
+import { FormGroup, PageHeader, Label } from 'react-bootstrap';
 
 class SignIn extends Component {
     constructor(props) {
@@ -83,30 +84,30 @@ class SignIn extends Component {
 
         return (
             <div className='container'>
+                <PageHeader>Sign In</PageHeader>
                 <form onSubmit={this.handleSubmit}>
-                    <h1>Sign In</h1>
 
                     {error}
 
-                    <div className='form-group'>
-                        <label>Username</label>
+                    <FormGroup>
+                        <Label>Username</Label>
                         <input type='text'
                             name='username'
                             placeholder='Username'
                             className='form-control'
                             value={this.state.username}
                             onChange={this.handleInput} />
-                    </div>
+                    </FormGroup>
 
-                    <div className='form-group'>
-                        <label>Password</label>
+                    <FormGroup>
+                        <Label>Password</Label>
                         <input type='password'
                             name='password'
                             placeholder='Password'
                             className='form-control'
                             value={this.state.password}
                             onChange={this.handleInput} />
-                    </div>
+                    </FormGroup>
 
                     <button className={buttonClass}>Sign In</button>
                     <button

@@ -1,9 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
+/* eslint-enable no-unused-vars */
 import { Link } from 'react-router-dom';
 import Clubs from './Clubs';
 import LargeLogo from '../media/large-logo.png';
-/* eslint-enable no-unused-vars */
+import '../css/Home.css';
+import {
+    Button, Row, Col
+} from 'react-bootstrap';
 
 class Home extends Component {
     constructor(props) {
@@ -20,20 +24,26 @@ class Home extends Component {
         }
         return (
             <div className='container home'>
-                <h1>Huddle: Find a club that matches you</h1>
-                <p>
-                    Find a club, get involved, and make new friends!
-                    Find a club in less time.
-                </p>
 
-                <img src={LargeLogo} />
-                <br />
+                <Row>
+
+                    <Col>
+                        <h1>Huddle</h1>
+                        <h2>Find a club that matches your interests.</h2>
+                        <p>Find a club, get involved, and make new friends!</p>
+                    </Col>
+
+                    <Col>
+                        <img src={LargeLogo} className='large-logo' />
+                    </Col>
+
+                </Row>
 
                 <Link to='/sign-in'>
-                    <button className='btn btn-primary'>Explore Clubs</button>
+                    <Button bsStyle='primary'>Explore Clubs</Button>
                 </Link>
                 <Link to='/create-account'>
-                    <button className='btn btn-secondary'>Create Account</button>
+                    <Button bsStyle='secondary'>Create Account</Button>
                 </Link>
             </div>
         );

@@ -1,15 +1,22 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
+/* eslint-enable no-unused-vars */
 import {
     INVALID_INFO,
     USERNAME_OR_EMAIL_TAKEN,
-    CREATE_ACCOUNT_FAILURE,
+    UNEXPECTED_ERROR,
     USERNAME_WARNING,
     PASSWORD_WARNING,
     EMAIL_WARNING,
 } from '../constants';
 import { Redirect } from 'react-router-dom';
-/* eslint-enable no-unused-vars */
+import {
+    Button,
+    PageHeader,
+    FormGroup,
+    Alert,
+    Label
+} from 'react-bootstrap';
 
 class CreateAccount extends Component {
     constructor(props) {
@@ -63,11 +70,11 @@ class CreateAccount extends Component {
                 this.setState({ errorMsg: USERNAME_OR_EMAIL_TAKEN });
             } else {
                 // Some unexpected error occurred
-                this.setState({ errorMsg: CREATE_ACCOUNT_FAILURE });
+                this.setState({ errorMsg: UNEXPECTED_ERROR });
             }
         }).catch(() => {
             // An error occurred in the browser while handling the request
-            this.setState({ errorMsg: CREATE_ACCOUNT_FAILURE });
+            this.setState({ errorMsg: UNEXPECTED_ERROR });
         });
     }
 
@@ -200,14 +207,14 @@ class CreateAccount extends Component {
         }
 
         let errorMsg, usernameWarning, emailWarning, passwordWarning;
-        let buttonClass = 'btn btn-primary';
-        let usernameClass = 'form-group has-';
-        let emailClass = 'form-group has-';
-        let passwordClass = 'form-group has-';
+        let buttonClass = 'primary';
+        let usernameClass = 'has-';
+        let emailClass = 'has-';
+        let passwordClass = 'has-';
 
         // Display error message if there is one
         if (this.state.errorMsg) {
-            errorMsg = <p className='bg-warning text-warning'> {this.state.errorMsg} </p>;
+            errorMsg = <Alert bsStyle='warning'> {this.state.errorMsg} </Alert>;
         }
         // Disable submit button if input is invalid
         if (!this.state.usernameIsValid | !this.state.passwordIsValid || !this.state.emailIsValid) {
@@ -241,23 +248,23 @@ class CreateAccount extends Component {
 
         return (
             <div className='container'>
+
+                <PageHeader>Create an Account</PageHeader>
+                {errorMsg}
+
                 <form onSubmit={this.handleSubmit}>
-                    <h1>Create an Account</h1>
-
-                    {errorMsg}
-
-                    <div className='form-group'>
-                        <label>Name</label>
+                    <FormGroup>
+                        <Label>Name</Label>
                         <input type='text'
                             name='fullName'
                             placeholder='Name'
                             className='form-control'
                             value={this.state.fullName}
                             onChange={this.handleInput} />
-                    </div>
+                    </FormGroup>
 
-                    <div className={usernameClass}>
-                        <label>Username</label>
+                    <FormGroup bsClass={usernameClass}>
+                        <Label>Username</Label>
                         <input type='text'
                             name='username'
                             placeholder='Username'
@@ -265,10 +272,10 @@ class CreateAccount extends Component {
                             value={this.state.username}
                             onChange={this.handleInput} />
                         {usernameWarning}
-                    </div>
+                    </FormGroup>
 
-                    <div className={emailClass}>
-                        <label>Email</label>
+                    <FormGroup bsClass={emailClass}>
+                        <Label>Email</Label>
                         <input type='text'
                             name='email'
                             placeholder='Email'
@@ -276,10 +283,10 @@ class CreateAccount extends Component {
                             value={this.state.email}
                             onChange={this.handleInput} />
                         {emailWarning}
-                    </div>
+                    </FormGroup>
 
-                    <div className={passwordClass}>
-                        <label>Password</label>
+                    <FormGroup bsClass={passwordClass}>
+                        <Label>Password</Label>
                         <input type='password'
                             name='password'
                             placeholder='Password'
@@ -287,14 +294,15 @@ class CreateAccount extends Component {
                             value={this.state.password}
                             onChange={this.handleInput} />
                         {passwordWarning}
-                    </div>
+                    </FormGroup>
 
-                    <button className={buttonClass}>Create Account</button>
-                    <button
+                    <br />
+                    <Button bsStyle={buttonClass}>Create Account</Button>
+                    <Button
                         onClick={this.handleSignInClick}
-                        className='btn btn-secondary'>
+                        bsStyle='secondary'>
                         Sign In
-                    </button>
+                    </Button>
                 </form>
             </div>
         );

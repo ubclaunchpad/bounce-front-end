@@ -55,4 +55,11 @@ button {
   margin-right: 0.5em;
 }
 
-/*# sourceMappingURL=App.css.map */
+.home h1 {
+  color: #7F7F7F;
+}
+.home p {
+  color: #adadad;
+}
+
+/*# sourceMappingURL=Home.css.map */
