@@ -11,6 +11,7 @@ import {
     Alert,
     PageHeader
 } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 
 
 class CreateClub extends Component {
@@ -24,6 +25,7 @@ class CreateClub extends Component {
             instagramUrl: '',
             twitterUrl: '',
             errorMsg: undefined,
+            goToClubPage: false,
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,7 +48,8 @@ class CreateClub extends Component {
             this.state.twitterUrl
         ).then(response => {
             if (response.ok) {
-                // TODO: Redirect to the Club page
+                // Redirect to the Club page
+                this.setState({ goToClubPage: true });
             } else if (response.status == 409) {
                 // A club with that name already exists
                 this.setState({ errorMsg: CLUB_ALREADY_EXISTS });
@@ -71,6 +74,9 @@ class CreateClub extends Component {
     }
 
     render() {
+        if (this.state.goToClubPage) {
+            return <Redirect to={`/clubs/${this.state.name}`} />;
+        }
         let errorMsg;
         if (this.state.errorMsg) {
             errorMsg = <Alert bsStyle='warning'> {this.state.errorMsg} </Alert>;
