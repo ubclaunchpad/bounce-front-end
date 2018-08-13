@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import {
     Button, Row, Col, Image
 } from 'react-bootstrap';
+/* eslint-enable no-unused-vars */
 
 import Clubs from './clubs/Clubs';
 import LargeLogo from '../media/large-logo.png';
