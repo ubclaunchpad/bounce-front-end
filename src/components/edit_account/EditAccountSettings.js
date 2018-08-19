@@ -5,7 +5,7 @@ import {
     PASSWORD_WARNING,
     EMAIL_WARNING,
 } from '../../constants';
-import '../../css/EditPage.css'
+import '../../css/EditPage.css';
 /* eslint-enable no-unused-vars */
 
 class EditAccountSettings extends Component {
@@ -24,7 +24,7 @@ class EditAccountSettings extends Component {
             newEmailIsValid: undefined,
             newEmailReentryIsValid: undefined,
             emailPasswordVerifyIsValid: undefined
-        }
+        };
 
         this.handlePasswordChangeSubmit = this.handlePasswordChangeSubmit.bind(this);
         this.handleEmailChangeSubmit = this.handleEmailChangeSubmit.bind(this);
@@ -73,7 +73,7 @@ class EditAccountSettings extends Component {
                 'currentPassword': '',
                 'newPassword': '',
                 'newPasswordReentry': ''
-            })
+            });
             return;
         }
     }
@@ -98,7 +98,7 @@ class EditAccountSettings extends Component {
                 newEmail: '',
                 newEmailReentry: '',
                 emailPasswordVerify: ''
-            })
+            });
             return;
         }
     }
@@ -111,50 +111,50 @@ class EditAccountSettings extends Component {
         // Make sure the value matches the requirements for its field
         const value = event.target.value;
         switch (event.target.name) {
-            case 'newPassword':
-                if (this.state.newPasswordIsValid !== undefined) {
-                    this.setState({
-                        'newPasswordIsValid': this.validatePassword(value)
-                    });
-                } else {
-                    this.setState({
-                        'newPasswordIsValid': undefined
-                    });
-                }
-                break;
-            case 'newPasswordReentry':
+        case 'newPassword':
+            if (this.state.newPasswordIsValid !== undefined) {
                 this.setState({
-                    'newPasswordReentryIsValid': undefined
+                    'newPasswordIsValid': this.validatePassword(value)
                 });
-                break;
-            case 'newEmail':
-                if (value.length === 0 || this.state.newEmailIsValid === undefined){
-                    this.setState({
-                        'newEmailIsValid': undefined
-                    });
-                } else {
-                    this.setState({
-                        'newEmailIsValid': this.validateEmail(value)
-                    });
-                }
-                break;
-            case 'newEmailReentry':
-                if (value.length === 0){
-                    this.setState({
-                        'newEmailReentryIsValid': undefined
-                    });
-                } else if (this.validateEmailReentry(value)){
-                    this.setState({
-                        'newEmailReentryIsValid': true
-                    });
-                } else {
-                    this.setState({
-                        'newEmailReentryIsValid': undefined
-                    });
-                }
-                break;
-            default:
-                break;
+            } else {
+                this.setState({
+                    'newPasswordIsValid': undefined
+                });
+            }
+            break;
+        case 'newPasswordReentry':
+            this.setState({
+                'newPasswordReentryIsValid': undefined
+            });
+            break;
+        case 'newEmail':
+            if (value.length === 0 || this.state.newEmailIsValid === undefined){
+                this.setState({
+                    'newEmailIsValid': undefined
+                });
+            } else {
+                this.setState({
+                    'newEmailIsValid': this.validateEmail(value)
+                });
+            }
+            break;
+        case 'newEmailReentry':
+            if (value.length === 0){
+                this.setState({
+                    'newEmailReentryIsValid': undefined
+                });
+            } else if (this.validateEmailReentry(value)){
+                this.setState({
+                    'newEmailReentryIsValid': true
+                });
+            } else {
+                this.setState({
+                    'newEmailReentryIsValid': undefined
+                });
+            }
+            break;
+        default:
+            break;
         }
         this.setState({
             [event.target.name]: value,
@@ -167,53 +167,53 @@ class EditAccountSettings extends Component {
      */
     handleOnBlur(event) {
         switch (event.target.name) {
-            case 'newPassword':
-                if (this.state.newPasswordIsValid !== undefined 
+        case 'newPassword':
+            if (this.state.newPasswordIsValid !== undefined 
                     || this.state.newPassword.length > 0){
-                    this.setState({
-                        'newPasswordIsValid': this.validatePassword(this.state.newPassword)
-                    });
-                } else {
-                    this.setState({
-                        'newPasswordIsValid': undefined
-                    });
-                }
-                break;
-            case 'newPasswordReentry':
-                if (this.state.newPasswordReentry.length === 0){
-                    this.setState({
-                        'newPasswordReentryIsValid': undefined
-                    });
-                } else {
-                    this.setState({
-                        'newPasswordReentryIsValid': this.validatePasswordReentry()
-                    });
-                }
-                break;
-            case 'newEmail':
-                if (this.state.newEmail.length === 0){
-                    this.setState({
-                        'newEmailIsValid': undefined
-                    });
-                } else{
-                    this.setState({
-                        'newEmailIsValid': this.validateEmail(this.state.newEmail)
-                    });
-                }
-                break;
-            case 'newEmailReentry':
-                if (this.state.newEmailReentry.length === 0){
-                    this.setState({
-                        'newEmailReentryIsValid': undefined
-                    });
-                } else{
-                    this.setState({
-                        'newEmailReentryIsValid': this.validateEmailReentry(this.state.newEmailReentry)
-                    });
-                }
-                break;
-            default:
-                break;
+                this.setState({
+                    'newPasswordIsValid': this.validatePassword(this.state.newPassword)
+                });
+            } else {
+                this.setState({
+                    'newPasswordIsValid': undefined
+                });
+            }
+            break;
+        case 'newPasswordReentry':
+            if (this.state.newPasswordReentry.length === 0){
+                this.setState({
+                    'newPasswordReentryIsValid': undefined
+                });
+            } else {
+                this.setState({
+                    'newPasswordReentryIsValid': this.validatePasswordReentry()
+                });
+            }
+            break;
+        case 'newEmail':
+            if (this.state.newEmail.length === 0){
+                this.setState({
+                    'newEmailIsValid': undefined
+                });
+            } else{
+                this.setState({
+                    'newEmailIsValid': this.validateEmail(this.state.newEmail)
+                });
+            }
+            break;
+        case 'newEmailReentry':
+            if (this.state.newEmailReentry.length === 0){
+                this.setState({
+                    'newEmailReentryIsValid': undefined
+                });
+            } else{
+                this.setState({
+                    'newEmailReentryIsValid': this.validateEmailReentry(this.state.newEmailReentry)
+                });
+            }
+            break;
+        default:
+            break;
         }
     }
 
@@ -229,7 +229,7 @@ class EditAccountSettings extends Component {
     /**
      * Return true if current password is valid
      */
-    validateCurrentPassword(password) {
+    validateCurrentPassword() {
         return true;
     }
 
@@ -338,7 +338,7 @@ class EditAccountSettings extends Component {
                 newEmailReentryClass += 'success';
             } else {
                 newEmailReentryClass += 'error';
-                newEmailReentryWarning = <span>{'Retyped email does not match new email'}</span>
+                newEmailReentryWarning = <span>{'Retyped email does not match new email'}</span>;
             }
         } else {
             // produce initial styling when undefined
@@ -425,7 +425,7 @@ class EditAccountSettings extends Component {
                     </button>
                 </form>
             </div>
-        )
+        );
     }
 }
 
