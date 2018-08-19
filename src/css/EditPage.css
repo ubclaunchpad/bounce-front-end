@@ -1,6 +1,7 @@
 .editPage {
     display: inline-block;
     padding-left: 15px;
+    width: 500px;
 }
 
 .sidebar {
@@ -25,3 +26,6 @@
     margin-top: 0;
 }
 
+.editPage input.form-control {
+    margin-bottom: 10px;
+}
