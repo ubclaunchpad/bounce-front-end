@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import '../../css/EditPage.css'
+import '../../css/EditPage.css';
 /* eslint-enable no-unused-vars */
 
 class EditAccountSidebar extends Component {
@@ -12,7 +12,7 @@ class EditAccountSidebar extends Component {
     }
 
     handleOnclick() {
-        this.props.onSelectSidebar
+        this.props.onSelectSidebar;
         this.props.sidebarSelectionOptions;
     }
 
@@ -21,7 +21,7 @@ class EditAccountSidebar extends Component {
             <div className="sidebar">
                 <h3 className="sidebarLabel">Profile Settings</h3>
                 <div className="selectionContainer" 
-                    onClick={() => this.props.onSelectSidebar("Profile")}>
+                    onClick={() => this.props.onSelectSidebar('Profile')}>
                     <span className="selectionWord">
                         Profile
                     </span>
@@ -39,7 +39,7 @@ class EditAccountSidebar extends Component {
                 <hr/>
                 <h3 className="sidebarLabel">Account Setting</h3>
                 <div className="selectionContainer"
-                    onClick={() => this.props.onSelectSidebar("Account")}>
+                    onClick={() => this.props.onSelectSidebar('Account')}>
                     <span className="selectionWord">
                         Account
                     </span>

@@ -9,7 +9,7 @@ class EditAccountMainPage extends Component {
         super(props);
         this.state = {
             sidebarSelection: '',
-        }
+        };
 
         this.onSelectSidebar = this.onSelectSidebar.bind(this);
     }
@@ -19,7 +19,6 @@ class EditAccountMainPage extends Component {
      * @param {*} sidebarState 
      */
     onSelectSidebar(selection) {
-        console.log(selection);
         this.setState({
             sidebarSelection: selection,
         });
@@ -32,7 +31,7 @@ class EditAccountMainPage extends Component {
                     onSelectSidebar={this.onSelectSidebar} />
                 <EditAccountSettings />
             </div>
-        )
+        );
     }
 
     
