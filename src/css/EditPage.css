@@ -1,0 +1,49 @@
+.editPage {
+    display: inline-block;
+    padding-left: 15px;
+    width: 500px;
+}
+
+.sidebar {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.sidebarLabel {
+    color: rgb(17, 132, 182);
+    font-family: Arial, sans-serif;
+    margin-bottom: 0.5em;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0px;
+}
+
+.sidebar ul a {
+    text-decoration: none;
+    color: #333;
+}
+
+.sidebar ul a:hover {
+    cursor: pointer;
+}
+
+.sidebar ul ul {
+    padding-left: 20px;
+}
+
+
+/* EditAccount */
+.editAccountFormInput {
+    height: 15px;
+    margin-bottom: 10px;
+}
+
+.passwordSubmitButton {
+    margin-top: 0;
+}
+
+.editPage input.form-control {
+    margin-bottom: 10px;
+}
