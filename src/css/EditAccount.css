@@ -1,0 +1,33 @@
+.edit-account-sidebar {
+  display: inline-block;
+  vertical-align: top;
+}
+.edit-account-sidebar h2 {
+  color: #0CD3FE;
+  margin-bottom: 0.5em;
+}
+.edit-account-sidebar ul {
+  list-style: none;
+  padding: 0px;
+}
+.edit-account-sidebar ul ul {
+  padding-left: 20px;
+}
+.edit-account-sidebar a {
+  text-decoration: none;
+  color: #333;
+}
+.edit-account-sidebar a:hover {
+  cursor: pointer;
+}
+
+.edit-account-settings {
+  display: inline-block;
+  padding-left: 15px;
+  width: 500px;
+}
+.edit-account-settings input.form-control {
+  margin-bottom: 10px;
+}
+
+/*# sourceMappingURL=EditAccount.css.map */

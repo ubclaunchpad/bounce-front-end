@@ -5,7 +5,7 @@ import {
     PASSWORD_WARNING,
     EMAIL_WARNING,
 } from '../../constants';
-import '../../css/EditPage.css';
+import '../../css/EditAccount.css';
 /* eslint-enable no-unused-vars */
 
 class EditAccountSettings extends Component {
@@ -35,23 +35,6 @@ class EditAccountSettings extends Component {
         this.validateEmail = this.validateEmail.bind(this);
         this.validateEmailReentry = this.validateEmailReentry.bind(this);
     }
-
-    /*********User Input Styling************
-    Input Validation (3 states):
-        - undefined (initial state / hide error message)
-        - true (defined state)
-        - false (defined state)
-    - all inputs starts at undefined state
-        - input change at undefined state will not produce a true or false validation state
-        - onBlur will generally produce a true or false validation state
-    newPassword:
-        - once this input is given a defined state, it will always be either true or false
-    newPasswordReentry:
-        - a defined state is given only if user unselects from the input
-        - changing input will change state back to undefined
-    newEmail:
-        - 
-    ***************************************/
 
     /**
      * Revalidate password inputs. If there is undefined or false states, set password inputs to empty
@@ -227,14 +210,14 @@ class EditAccountSettings extends Component {
     }
 
     /**
-     * Return true if current password is valid
+     * Return true if user input current password correctly
      */
     validateCurrentPassword() {
         return true;
     }
 
     /**
-     * Returns true if the password is valid and false otherwise
+     * Returns true if new password has valid form
      * @param {String} password
      */
     validatePassword(password) {
@@ -318,8 +301,6 @@ class EditAccountSettings extends Component {
                 newPasswordReentryClass += 'error';
                 newPasswordReentryWarning = <span>{'Retyped password does not match new password'}</span>;
             }
-        } else {
-            // produce initial styling when undefined
         }
 
         if (this.state.newEmailIsValid !== undefined) {
@@ -329,8 +310,6 @@ class EditAccountSettings extends Component {
                 newEmailClass += 'error';
                 newEmailWarning = <span>{EMAIL_WARNING}</span>;
             }
-        } else {
-            // produce initial styling when undefined
         }
 
         if (this.state.newEmailReentryIsValid !== undefined) {
@@ -340,12 +319,10 @@ class EditAccountSettings extends Component {
                 newEmailReentryClass += 'error';
                 newEmailReentryWarning = <span>{'Retyped email does not match new email'}</span>;
             }
-        } else {
-            // produce initial styling when undefined
         }
 
         return (
-            <div className="editPage">
+            <div className="edit-account-settings">
                 <form onSubmit={this.handlePasswordChangeSubmit}>
                     <h3>Password Change</h3>
 

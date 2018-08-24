@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import '../../css/EditPage.css';
+import '../../css/EditAccount.css';
 /* eslint-enable no-unused-vars */
 
 class EditAccountSidebar extends Component {
@@ -13,10 +13,10 @@ class EditAccountSidebar extends Component {
 
     render() {
         return (
-            <div className="sidebar">
-                <h3 className="sidebarLabel">Setting</h3>
+            <div className="edit-account-sidebar">
+                <h2 className="sidebar-label">Setting</h2>
                 <ul>
-                    <li><a>Account Setting</a>
+                    <li><a>Account Settings</a>
                         <ul>
                             <li>
                                 <a onClick={() => this.props.onSelectSidebar('Password Change')}>
