@@ -269,7 +269,6 @@ class CreateAccount extends Component {
                             value={this.state.fullName}
                             onChange={this.handleInput} />
                     </FormGroup>
-
                     <FormGroup bsClass={usernameClass}>
                         <Label>Username</Label>
                         <input type='text'
@@ -280,7 +279,6 @@ class CreateAccount extends Component {
                             onChange={this.handleInput} />
                         {usernameWarning}
                     </FormGroup>
-
                     <FormGroup bsClass={emailClass}>
                         <Label>Email</Label>
                         <input type='text'
@@ -291,7 +289,6 @@ class CreateAccount extends Component {
                             onChange={this.handleInput} />
                         {emailWarning}
                     </FormGroup>
-
                     <FormGroup bsClass={passwordClass}>
                         <Label>Password</Label>
                         <input type='password'
@@ -302,7 +299,6 @@ class CreateAccount extends Component {
                             onChange={this.handleInput} />
                         {passwordWarning}
                     </FormGroup>
-
                     <br />
                     <Button
                         bsStyle='primary'

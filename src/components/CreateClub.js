@@ -10,7 +10,7 @@ import {
 import { Redirect } from 'react-router-dom';
 
 import {
-    CLUB_ALREADY_EXISTS, UNEXPECTED_ERROR
+    CLUB_ALREADY_EXISTS, NOT_SIGNED_IN_ERROR, UNEXPECTED_ERROR
 } from '../constants';
 /* eslint-enable no-unused-vars */
 
@@ -80,6 +80,10 @@ class CreateClub extends Component {
     }
 
     render() {
+        // Display an error message if the user is not signed in
+        if (!this.props.client.isSignedIn()) {
+            return <Alert bsStyle='warning'>{NOT_SIGNED_IN_ERROR}</Alert>
+        }
         if (this.state.goToClubPage) {
             return <Redirect to={`/clubs/${this.state.name}`} />;
         }
