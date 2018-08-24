@@ -15,7 +15,7 @@ class EditAccountMainPage extends Component {
     }
 
     /**
-     * Updates the sidbar
+     * Updates the sidebar
      * @param {*} sidebarState 
      */
     onSelectSidebar(selection) {
