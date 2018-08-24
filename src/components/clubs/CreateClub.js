@@ -10,11 +10,6 @@ import {
 import { Redirect } from 'react-router-dom';
 
 import {
-    CLUB_ALREADY_EXISTS, UNEXPECTED_ERROR
-} from '../constants';
-/* eslint-enable no-unused-vars */
-
-import {
     CLUB_ALREADY_EXISTS, UNEXPECTED_ERROR, NOT_SIGNED_IN_ERROR
 } from '../../constants';
 /* eslint-enable no-unused-vars */
