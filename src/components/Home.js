@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Clubs from './Clubs';
-import LargeLogo from '../media/large-logo.png';
-import '../css/Home.css';
 import {
     Button, Row, Col
 } from 'react-bootstrap';
+
+import Clubs from './Clubs';
+import LargeLogo from '../media/large-logo.png';
+import '../css/Home.css';
 /* eslint-enable no-unused-vars */
 
 class Home extends Component {
@@ -24,9 +25,7 @@ class Home extends Component {
         }
         return (
             <div className='container home'>
-
                 <Row>
-
                     <Col>
                         <h1>Huddle</h1>
                         <h2>Find a club that matches your interests.</h2>
@@ -36,9 +35,7 @@ class Home extends Component {
                     <Col>
                         <img src={LargeLogo} alt='logo' className='large-logo' />
                     </Col>
-
                 </Row>
-
                 <Link to='/sign-in'>
                     <Button bsStyle='primary'>Explore Clubs</Button>
                 </Link>

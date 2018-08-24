@@ -1,16 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import {
-    CLUB_ALREADY_EXISTS, UNEXPECTED_ERROR
-} from '../constants';
-import {
+    Alert,
+    Button,
     FormGroup,
     Label,
-    Button,
-    Alert,
     PageHeader
 } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
+
+import {
+    CLUB_ALREADY_EXISTS, UNEXPECTED_ERROR
+} from '../constants';
 /* eslint-enable no-unused-vars */
 
 

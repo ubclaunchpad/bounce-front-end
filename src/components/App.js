@@ -1,14 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import SignIn from './SignIn';
-import Clubs from './Clubs';
-import CreateClub from './CreateClub';
-import Home from './Home';
 import {
     BrowserRouter,
     Switch,
     Route
 } from 'react-router-dom';
+
+import SignIn from './SignIn';
+import Clubs from './Clubs';
+import CreateClub from './CreateClub';
+import Home from './Home';
 import '../css/App.css';
 import CreateAccount from './CreateAccount';
 import ViewClub from './ViewClub';

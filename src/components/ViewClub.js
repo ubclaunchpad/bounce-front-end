@@ -1,22 +1,27 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import {
-    CLUB_ALREADY_EXISTS, UNEXPECTED_ERROR, RESOURCE_NOT_FOUND, CLUB_UPDATED, INVALID_INFO
-} from '../constants';
-import {
-    Grid,
-    Row,
-    Col,
-    Button,
-    Label,
-    Glyphicon,
     Alert,
     Badge,
-    PageHeader,
-    ButtonToolbar,
+    Button,
     ButtonGroup,
-    FormGroup
+    ButtonToolbar,
+    Col,
+    FormGroup,
+    Glyphicon,
+    Grid,
+    Label,
+    PageHeader,
+    Row,
 } from 'react-bootstrap';
+
+import {
+    CLUB_ALREADY_EXISTS,
+    CLUB_UPDATED,
+    INVALID_INFO,
+    RESOURCE_NOT_FOUND,
+    UNEXPECTED_ERROR,
+} from '../constants';
 /* eslint-enable no-unused-vars */
 
 class ViewClub extends Component {
@@ -85,7 +90,7 @@ class ViewClub extends Component {
         // Check if the user has permission to edit this club
         let userId;
         if (this.props.client.token) {
-            userId = this.props.client.userIdFromToken();
+            userId = this.props.client.getUserIdFromToken();
         }
         this.props.client.getMemberships(this.props.name, userId).then(response => {
             if (response.ok) {

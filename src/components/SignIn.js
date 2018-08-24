@@ -85,9 +85,7 @@ class SignIn extends Component {
             <div className='container'>
                 <PageHeader>Sign In</PageHeader>
                 <form onSubmit={this.handleSubmit}>
-
                     {error}
-
                     <FormGroup>
                         <Label>Username</Label>
                         <input type='text'
@@ -97,7 +95,6 @@ class SignIn extends Component {
                             value={this.state.username}
                             onChange={this.handleInput} />
                     </FormGroup>
-
                     <FormGroup>
                         <Label>Password</Label>
                         <input type='password'
@@ -107,7 +104,6 @@ class SignIn extends Component {
                             value={this.state.password}
                             onChange={this.handleInput} />
                     </FormGroup>
-
                     <button className={buttonClass}>Sign In</button>
                     <button
                         onClick={this.handleCreateAccountClick}

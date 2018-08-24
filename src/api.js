@@ -42,7 +42,7 @@ export default class BounceClient {
     /**
      * Returns the user ID in the JWT we were given on sign-in.
      */
-    userIdFromToken() {
+    getUserIdFromToken() {
         if (!this.token) {
             return null;
         }

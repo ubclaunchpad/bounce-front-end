@@ -1,21 +1,22 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import {
-    INVALID_INFO,
-    USERNAME_OR_EMAIL_TAKEN,
-    UNEXPECTED_ERROR,
-    USERNAME_WARNING,
-    PASSWORD_WARNING,
-    EMAIL_WARNING,
-} from '../constants';
 import { Redirect } from 'react-router-dom';
 import {
-    Button,
-    PageHeader,
-    FormGroup,
     Alert,
-    Label
+    Button,
+    FormGroup,
+    Label,
+    PageHeader,
 } from 'react-bootstrap';
+
+import {
+    EMAIL_WARNING,
+    INVALID_INFO,
+    PASSWORD_WARNING,
+    UNEXPECTED_ERROR,
+    USERNAME_OR_EMAIL_TAKEN,
+    USERNAME_WARNING,
+} from '../constants';
 /* eslint-enable no-unused-vars */
 
 class CreateAccount extends Component {
@@ -207,9 +208,7 @@ class CreateAccount extends Component {
         }
 
         let errorMsg, usernameWarning, emailWarning, passwordWarning;
-        let usernameClass = 'has-';
-        let emailClass = 'has-';
-        let passwordClass = 'has-';
+        let usernameClass, emailClass, passwordClass;
 
         // Display error message if there is one
         if (this.state.errorMsg) {
@@ -223,25 +222,25 @@ class CreateAccount extends Component {
         // Signal the validity of each input if it's been filled in
         if (this.state.usernameIsValid !== undefined) {
             if (this.state.usernameIsValid) {
-                usernameClass += 'success';
+                usernameClass = 'has-success';
             } else {
-                usernameClass += 'error';
+                usernameClass = 'has-error';
                 usernameWarning = <span>{USERNAME_WARNING}</span>;
             }
         }
         if (this.state.emailIsValid !== undefined) {
             if (this.state.emailIsValid) {
-                emailClass += 'success';
+                emailClass = 'has-success';
             } else {
-                emailClass += 'error';
+                emailClass = 'has-error';
                 emailWarning = <span>{EMAIL_WARNING}</span>;
             }
         }
         if (this.state.passwordIsValid !== undefined) {
             if (this.state.passwordIsValid) {
-                passwordClass += 'success';
+                passwordClass = 'has-success';
             } else {
-                passwordClass += 'error';
+                passwordClass = 'has-error';
                 passwordWarning = <span>{PASSWORD_WARNING}</span>;
             }
         }
