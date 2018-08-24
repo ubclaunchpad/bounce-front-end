@@ -1,0 +1,40 @@
+$pallete-blue: #0CD3FE;
+$pallete-dark-grey: #7F7F7F;
+
+.edit-account-sidebar {
+    display: inline-block;
+    vertical-align: top;
+
+    h2 {
+        color: $pallete-blue;
+        margin-bottom: 0.5em;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0px;
+    }
+
+    ul ul {
+        padding-left: 20px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    a:hover {
+        cursor: pointer;
+    }
+}
+
+.edit-account-settings {
+    display: inline-block;
+    padding-left: 15px;
+    width: 500px;
+
+    input.form-control {
+        margin-bottom: 10px;
+    }
+}
