@@ -8,6 +8,15 @@ import {
     Label,
     PageHeader,
 } from 'react-bootstrap';
+
+import {
+    EMAIL_WARNING,
+    INVALID_INFO,
+    PASSWORD_WARNING,
+    UNEXPECTED_ERROR,
+    USERNAME_OR_EMAIL_TAKEN,
+    USERNAME_WARNING,
+} from '../constants';
 /* eslint-enable no-unused-vars */
 
 import {
