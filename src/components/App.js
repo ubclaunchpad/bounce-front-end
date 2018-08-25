@@ -13,6 +13,7 @@ import Home from './Home';
 import ViewClub from './clubs/ViewClub';
 import CreateAccount from './accounts/CreateAccount';
 import CreateClub from './clubs/CreateClub';
+import EditAccountMainPage from './edit_account/EditAccountMainPage';
 import '../css/App.css';
 /* eslint-enable no-unused-vars */
 
@@ -32,6 +33,7 @@ class App extends Component {
         this.getViewClubPage = this.getViewClubPage.bind(this);
         this.getHomePage = this.getHomePage.bind(this);
         this.onSearch = this.onSearch.bind(this);
+        this.getAccountSettingsPage = this.getAccountSettingsPage.bind(this);
     }
 
     /**
@@ -105,6 +107,12 @@ class App extends Component {
         this.setState({ searchQuery: query });
     }
 
+    getAccountSettingsPage() {
+        return <EditAccountMainPage
+            client={this.props.client}
+        />;
+    }
+
     render() {
         return (
             <BrowserRouter>
@@ -119,6 +127,7 @@ class App extends Component {
                         <Route path='/create-club' render={this.getCreateClubPage} />
                         <Route path='/clubs/:name' component={this.getViewClubPage} />
                         <Route path='/create-account' render={this.getCreateAccountPage} />
+                        <Route path='/account-settings' render={this.getAccountSettingsPage} />
                         <Route path='*' render={() => <Redirect to='/' />} />
                     </Switch>
                 </div>

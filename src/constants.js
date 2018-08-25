@@ -19,3 +19,7 @@ export const UNEXPECTED_ERROR = 'Oops! Something went wrong. Please try again la
 export const NOT_SIGNED_IN_ERROR = 'You must be signed in to perform this action.';
 export const PASSWORD_CONFIRM_WARNING = 'The passwords you entered do not match.';
 export const NO_CLUBS_FOUND = 'Sorry, no clubs match your search.';
+export const VERIFY_PASSWORD_ERROR = 'Sorry, we are having trouble verifying your password. Please try again later.'
+export const INCORRECT_PASSWORD_ERROR = 'Password is incorrect.';
+export const EDIT_EMAIL_FAILURE = 'Oops! Something went wrong during email change. ' +
+    'Please try again later.';
