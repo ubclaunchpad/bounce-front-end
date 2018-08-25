@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Alert, FormGroup, Label, PageHeader } from 'react-bootstrap';
 
-import { UNAUTHORIZED, SIGNIN_ERROR } from '../constants';
+import { UNAUTHORIZED, SIGNIN_ERROR } from '../../constants';
 /* eslint-enable no-unused-vars */
 
 class SignIn extends Component {

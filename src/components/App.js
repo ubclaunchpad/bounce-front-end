@@ -7,13 +7,13 @@ import {
     Redirect,
 } from 'react-router-dom';
 
-import SignIn from './SignIn';
+import SignIn from './accounts/SignIn';
 import BounceNavbar from './Navbar';
 import Home from './Home';
-import ViewClub from './ViewClub';
+import ViewClub from './clubs/ViewClub';
+import CreateAccount from './accounts/CreateAccount';
+import CreateClub from './clubs/CreateClub';
 import '../css/App.css';
-import CreateAccount from './CreateAccount';
-import CreateClub from './CreateClub';
 /* eslint-enable no-unused-vars */
 
 class App extends Component {

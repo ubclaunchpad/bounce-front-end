@@ -5,7 +5,7 @@ import {
     Button, Row, Col, Image
 } from 'react-bootstrap';
 
-import Clubs from './Clubs';
+import Clubs from './clubs/Clubs';
 import LargeLogo from '../media/large-logo.png';
 import '../css/Home.css';
 /* eslint-enable no-unused-vars */

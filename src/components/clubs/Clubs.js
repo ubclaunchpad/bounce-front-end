@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { PageHeader } from 'react-bootstrap';
+import { Alert, PageHeader } from 'react-bootstrap';
 /* eslint-enable no-unused-vars */
 
 class Clubs extends Component {
@@ -9,6 +9,13 @@ class Clubs extends Component {
         this.state = {
             clubs: [],
         };
+    }
+
+    /**
+     * Fetches clubs to display
+     */
+    componentDidMount() {
+        // TODO
     }
 
     render() {
@@ -34,8 +41,6 @@ class Clubs extends Component {
         return (
             <div>
                 {welcomeMsg}
-                <p>I'm a cool club</p>
-
                 <PageHeader>Explore Clubs</PageHeader>
                 {clubs}
             </div>

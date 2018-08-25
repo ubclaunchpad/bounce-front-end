@@ -17,3 +17,4 @@ export const CLUB_UPDATED = 'Your club\'s information has been updated.';
 export const RESOURCE_NOT_FOUND = 'Sorry, we can\'t find what you\'re looking for.';
 export const UNEXPECTED_ERROR = 'Oops! Something went wrong. Please try again later.';
 export const NOT_SIGNED_IN_ERROR = 'You must be signed in to perform this action.';
+export const PASSWORD_CONFIRM_WARNING = 'The passwords you entered do not match.';

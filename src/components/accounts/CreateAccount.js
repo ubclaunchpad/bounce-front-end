@@ -12,11 +12,12 @@ import {
 import {
     EMAIL_WARNING,
     INVALID_INFO,
+    PASSWORD_CONFIRM_WARNING,
     PASSWORD_WARNING,
     UNEXPECTED_ERROR,
     USERNAME_OR_EMAIL_TAKEN,
     USERNAME_WARNING,
-} from '../constants';
+} from '../../constants';
 /* eslint-enable no-unused-vars */
 
 import {
@@ -37,9 +38,11 @@ class CreateAccount extends Component {
             username: '',
             email: '',
             password: '',
+            passwordConfirmation: '',
             usernameIsValid: undefined,
             emailIsValid: undefined,
             passwordIsValid: undefined,
+            passwordsMatch: undefined,
             goToSignIn: false,
             isSignedIn: false,
             errorMsg: undefined,
@@ -128,11 +131,16 @@ class CreateAccount extends Component {
             break;
         case 'password':
             this.setState({
-                'passwordIsValid': this.validatePassword(value)
+                'passwordIsValid': this.validatePassword(value),
+                'passwordsMatch': value === this.state.passwordConfirmation,
+            });
+            break;
+        case 'passwordConfirmation':
+            this.setState({
+                'passwordsMatch': this.state.password === value
             });
             break;
         }
-
         this.setState({
             [event.target.name]: value,
         });
@@ -217,8 +225,8 @@ class CreateAccount extends Component {
             return <Redirect to='/sign-in' />;
         }
 
-        let errorMsg, usernameWarning, emailWarning, passwordWarning;
-        let usernameClass, emailClass, passwordClass;
+        let errorMsg, usernameWarning, emailWarning, passwordWarning, passwordConfirmationWarning;
+        let usernameClass, emailClass, passwordClass, passwordConfirmationClass;
 
         // Display error message if there is one
         if (this.state.errorMsg) {
@@ -228,7 +236,8 @@ class CreateAccount extends Component {
         const submitDisabled = (
             !this.state.usernameIsValid ||
             !this.state.passwordIsValid ||
-            !this.state.emailIsValid);
+            !this.state.emailIsValid ||
+            !this.state.passwordsMatch);
         // Signal the validity of each input if it's been filled in
         if (this.state.usernameIsValid !== undefined) {
             if (this.state.usernameIsValid) {
@@ -252,6 +261,14 @@ class CreateAccount extends Component {
             } else {
                 passwordClass = 'has-error';
                 passwordWarning = <span>{PASSWORD_WARNING}</span>;
+            }
+        }
+        if (this.state.passwordsMatch !== undefined) {
+            if (this.state.passwordsMatch) {
+                passwordConfirmationClass = 'has-success';
+            } else {
+                passwordConfirmationClass = 'has-error';
+                passwordConfirmationWarning = <span>{PASSWORD_CONFIRM_WARNING}</span>;
             }
         }
 
@@ -298,6 +315,16 @@ class CreateAccount extends Component {
                             value={this.state.password}
                             onChange={this.handleInput} />
                         {passwordWarning}
+                    </FormGroup>
+                    <FormGroup bsClass={passwordConfirmationClass}>
+                        <Label>Confirm Password</Label>
+                        <input type='password'
+                            name='passwordConfirmation'
+                            placeholder='Confirm Password'
+                            className='form-control'
+                            value={this.state.passwordConfirmation}
+                            onChange={this.handleInput} />
+                        {passwordConfirmationWarning}
                     </FormGroup>
                     <br />
                     <Button
