@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import SignIn from './SignIn';
 import Clubs from './Clubs';
 import Home from './Home';
+import EditAccountMainPage from './edit_account/EditAccountMainPage';
 import {
     BrowserRouter,
     Switch,
@@ -25,6 +26,7 @@ class App extends Component {
         this.getSignInPage = this.getSignInPage.bind(this);
         this.getCreateAccountPage = this.getCreateAccountPage.bind(this);
         this.getHomePage = this.getHomePage.bind(this);
+        this.getAccountSettingsPage = this.getAccountSettingsPage.bind(this);
     }
 
     /**
@@ -68,6 +70,12 @@ class App extends Component {
         />;
     }
 
+    getAccountSettingsPage() {
+        return <EditAccountMainPage 
+            client={this.props.client}
+        />;
+    }
+
     render() {
         return (
             <BrowserRouter>
@@ -75,6 +83,7 @@ class App extends Component {
                     <Route exact path='/' component={this.getHomePage} />
                     <Route path='/sign-in' render={this.getSignInPage} />
                     <Route path='/create-account' render={this.getCreateAccountPage} />
+                    <Route path='/account-settings' render={this.getAccountSettingsPage} />
                 </Switch>
             </BrowserRouter>
         );

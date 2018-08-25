@@ -16,20 +16,7 @@ class EditAccountSidebar extends Component {
             <div className="edit-account-sidebar">
                 <h2 className="sidebar-label">Setting</h2>
                 <ul>
-                    <li><a>Account Settings</a>
-                        <ul>
-                            <li>
-                                <a onClick={() => this.props.onSelectSidebar('Password Change')}>
-                                    Password Change
-                                </a>
-                            </li>
-                            <li>
-                                <a onClick={() => this.props.onSelectSidebar('Email Change')}>
-                                    Email Change
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    <li><a>Account Settings</a></li>
                     <li><a>Privacy</a></li>
                 </ul>
             </div>

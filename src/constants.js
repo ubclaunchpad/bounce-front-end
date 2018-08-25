@@ -15,3 +15,7 @@ export const PASSWORD_WARNING = 'Passwords must be at least 8 characters ' +
     'long and should contain at least one uppercase letter, one ' +
     'lowercase letter, one number, and one of the following' +
     'symbols: ".-!@#$%^&*?_+ "';
+export const VERIFY_PASSWORD_ERROR = 'Sorry, we are having trouble verifying your password. Please try again later.'
+export const INCORRECT_PASSWORD_ERROR = 'Password is incorrect.'
+export const EDIT_EMAIL_FAILURE = 'Oops! Something went wrong during email change. ' +
+'Please try again later.';

@@ -1,14 +1,19 @@
 $pallete-blue: #0CD3FE;
+$pallete-green: #73E5D6;
 $pallete-dark-grey: #7F7F7F;
+
+h2 {
+    margin: 0.5em 0;
+}
 
 .edit-account-sidebar {
     display: inline-block;
     vertical-align: top;
 
-    h2 {
-        color: $pallete-blue;
-        margin-bottom: 0.5em;
-    }
+    // h2 {
+    //     // color: $pallete-blue;
+    //     margin-bottom: 0.5em;
+    // }
 
     ul {
         list-style: none;
@@ -36,5 +41,27 @@ $pallete-dark-grey: #7F7F7F;
 
     input.form-control {
         margin-bottom: 10px;
+    }
+
+    h2 {
+        color: $pallete-blue;
+    }
+
+    h3 {
+        color: $pallete-dark-grey;
+    }
+
+    .error-message {
+        border: 0.5px solid #a94442;
+        border-radius: 20px;
+        display: inline-block;
+        padding: 1px 5px;
+    }
+
+    .success-message {
+        border: 0.5px solid $pallete-green;
+        border-radius: 20px;
+        display: inline-block;
+        padding: 1px 5px;
     }
 }

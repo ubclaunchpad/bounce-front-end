@@ -1,10 +1,10 @@
+h2 {
+  margin: 0.5em 0;
+}
+
 .edit-account-sidebar {
   display: inline-block;
   vertical-align: top;
-}
-.edit-account-sidebar h2 {
-  color: #0CD3FE;
-  margin-bottom: 0.5em;
 }
 .edit-account-sidebar ul {
   list-style: none;
@@ -28,6 +28,24 @@
 }
 .edit-account-settings input.form-control {
   margin-bottom: 10px;
+}
+.edit-account-settings h2 {
+  color: #0CD3FE;
+}
+.edit-account-settings h3 {
+  color: #7F7F7F;
+}
+.edit-account-settings .error-message {
+  border: 0.5px solid #a94442;
+  border-radius: 20px;
+  display: inline-block;
+  padding: 1px 5px;
+}
+.edit-account-settings .success-message {
+  border: 0.5px solid #73E5D6;
+  border-radius: 20px;
+  display: inline-block;
+  padding: 1px 5px;
 }
 
 /*# sourceMappingURL=EditAccount.css.map */
