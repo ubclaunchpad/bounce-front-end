@@ -31,8 +31,7 @@ class Home extends Component {
         return (
             <div className='container home'>
                 <Row>
-                    {/* Using divs here because Col components don't work */}
-                    <div class='col-sm-6'>
+                    <Col sm={6}>
                         <h1>Huddle</h1>
                         <h2>Find a club that matches your interests.</h2>
                         <p>Find a club, get involved, and make new friends!</p>
@@ -43,15 +42,15 @@ class Home extends Component {
                         <Link to='/create-account'>
                             <Button>Create Account</Button>
                         </Link>
-                    </div>
-                    <div class='col-sm-6'>
+                    </Col>
+                    <Col sm={6}>
                         <Image
                             src={LargeLogo}
                             alt='logo'
                             className='large-logo'
                             responsive
                         />
-                    </div>
+                    </Col>
                 </Row>
             </div>
         );
