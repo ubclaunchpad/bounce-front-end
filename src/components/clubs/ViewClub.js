@@ -24,15 +24,6 @@ import {
 } from '../../constants';
 /* eslint-enable no-unused-vars */
 
-import {
-    CLUB_ALREADY_EXISTS,
-    CLUB_UPDATED,
-    INVALID_INFO,
-    RESOURCE_NOT_FOUND,
-    UNEXPECTED_ERROR,
-} from '../constants';
-/* eslint-enable no-unused-vars */
-
 class ViewClub extends Component {
     constructor(props) {
         super(props);

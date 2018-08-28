@@ -20,16 +20,6 @@ import {
 } from '../../constants';
 /* eslint-enable no-unused-vars */
 
-import {
-    EMAIL_WARNING,
-    INVALID_INFO,
-    PASSWORD_WARNING,
-    UNEXPECTED_ERROR,
-    USERNAME_OR_EMAIL_TAKEN,
-    USERNAME_WARNING,
-} from '../constants';
-/* eslint-enable no-unused-vars */
-
 class CreateAccount extends Component {
     constructor(props) {
         super(props);
