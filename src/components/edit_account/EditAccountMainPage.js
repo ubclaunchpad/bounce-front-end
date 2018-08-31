@@ -9,7 +9,7 @@ class EditAccountMainPage extends Component {
         super(props);
         this.state = {
             sidebarSelection: '',
-            username: 'TestUsername'
+            username: 'MikeUser'
         };
 
         this.onSelectSidebar = this.onSelectSidebar.bind(this);
