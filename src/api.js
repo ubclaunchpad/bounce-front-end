@@ -36,10 +36,14 @@ export default class BounceClient {
      * @param {String} password
      */
     async authenticate(username, password) {
-        return await this._request('POST', '/auth/login', {
+        const response = await this._request('POST', '/auth/login', {
             username: username,
             password: password,
         });
+        if (response.ok) {
+            this.token = (await response.json())['token'];
+        }
+        return Promise.resolve(response);
     }
 
     /**
