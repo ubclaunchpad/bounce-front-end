@@ -127,6 +127,14 @@ export default class BounceClient {
     }
 
     /**
+     * Returns a list of clubs that match the given query.
+     * @param {String} query
+     */
+    async searchClubs(query) {
+        return await this._request('GET', `/clubs/search?query=${query}`);
+    }
+
+    /**
      * Create a new club with the given properties
      * @param {String} name
      * @param {String} description

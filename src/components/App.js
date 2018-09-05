@@ -23,6 +23,7 @@ class App extends Component {
             isSignedIn: false,
             isNewAccount: false,
             username: undefined,
+            searchQuery: undefined,
         };
 
         this.onSignIn = this.onSignIn.bind(this);
@@ -31,6 +32,7 @@ class App extends Component {
         this.getCreateClubPage = this.getCreateClubPage.bind(this);
         this.getViewClubPage = this.getViewClubPage.bind(this);
         this.getHomePage = this.getHomePage.bind(this);
+        this.onSearch = this.onSearch.bind(this);
     }
 
     /**
@@ -93,7 +95,16 @@ class App extends Component {
             isSignedIn={this.state.isSignedIn}
             username={this.state.username}
             isNewAccount={this.state.isNewAccount}
+            searchQuery={this.state.searchQuery}
         />;
+    }
+
+    /**
+     * Stores the search query as component state.
+     * @param {String} query
+     */
+    onSearch(query) {
+        this.setState({ searchQuery: query });
     }
 
     render() {
@@ -101,7 +112,10 @@ class App extends Component {
             <div>
                 <BrowserRouter>
                     <div>
-                        <BounceNavbar />
+                        <BounceNavbar
+                            client={this.props.client}
+                            onSearch={this.onSearch}
+                        />
                         <Switch>
                             <Route exact path='/' component={this.getHomePage} />
                             <Route path='/sign-in' render={this.getSignInPage} />

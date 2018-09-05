@@ -21,8 +21,10 @@ class Home extends Component {
             return <Clubs
                 username={this.props.username}
                 isNewAccount={this.props.isNewAccount}
+                searchQuery={this.props.searchQuery}
             />;
         }
+
         return (
             <div className='container home'>
                 <Row>

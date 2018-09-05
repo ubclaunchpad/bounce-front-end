@@ -20,9 +20,12 @@ class BounceNavbar extends Component {
         super(props);
         this.state = {
             goToHome: false,
+            query: '',
         };
 
         this.handleHomeClick = this.handleHomeClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInput = this.handleInput.bind(this);
     }
 
     componentDidUpdate() {
@@ -31,8 +34,27 @@ class BounceNavbar extends Component {
         }
     }
 
+    /**
+     * Redirects to the Home page when the Bounce logo is clicked.
+     */
     handleHomeClick() {
         this.setState({ goToHome: true });
+    }
+
+    /**
+     * Updates component state when the user types in the search bar.
+     * @param {Event} event
+     */
+    handleInput(event) {
+        event.preventDefault();
+        this.setState({ query: event.target.value });
+    }
+
+    /**
+     * Searches for clubs when the user hits the search button.
+     */
+    handleSubmit() {
+        this.props.onSearch(this.state.query);
     }
 
     render() {
@@ -55,20 +77,16 @@ class BounceNavbar extends Component {
                 <Navbar.Collapse>
                     <Navbar.Form>
                         <FormGroup>
-                            <FormControl type='text' placeholder='Search' />
+                            <FormControl
+                                type='text'
+                                placeholder='Search'
+                                onChange={this.handleInput}
+                            />
                         </FormGroup>
-                        <Button type='submit'>
+                        <Button type='submit' onClick={this.handleSubmit}>
                             <Glyphicon glyph='search'></Glyphicon>
                         </Button>
                     </Navbar.Form>
-                    {/* <Nav pullRight>
-                        <NavItem eventKey={1}>
-                            Test
-                        </NavItem>
-                        <NavItem eventKey={2}>
-                            Test2
-                        </NavItem>
-                    </Nav> */}
                 </Navbar.Collapse>
                 {homeRedirect}
             </Navbar>
