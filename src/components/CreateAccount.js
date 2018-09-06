@@ -86,10 +86,14 @@ class CreateAccount extends Component {
         this.props.client.authenticate(this.state.username, this.state.password)
             .then(response => {
                 if (response.ok) {
-                    // Notifiy the parent component that account creation and
-                    // sign-in are complete
-                    this.props.onSignIn(true, this.state.username);
-                    this.setState({ isSignedIn: true });
+                    response.json().then(data => {
+                        localStorage.setItem('bounceJwt', data.token);
+
+                        // Notifiy the parent component that account creation and
+                        // sign-in are complete
+                        this.props.onSignIn(true, this.state.username);
+                        this.setState({ isSignedIn: true });
+                    });
                 } else {
                     // Trigger a redirect to the SignIn page if the account
                     // creation was successful but the sign-in failed

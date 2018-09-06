@@ -4,7 +4,7 @@ import jwtDecode from 'jwt-decode';
 export default class BounceClient {
     constructor(url) {
         this.url = url;
-        this.token = null;
+        this.token = localStorage.getItem('bounceJwt');
     }
 
     /**
