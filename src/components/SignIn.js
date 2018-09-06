@@ -34,9 +34,12 @@ class SignIn extends Component {
         ).then(response => {
             // Check if authentication was successful
             if (response.ok) {
-                // Trigger a page transition in the parent component
-                this.props.onSignIn(false, this.state.username);
-                this.setState({ isSignedIn: true });
+                response.json().then(data => {
+                    localStorage.setItem('bounceJwt', data.token);
+                    // Trigger a page transition in the parent component
+                    this.props.onSignIn(false, this.state.username);
+                    this.setState({isSignedIn: true});
+                });
             } else if (response.status === 401) {
                 // The users's credentials are invalid
                 this.setState({ errorMsg: UNAUTHORIZED });
