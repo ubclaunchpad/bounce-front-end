@@ -8,7 +8,7 @@ class Clubs extends Component {
         super(props);
         this.state = {
             isSettingsClicked: false
-        }
+        };
 
         this.handleSettingsClick = this.handleSettingsClick.bind(this);
     }
@@ -24,7 +24,7 @@ class Clubs extends Component {
             welcomeMsg = <p>Welcome, {this.props.username}!</p>;
         }
         if (this.state.isSettingsClicked) {
-            return <Redirect to='/account-settings' />
+            return <Redirect to='/account-settings' />;
         }
         return (
             <div>
