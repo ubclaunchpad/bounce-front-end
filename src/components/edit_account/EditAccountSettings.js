@@ -57,8 +57,6 @@ class EditAccountSettings extends Component {
      * Return true if new password and reentered new password is equivalent
      */
     validatePasswordReentry() {
-        // return this.state.newPasswordReentry > 0 ? this.state.newPasswordReentry === this.state.newPassword 
-        //     : undefined;
         return this.state.newPasswordReentry === this.state.newPassword;
     }
 
@@ -68,10 +66,7 @@ class EditAccountSettings extends Component {
      * @param {String} emailReentryInput 
      */
     validateEmailReentry(emailReentryInput) {
-        let emailReentry = emailReentryInput || this.state.newEmailReentry;
-        // return emailReentry.length > 0 ? emailReentry === this.state.newEmail
-        //     : undefined;
-        return emailReentry === this.state.newEmail;
+        return emailReentryInput === this.state.newEmail;
     }
 
     /**
@@ -79,7 +74,6 @@ class EditAccountSettings extends Component {
      * @param {Event} event
      */
     handleInputChange(event) {
-        // Make sure the value matches the requirements for its field
         const value = event.target.value;
         switch (event.target.name) {
         case 'newPassword':
@@ -94,16 +88,11 @@ class EditAccountSettings extends Component {
             }
             break;
         case 'newPasswordReentry':
-            // only show result onBlur (so the user must type correct password in one go)
-            // Does not show show anything onChange
             this.setState({
                 'newPasswordReentryIsValid': undefined
             });
             break;
         case 'newEmail':
-            // Does not show error on initial onChange
-            // If user make incorrect input value, error highlight stays.
-            // If user remove entry, error disappears.
             if (value.length === 0 || this.state.newEmailIsValid === undefined){
                 this.setState({
                     'newEmailIsValid': undefined
@@ -115,7 +104,6 @@ class EditAccountSettings extends Component {
             }
             break;
         case 'newEmailReentry':
-            // When value length is 0 or value is changed, state undefined. When value is equal to new email, true.
             if (value.length === 0){
                 this.setState({
                     'newEmailReentryIsValid': undefined
@@ -180,7 +168,7 @@ class EditAccountSettings extends Component {
         case 'newEmailReentry':
             if (this.state.newEmailReentry.length > 0){
                 this.setState({
-                    'newEmailReentryIsValid': this.validateEmailReentry()
+                    'newEmailReentryIsValid': this.validateEmailReentry(this.state.newEmailReentry)
                 });
             } else{
                 this.setState({
@@ -234,7 +222,6 @@ class EditAccountSettings extends Component {
         if (isNewPasswordValid && isNewPasswordReentryValid) {
             this.validateCurrentPassword(this.state.currentPassword)
                 .then(isVerify => {
-                    // return value here SHOULD be same as return value of updatePassword()
                     if (isVerify === true) {
                         isPasswordValid = true;
                         return this.updatePassword();
@@ -317,7 +304,7 @@ class EditAccountSettings extends Component {
         console.log("Email Handle");
 
         const isNewEmailValid = this.validateEmail(this.state.newEmail);
-        const isNewEmailReentryValid = this.validateEmailReentry();
+        const isNewEmailReentryValid = this.validateEmailReentry(this.state.newEmailReentry);
         let isPasswordValid;
         let isEmailChangeSuccessfull;
         let emailChangeMessage;
@@ -387,7 +374,6 @@ class EditAccountSettings extends Component {
         let emailChangeClass;
         let passwordChangeClass;
 
-        // Add current password class
         if (this.state.currentPasswordIsValid === true) {
             currentPasswordClass += 'success';
         } else if (this.state.currentPasswordIsValid === false){
@@ -440,8 +426,6 @@ class EditAccountSettings extends Component {
             emailPasswordWarning = <span>{INCORRECT_PASSWORD_WARNING}</span>;
         }
 
-        // passwordChangeClass = this.state.isPasswordChangeSuccessfull ? 'success-message' :
-        //     this.state.isPasswordChangeSuccessfull === false ? 'error-message' : undefined;
         passwordChangeClass = this.state.isPasswordChangeSuccessful ? 'success-message' : 
             this.state.isPasswordChangeSuccessful === false ? 'error-message' : undefined;
         
