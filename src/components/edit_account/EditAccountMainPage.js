@@ -4,12 +4,13 @@ import EditAccountSettings  from './EditAccountSettings';
 import EditAccountSidebar from './EditAccountSidebar';
 /* eslint-enable no-unused-vars */
 
+// MikeUserTest@hotmail.com
 class EditAccountMainPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             sidebarSelection: '',
-            username: 'MikeUser'
+            username: 'MikeUserTest'
         };
 
         this.onSelectSidebar = this.onSelectSidebar.bind(this);
