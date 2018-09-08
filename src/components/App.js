@@ -20,7 +20,6 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSignedIn: false,
             isNewAccount: false,
             username: undefined,
             searchQuery: undefined,
@@ -42,7 +41,6 @@ class App extends Component {
      */
     onSignIn(isNewAccount, username) {
         this.setState({
-            isSignedIn: true,
             isNewAccount: isNewAccount,
             username: username,
         });
@@ -92,9 +90,9 @@ class App extends Component {
      */
     getHomePage() {
         return <Home
-            isSignedIn={this.state.isSignedIn}
             username={this.state.username}
             isNewAccount={this.state.isNewAccount}
+            client={this.props.client}
             searchQuery={this.state.searchQuery}
         />;
     }
@@ -109,24 +107,22 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <BrowserRouter>
-                    <div>
-                        <BounceNavbar
-                            client={this.props.client}
-                            onSearch={this.onSearch}
-                        />
-                        <Switch>
-                            <Route exact path='/' component={this.getHomePage} />
-                            <Route path='/sign-in' render={this.getSignInPage} />
-                            <Route path='/create-club' render={this.getCreateClubPage} />
-                            <Route path='/clubs/:name' component={this.getViewClubPage} />
-                            <Route path='/create-account' render={this.getCreateAccountPage} />
-                            <Route path='*' render={() => <Redirect to='/' />} />
-                        </Switch>
-                    </div>
-                </BrowserRouter>
-            </div>
+            <BrowserRouter>
+                <div>
+                    <BounceNavbar
+                        client={this.props.client}
+                        onSearch={this.onSearch}
+                    />
+                    <Switch>
+                        <Route exact path='/' render={this.getHomePage} />
+                        <Route path='/sign-in' render={this.getSignInPage} />
+                        <Route path='/create-club' render={this.getCreateClubPage} />
+                        <Route path='/clubs/:name' component={this.getViewClubPage} />
+                        <Route path='/create-account' render={this.getCreateAccountPage} />
+                        <Route path='*' render={() => <Redirect to='/' />} />
+                    </Switch>
+                </div>
+            </BrowserRouter>
         );
     }
 }

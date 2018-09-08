@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import { NavLink, BrowserRouter, Redirect } from 'react-router-dom';
 import {
     Navbar,
-    Nav,
-    NavItem,
     FormControl,
     FormGroup,
     Button,
@@ -20,7 +18,7 @@ class BounceNavbar extends Component {
         super(props);
         this.state = {
             goToHome: false,
-            query: '',
+            query: undefined,
         };
 
         this.handleHomeClick = this.handleHomeClick.bind(this);
@@ -35,10 +33,12 @@ class BounceNavbar extends Component {
     }
 
     /**
-     * Redirects to the Home page when the Bounce logo is clicked.
+     * Redirects to the Home page with an empty search query when
+     * the Bounce logo is clicked.
      */
     handleHomeClick() {
         this.setState({ goToHome: true });
+        this.props.onSearch();
     }
 
     /**
@@ -53,7 +53,10 @@ class BounceNavbar extends Component {
     /**
      * Searches for clubs when the user hits the search button.
      */
-    handleSubmit() {
+    handleSubmit(event) {
+        event.preventDefault();
+        // Trigger redirect to Home page so it can display search results
+        this.setState({ goToHome: true });
         this.props.onSearch(this.state.query);
     }
 
@@ -76,16 +79,18 @@ class BounceNavbar extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Navbar.Form>
-                        <FormGroup>
-                            <FormControl
-                                type='text'
-                                placeholder='Search'
-                                onChange={this.handleInput}
-                            />
-                        </FormGroup>
-                        <Button type='submit' onClick={this.handleSubmit}>
-                            <Glyphicon glyph='search'></Glyphicon>
-                        </Button>
+                        <form onSubmit={this.handleSubmit}>
+                            <FormGroup>
+                                <FormControl
+                                    type='text'
+                                    placeholder='Search'
+                                    onChange={this.handleInput}
+                                />
+                            </FormGroup>
+                            <Button type='submit'>
+                                <Glyphicon glyph='search'></Glyphicon>
+                            </Button>
+                        </form>
                     </Navbar.Form>
                 </Navbar.Collapse>
                 {homeRedirect}
