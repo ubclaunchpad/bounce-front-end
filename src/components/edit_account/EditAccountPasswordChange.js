@@ -71,15 +71,15 @@ class EditAccountPasswordChange extends Component {
         let isNewPasswordReentryValid = this.state.newPasswordReentryIsValid;
 
         switch (event.target.name) {
-            case 'newPassword':
-                isNewPasswordValid = this.handlePasswordValidation(value);
-                isNewPasswordReentryValid = this.validatePasswordReentry(this.state.newPasswordReentry, value);
-                break;
-            case 'newPasswordReentry':
-                isNewPasswordReentryValid = this.validatePasswordReentry(value);
-                break;
-            default:
-                break;
+        case 'newPassword':
+            isNewPasswordValid = this.handlePasswordValidation(value);
+            isNewPasswordReentryValid = this.validatePasswordReentry(this.state.newPasswordReentry, value);
+            break;
+        case 'newPasswordReentry':
+            isNewPasswordReentryValid = this.validatePasswordReentry(value);
+            break;
+        default:
+            break;
         }
 
         this.setState({
