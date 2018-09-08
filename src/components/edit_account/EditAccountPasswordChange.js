@@ -1,53 +1,36 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
+import { validatePassword }from '../utils';
 import {
     PASSWORD_WARNING,
-    EMAIL_WARNING,
     VERIFY_PASSWORD_ERROR,
     INCORRECT_PASSWORD_WARNING,
     PASSWORD_CHANGE_ERROR,
     PASSWORD_CHANGE_UNSUCCESSFUL,
-    PASSWORD_CHANGE_SUCCESSFUL,
-    EMAIL_CHANGE_ERROR,
-    EMAIL_CHANGE_UNSUCCESSFUL,
-    EMAIL_CHANGE_SUCCESSFUL
+    PASSWORD_CHANGE_SUCCESSFUL
 } from '../../constants';
-import {
-    validatePassword,
-    validateEmail
-} from '../utils';
 import '../../css/EditAccount.css';
 /* eslint-enable no-unused-vars */
 
-class EditAccountSettings extends Component {
+class EditAccountPasswordChange extends Component {
     constructor(props) {
         super(props);
         this.state = {
             currentPassword: '',
             newPassword: '',
             newPasswordReentry: '',
-            newEmail: '',
-            newEmailReentry: '',
-            emailPassword: '',
             currentPasswordIsValid: undefined,
             newPasswordIsValid: undefined,
             newPasswordReentryIsValid: undefined,
-            newEmailIsValid: undefined,
-            newEmailReentryIsValid: undefined,
-            emailPasswordIsValid: undefined,
             isPasswordChangeSuccessful: undefined,
-            isEmailChangeSuccessfull: undefined,
-            passwordChangeMessage: undefined,
-            emailChangeMessage: undefined
+            passwordChangeMessage: undefined
         };
 
         this.validatePasswordReentry = this.validatePasswordReentry.bind(this);
-        this.validateEmailReentry = this.validateEmailReentry.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.validateCurrentPassword = this.validateCurrentPassword.bind(this);
         this.handlePasswordChangeSubmit = this.handlePasswordChangeSubmit.bind(this);
-        this.updateEmail = this.updateEmail.bind(this);
-        this.handleEmailChangeSubmit = this.handleEmailChangeSubmit.bind(this);
+        this.updatePassword = this.updatePassword.bind(this);
     }
 
     /**
@@ -58,19 +41,6 @@ class EditAccountSettings extends Component {
     handlePasswordValidation(newPassword) {
         if (newPassword.length > 0) {
             return validatePassword(newPassword);
-        } else {
-            return undefined;
-        }
-    }
-
-    /**
-     * If new email is not empty string, validate format of email.
-     * Else, return undefined
-     * @param {string} newEmail
-     */
-    handleEmailValidation(newEmail) {
-        if (newEmail.length > 0) {
-            return validateEmail(newEmail);
         } else {
             return undefined;
         }
@@ -91,21 +61,6 @@ class EditAccountSettings extends Component {
     }
 
     /**
-     * If email reentry is not empty string, 
-     *      check if email reentry is samse as new email.
-     * Else, return false.
-     * @param {String} emailReentryInput 
-     */
-    validateEmailReentry(emailReentryInput, emailInput) {
-        let newEmail = emailInput || this.state.newEmail;
-        if (emailReentryInput.length > 0) {
-            return emailReentryInput === newEmail;
-        } else {
-            return undefined;
-        }
-    }
-
-    /**
      * Updates the component state when the user types in an input field.
      * @param {Event} event
      */
@@ -114,8 +69,6 @@ class EditAccountSettings extends Component {
 
         let isNewPasswordValid = this.state.newPasswordIsValid;
         let isNewPasswordReentryValid = this.state.newPasswordReentryIsValid;
-        let isNewEmailValid = this.state.newEmailIsValid;
-        let isNewEmailReentryValid = this.state.newEmailReentryIsValid;
 
         switch (event.target.name) {
             case 'newPassword':
@@ -125,13 +78,6 @@ class EditAccountSettings extends Component {
             case 'newPasswordReentry':
                 isNewPasswordReentryValid = this.validatePasswordReentry(value);
                 break;
-            case 'newEmail':
-                isNewEmailValid = this.handleEmailValidation(value);
-                isNewEmailReentryValid = this.validateEmailReentry(this.state.newEmailReentry, value);
-                break;
-            case 'newEmailReentry':
-                isNewEmailReentryValid = this.validateEmailReentry(value);
-                break;
             default:
                 break;
         }
@@ -139,9 +85,7 @@ class EditAccountSettings extends Component {
         this.setState({
             [event.target.name]: value,
             newPasswordIsValid: isNewPasswordValid,
-            newPasswordReentryIsValid: isNewPasswordReentryValid,
-            newEmailIsValid: isNewEmailValid,
-            newEmailReentryIsValid: isNewEmailReentryValid
+            newPasswordReentryIsValid: isNewPasswordReentryValid
         });
     }
 
@@ -247,102 +191,12 @@ class EditAccountSettings extends Component {
         }
     }
 
-    /**
-     * Update user email and return whether process was successful
-     */
-    updateEmail() {
-        return this.props.client.updateUser(
-            this.props.userName,
-            undefined,
-            this.state.newEmail
-        ).then(response => {
-            if (response.ok) {
-                return true;
-            } else {
-                return false;
-            } 
-        }).catch(() => {
-            return false;
-        })
-    }
-
-    /**
-     * Check new email format and authenticate user with password,
-     * then update user email address.
-     * @param {Event} event 
-     */
-    handleEmailChangeSubmit(event) {
-        event.preventDefault();
-
-        const isNewEmailValid = this.handleEmailValidation(this.state.newEmail);
-        const isNewEmailReentryValid = this.validateEmailReentry(this.state.newEmailReentry);
-        let isPasswordValid;
-        let isEmailChangeSuccessfull;
-        let emailChangeMessage;
-
-        if (isNewEmailValid && isNewEmailReentryValid){
-            this.validateCurrentPassword(this.state.emailPassword)
-                .then(isVerify => {
-                    if (isVerify === true) {
-                        isPasswordValid = true;
-                        return this.updateEmail();
-                    } else if (isVerify === false) {
-                        isPasswordValid = false;
-                        emailChangeMessage = EMAIL_CHANGE_UNSUCCESSFUL;
-                        return false;
-                    } else {
-                        isPasswordValid = undefined;
-                        emailChangeMessage = VERIFY_PASSWORD_ERROR;
-                        return false;
-                    }
-                })
-                .then(isUpdated => {
-                    if (isUpdated === true) {
-                        emailChangeMessage = EMAIL_CHANGE_SUCCESSFUL;
-                        isEmailChangeSuccessfull = true;
-                    } else {
-                        if (!emailChangeMessage) {
-                            emailChangeMessage = EMAIL_CHANGE_ERROR;
-                        }
-                        isEmailChangeSuccessfull = false;
-                    }
-                })
-                .then(() => {
-                    this.setState({
-                        'newEmailIsValid': isNewEmailValid,
-                        'newEmailReentryIsValid': isNewEmailReentryValid,
-                        'emailPasswordIsValid': isPasswordValid,
-                        'emailPassword': '',
-                        'isEmailChangeSuccessfull': isEmailChangeSuccessfull,
-                        'emailChangeMessage': emailChangeMessage,
-                    })
-                });
-        } else {
-            isPasswordValid = undefined;
-            isEmailChangeSuccessfull = false;
-            emailChangeMessage = EMAIL_CHANGE_UNSUCCESSFUL;
-
-            this.setState({
-                'newEmailIsValid': isNewEmailValid,
-                'newEmailReentryIsValid': isNewEmailReentryValid,
-                'emailPasswordIsValid': isPasswordValid,
-                'emailPassword': '',
-                'isEmailChangeSuccessfull': isEmailChangeSuccessfull,
-                'emailChangeMessage': emailChangeMessage,
-            });
-        }
-    }
-
     render() {
-        let currentPasswordWarning, newPasswordWarning, newPasswordReentryWarning, newEmailWarning, newEmailReentryWarning, emailPasswordWarning;
+        let currentPasswordWarning, newPasswordWarning, newPasswordReentryWarning;
 
         let currentPasswordClass = 'form-group has-';
         let newPasswordClass = 'form-group has-';
         let newPasswordReentryClass = 'form-group has-';
-        let newEmailClass = 'form-group has-';
-        let newEmailReentryClass = 'form-group has-';
-        let emailPasswordClass = 'form-group has-';
-        let emailChangeClass;
         let passwordChangeClass;
 
         if (this.state.currentPasswordIsValid === true) {
@@ -372,40 +226,11 @@ class EditAccountSettings extends Component {
             }
         }
 
-        if (this.state.newEmailIsValid !== undefined) {
-            if (this.state.newEmailIsValid) {
-                newEmailClass += 'success';
-            } else {
-                newEmailClass += 'error';
-                newEmailWarning = <span>{EMAIL_WARNING}</span>;
-            }
-        }
-
-        if (this.state.newEmailReentryIsValid !== undefined) {
-            if (this.state.newEmailReentryIsValid) {
-                newEmailReentryClass += 'success';
-            } else {
-                newEmailReentryClass += 'error';
-                newEmailReentryWarning = <span>{'Retyped email does not match new email'}</span>;
-            }
-        }
-
-        if (this.state.emailPasswordIsValid === true) {
-            emailPasswordClass += 'success';
-        } else if (this.state.emailPasswordIsValid === false){
-            emailPasswordClass += 'error';
-            emailPasswordWarning = <span>{INCORRECT_PASSWORD_WARNING}</span>;
-        }
-
         passwordChangeClass = this.state.isPasswordChangeSuccessful ? 'success-message' : 
             this.state.isPasswordChangeSuccessful === false ? 'error-message' : undefined;
-        
-        emailChangeClass = this.state.isEmailChangeSuccessfull ? 'success-message' :
-            this.state.isEmailChangeSuccessfull === false ? 'error-message' : undefined;
 
         return (
-            <div className="edit-account-settings">
-                <h2>Account Settings</h2>
+            <div>
                 <form onSubmit={this.handlePasswordChangeSubmit}>
                     <h3>Password Change</h3>
                     <p className={passwordChangeClass}>{this.state.passwordChangeMessage}</p>
@@ -425,8 +250,7 @@ class EditAccountSettings extends Component {
                             className="form-control"
                             placeholder="New password"
                             value={this.state.newPassword}
-                            onChange={this.handleInputChange}
-                            onBlur={this.handleOnBlur} />
+                            onChange={this.handleInputChange} />
                         {newPasswordWarning}
                     </div>
 
@@ -436,52 +260,12 @@ class EditAccountSettings extends Component {
                             className="form-control"
                             placeholder="Retype new password"
                             value={this.state.newPasswordReentry}
-                            onChange={this.handleInputChange}
-                            onBlur={this.handleOnBlur} />
+                            onChange={this.handleInputChange} />
                         {newPasswordReentryWarning}
                     </div>
 
                     <button 
-                        className='btn' >
-                        Submit Change
-                    </button>
-                </form>
-
-                <form onSubmit={this.handleEmailChangeSubmit}>
-                    <h3>Email Change</h3>
-                    <p className={emailChangeClass}>{this.state.emailChangeMessage}</p>
-                    <div className={newEmailClass}>
-                        <input type="email"
-                            name="newEmail"
-                            className="form-control"
-                            placeholder="New email"
-                            value={this.state.newEmail}
-                            onChange={this.handleInputChange}
-                            onBlur={this.handleOnBlur} />
-                        {newEmailWarning}
-                    </div>
-
-                    <div className={newEmailReentryClass}>
-                        <input type="email"
-                            name="newEmailReentry"
-                            className="form-control"
-                            placeholder="Retype new email"
-                            value={this.state.newEmailReentry}
-                            onChange={this.handleInputChange}onBlur={this.handleOnBlur} />
-                        {newEmailReentryWarning}
-                    </div>
-
-                    <div className={emailPasswordClass}>
-                        <input type="password"
-                            name="emailPassword"
-                            className="form-control"
-                            placeholder="Password"
-                            value={this.state.emailPassword}
-                            onChange={this.handleInputChange} />
-                        {emailPasswordWarning}
-                    </div>
-                    <button
-                        className="btn">
+                        className='btn'>
                         Submit Change
                     </button>
                 </form>
@@ -490,4 +274,4 @@ class EditAccountSettings extends Component {
     }
 }
 
-export default EditAccountSettings;
+export default EditAccountPasswordChange;

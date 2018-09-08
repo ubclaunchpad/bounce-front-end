@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import EditAccountSettings  from './EditAccountSettings';
 import EditAccountSidebar from './EditAccountSidebar';
+import EditAccountPasswordChange from './EditAccountPasswordChange';
+import EditAccountEmailChange from './EditAccountEmailChange';
 /* eslint-enable no-unused-vars */
 
 // MikeUserTest@hotmail.com
@@ -17,8 +18,8 @@ class EditAccountMainPage extends Component {
     }
 
     /**
-     * Updates the sidebar
-     * @param {*} sidebarState 
+     * 
+     * @param {string} selection 
      */
     onSelectSidebar(selection) {
         this.setState({
@@ -31,9 +32,18 @@ class EditAccountMainPage extends Component {
             <div>
                 <EditAccountSidebar 
                     onSelectSidebar={this.onSelectSidebar} />
-                <EditAccountSettings
-                    client={this.props.client}
-                    userName={this.state.username}/>
+
+                <div className="edit-account-settings">
+                    <h2>Account Settings</h2>
+
+                    <EditAccountPasswordChange 
+                        client={this.props.client}
+                        userName={this.state.username}/>
+
+                    <EditAccountEmailChange
+                        client={this.props.client}
+                        userName={this.state.username}/>
+                </div>
             </div>
         );
     }
