@@ -2,8 +2,6 @@
 import React, { Component } from 'react';
 import {
     EMAIL_WARNING,
-    VERIFY_PASSWORD_ERROR,
-    INCORRECT_PASSWORD_WARNING,
     EMAIL_CHANGE_ERROR,
     EMAIL_CHANGE_UNSUCCESSFUL,
     EMAIL_CHANGE_SUCCESSFUL
@@ -18,17 +16,14 @@ class EditAccountEmailChange extends Component {
         this.state = {
             newEmail: '',
             newEmailReentry: '',
-            emailPassword: '',
             newEmailIsValid: undefined,
             newEmailReentryIsValid: undefined,
-            emailPasswordIsValid: undefined,
             isEmailChangeSuccessfull: undefined,
             emailChangeMessage: undefined
         };
 
         this.validateEmailReentry = this.validateEmailReentry.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.validateCurrentPassword = this.validateCurrentPassword.bind(this);
         this.handleEmailChangeSubmit = this.handleEmailChangeSubmit.bind(this);
         this.updateEmail = this.updateEmail.bind(this);
     }
@@ -91,26 +86,6 @@ class EditAccountEmailChange extends Component {
     }
 
     /**
-     * Return true if user input current password correctly
-     */
-    validateCurrentPassword(password) {
-        return this.props.client.authenticate(
-            this.props.userName,
-            password
-        ).then(response => {
-            if (response.ok) {
-                return true;
-            } else if (response.status === 401) {
-                return false;
-            } else {
-                return undefined;
-            }
-        }).catch(() => {
-            return undefined;
-        });
-    }
-
-    /**
      * Update user email and return whether process was successful
      */
     updateEmail() {
@@ -130,8 +105,7 @@ class EditAccountEmailChange extends Component {
     }
 
     /**
-     * Check new email format and authenticate user with password,
-     * then update user email address.
+     * Check new email format then update user email address.
      * @param {Event} event 
      */
     handleEmailChangeSubmit(event) {
@@ -139,26 +113,11 @@ class EditAccountEmailChange extends Component {
 
         const isNewEmailValid = this.handleEmailValidation(this.state.newEmail);
         const isNewEmailReentryValid = this.validateEmailReentry(this.state.newEmailReentry);
-        let isPasswordValid;
         let isEmailChangeSuccessfull;
         let emailChangeMessage;
 
         if (isNewEmailValid && isNewEmailReentryValid){
-            this.validateCurrentPassword(this.state.emailPassword)
-                .then(isVerify => {
-                    if (isVerify === true) {
-                        isPasswordValid = true;
-                        return this.updateEmail();
-                    } else if (isVerify === false) {
-                        isPasswordValid = false;
-                        emailChangeMessage = EMAIL_CHANGE_UNSUCCESSFUL;
-                        return false;
-                    } else {
-                        isPasswordValid = undefined;
-                        emailChangeMessage = VERIFY_PASSWORD_ERROR;
-                        return false;
-                    }
-                })
+            this.updateEmail()
                 .then(isUpdated => {
                     if (isUpdated === true) {
                         emailChangeMessage = EMAIL_CHANGE_SUCCESSFUL;
@@ -174,22 +133,17 @@ class EditAccountEmailChange extends Component {
                     this.setState({
                         'newEmailIsValid': isNewEmailValid,
                         'newEmailReentryIsValid': isNewEmailReentryValid,
-                        'emailPasswordIsValid': isPasswordValid,
-                        'emailPassword': '',
                         'isEmailChangeSuccessfull': isEmailChangeSuccessfull,
                         'emailChangeMessage': emailChangeMessage,
                     });
                 });
         } else {
-            isPasswordValid = undefined;
             isEmailChangeSuccessfull = false;
             emailChangeMessage = EMAIL_CHANGE_UNSUCCESSFUL;
 
             this.setState({
                 'newEmailIsValid': isNewEmailValid,
                 'newEmailReentryIsValid': isNewEmailReentryValid,
-                'emailPasswordIsValid': isPasswordValid,
-                'emailPassword': '',
                 'isEmailChangeSuccessfull': isEmailChangeSuccessfull,
                 'emailChangeMessage': emailChangeMessage,
             });
@@ -197,11 +151,10 @@ class EditAccountEmailChange extends Component {
     }
 
     render() {
-        let newEmailWarning, newEmailReentryWarning, emailPasswordWarning;
+        let newEmailWarning, newEmailReentryWarning;
 
         let newEmailClass = 'form-group has-';
         let newEmailReentryClass = 'form-group has-';
-        let emailPasswordClass = 'form-group has-';
         let emailChangeClass;
 
         if (this.state.newEmailIsValid !== undefined) {
@@ -220,13 +173,6 @@ class EditAccountEmailChange extends Component {
                 newEmailReentryClass += 'error';
                 newEmailReentryWarning = <span>{'Retyped email does not match new email'}</span>;
             }
-        }
-
-        if (this.state.emailPasswordIsValid === true) {
-            emailPasswordClass += 'success';
-        } else if (this.state.emailPasswordIsValid === false){
-            emailPasswordClass += 'error';
-            emailPasswordWarning = <span>{INCORRECT_PASSWORD_WARNING}</span>;
         }
         
         emailChangeClass = this.state.isEmailChangeSuccessfull ? 'success-message' :
@@ -260,15 +206,6 @@ class EditAccountEmailChange extends Component {
                         {newEmailReentryWarning}
                     </div>
 
-                    <div className={emailPasswordClass}>
-                        <input type="password"
-                            name="emailPassword"
-                            className="form-control"
-                            placeholder="Password"
-                            value={this.state.emailPassword}
-                            onChange={this.handleInputChange} />
-                        {emailPasswordWarning}
-                    </div>
                     <button
                         className="btn">
                         Submit Change
