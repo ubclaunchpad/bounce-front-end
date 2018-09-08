@@ -72,15 +72,15 @@ class EditAccountEmailChange extends Component {
         let isNewEmailReentryValid = this.state.newEmailReentryIsValid;
 
         switch (event.target.name) {
-            case 'newEmail':
-                isNewEmailValid = this.handleEmailValidation(value);
-                isNewEmailReentryValid = this.validateEmailReentry(this.state.newEmailReentry, value);
-                break;
-            case 'newEmailReentry':
-                isNewEmailReentryValid = this.validateEmailReentry(value);
-                break;
-            default:
-                break;
+        case 'newEmail':
+            isNewEmailValid = this.handleEmailValidation(value);
+            isNewEmailReentryValid = this.validateEmailReentry(this.state.newEmailReentry, value);
+            break;
+        case 'newEmailReentry':
+            isNewEmailReentryValid = this.validateEmailReentry(value);
+            break;
+        default:
+            break;
         }
 
         this.setState({
@@ -126,7 +126,7 @@ class EditAccountEmailChange extends Component {
             } 
         }).catch(() => {
             return false;
-        })
+        });
     }
 
     /**
@@ -178,7 +178,7 @@ class EditAccountEmailChange extends Component {
                         'emailPassword': '',
                         'isEmailChangeSuccessfull': isEmailChangeSuccessfull,
                         'emailChangeMessage': emailChangeMessage,
-                    })
+                    });
                 });
         } else {
             isPasswordValid = undefined;
