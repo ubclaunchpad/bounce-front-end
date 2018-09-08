@@ -27,9 +27,10 @@ class EditAccountEmailChange extends Component {
         };
 
         this.validateEmailReentry = this.validateEmailReentry.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);;
-        this.updateEmail = this.updateEmail.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.validateCurrentPassword = this.validateCurrentPassword.bind(this);
         this.handleEmailChangeSubmit = this.handleEmailChangeSubmit.bind(this);
+        this.updateEmail = this.updateEmail.bind(this);
     }
 
     /**
@@ -86,6 +87,26 @@ class EditAccountEmailChange extends Component {
             [event.target.name]: value,
             newEmailIsValid: isNewEmailValid,
             newEmailReentryIsValid: isNewEmailReentryValid
+        });
+    }
+
+    /**
+     * Return true if user input current password correctly
+     */
+    validateCurrentPassword(password) {
+        return this.props.client.authenticate(
+            this.props.userName,
+            password
+        ).then(response => {
+            if (response.ok) {
+                return true;
+            } else if (response.status === 401) {
+                return false;
+            } else {
+                return undefined;
+            }
+        }).catch(() => {
+            return undefined;
         });
     }
 
