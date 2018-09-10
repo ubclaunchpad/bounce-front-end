@@ -9,10 +9,10 @@ import {
     PASSWORD_CHANGE_UNSUCCESSFUL,
     PASSWORD_CHANGE_SUCCESSFUL
 } from '../../constants';
-import '../../css/EditAccount.css';
+import '../../css/Settings.css';
 /* eslint-enable no-unused-vars */
 
-class EditAccountPasswordChange extends Component {
+class SettingsAccountPasswordChange extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -274,4 +274,4 @@ class EditAccountPasswordChange extends Component {
     }
 }
 
-export default EditAccountPasswordChange;
+export default SettingsAccountPasswordChange;

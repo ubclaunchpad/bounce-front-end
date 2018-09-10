@@ -7,10 +7,10 @@ import {
     EMAIL_CHANGE_SUCCESSFUL
 } from '../../constants';
 import { validateEmail } from '../utils';
-import '../../css/EditAccount.css';
+import '../../css/Settings.css';
 /* eslint-enable no-unused-vars */
 
-class EditAccountEmailChange extends Component {
+class SettingsAccountEmailChange extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -216,4 +216,4 @@ class EditAccountEmailChange extends Component {
     }
 }
 
-export default EditAccountEmailChange;
+export default SettingsAccountEmailChange;

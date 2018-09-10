@@ -13,7 +13,7 @@ import Home from './Home';
 import ViewClub from './clubs/ViewClub';
 import CreateAccount from './accounts/CreateAccount';
 import CreateClub from './clubs/CreateClub';
-import EditAccountMainPage from './edit_account/EditAccountMainPage';
+import EditAccountMainPage from './settings/SettingsMainPage';
 import '../css/App.css';
 /* eslint-enable no-unused-vars */
 
