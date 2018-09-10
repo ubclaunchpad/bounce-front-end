@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import SignIn from './SignIn';
 import Clubs from './Clubs';
 import Home from './Home';
-import EditAccountMainPage from './edit_account/EditAccountMainPage';
+import EditAccountMainPage from './settings/SettingsMainPage';
 import {
     BrowserRouter,
     Switch,
