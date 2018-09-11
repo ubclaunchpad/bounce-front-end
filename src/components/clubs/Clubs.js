@@ -53,26 +53,16 @@ class Clubs extends Component {
     }
 
     render() {
-        // Display a welcome message if the user just signed up
-        let welcomeMsg;
-        if (this.props.isNewAccount) {
-            welcomeMsg = (
-                <Alert bsStyle='primary'>
-                    Welcome, {this.props.username}!
-                </Alert>
-            );
-        }
-
-        // Display error message if necessary
-        let errorMsg;
-        if (this.state.errorMsg) {
-            errorMsg = <Alert bsStyle='warning'> {this.state.errorMsg} </Alert>;
-        }
-
         return (
             <div className='container'>
-                {welcomeMsg}
-                {errorMsg}
+                {this.props.isNewAccount &&
+                    <Alert bsStyle='success'>
+                        Welcome, {this.props.username}!
+                    </Alert>
+                }
+                {this.state.errorMsg &&
+                    <Alert bsStyle='warning'> {this.state.errorMsg} </Alert>
+                }
                 <PageHeader>Explore Clubs</PageHeader>
                 <Cards items={this.state.clubs} />
             </div>
