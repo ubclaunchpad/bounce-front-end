@@ -7,4 +7,33 @@
     form {
         margin: 0;
     }
+
+    .navbar-form {
+        margin: 0;
+        border-top: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .form-group {
+        display: inline-block;
+        width: calc(100% - 40px);
+    }
+
+    ul.nav.navbar-nav {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    button{
+        margin-right: 0;
+        .btn-secondary {
+            margin-left: 15px; 
+        }
+    }
+
+    a {
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
 }
