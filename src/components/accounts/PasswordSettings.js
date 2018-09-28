@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { validatePassword }from '../utils';
+import { Button, Label, FormGroup } from 'react-bootstrap';
+
+import { validatePassword } from '../utils';
 import {
     PASSWORD_WARNING,
     VERIFY_PASSWORD_ERROR,
@@ -12,7 +14,7 @@ import {
 import '../../css/Settings.css';
 /* eslint-enable no-unused-vars */
 
-class SettingsAccountPasswordChange extends Component {
+class PasswordSettings extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,21 +36,8 @@ class SettingsAccountPasswordChange extends Component {
     }
 
     /**
-     * If new password is not empty string, validate format of password.
-     * Else, return undefined
-     * @param {string} newPassword
-     */
-    handlePasswordValidation(newPassword) {
-        if (newPassword.length > 0) {
-            return validatePassword(newPassword);
-        } else {
-            return undefined;
-        }
-    }
-
-    /**
      * If password reentry is not empty string,
-     *      check if password reentry is same as new password.
+     * check if password reentry is same as new password.
      * Else, return false
      */
     validatePasswordReentry(passwordReentryInput, passwordInput) {
@@ -72,7 +61,7 @@ class SettingsAccountPasswordChange extends Component {
 
         switch (event.target.name) {
         case 'newPassword':
-            isNewPasswordValid = this.handlePasswordValidation(value);
+            isNewPasswordValid = validatePassword(value);
             isNewPasswordReentryValid = this.validatePasswordReentry(this.state.newPasswordReentry, value);
             break;
         case 'newPasswordReentry':
@@ -94,7 +83,7 @@ class SettingsAccountPasswordChange extends Component {
      */
     validateCurrentPassword(password) {
         return this.props.client.authenticate(
-            this.props.userName,
+            this.props.client.getUsername(),
             password
         ).then(response => {
             if (response.ok) {
@@ -118,9 +107,9 @@ class SettingsAccountPasswordChange extends Component {
     }
 
     /**
-     * Revalidate password inputs. 
+     * Revalidate password inputs.
      * If there is undefined or false states, set password inputs to empty.
-     * @param {Event} event 
+     * @param {Event} event
      */
     handlePasswordChangeSubmit(event) {
         event.preventDefault();
@@ -192,86 +181,67 @@ class SettingsAccountPasswordChange extends Component {
     }
 
     render() {
-        let currentPasswordWarning, newPasswordWarning, newPasswordReentryWarning;
-
-        let currentPasswordClass = 'form-group has-';
-        let newPasswordClass = 'form-group has-';
-        let newPasswordReentryClass = 'form-group has-';
-        let passwordChangeClass;
-
-        if (this.state.currentPasswordIsValid === true) {
-            currentPasswordClass += 'success';
-        } else if (this.state.currentPasswordIsValid === false){
-            currentPasswordClass += 'error';
-            currentPasswordWarning = <span>{INCORRECT_PASSWORD_WARNING}</span>;
-        }
+        let newPasswordWarning, passwordConfirmationWarning;
+        let passwordConfirmationClass, newPasswordClass;
 
         if (this.state.newPasswordIsValid !== undefined) {
             if (this.state.newPasswordIsValid) {
-                newPasswordClass += 'success';
+                newPasswordClass = 'has-success';
             } else {
-                newPasswordClass += 'error';
+                newPasswordClass = 'has-error';
                 newPasswordWarning = <span>{PASSWORD_WARNING}</span>;
             }
-        } else {
-            newPasswordWarning = <span>{PASSWORD_WARNING}</span>;
         }
 
         if (this.state.newPasswordReentryIsValid !== undefined) {
             if (this.state.newPasswordReentryIsValid) {
-                newPasswordReentryClass += 'success';
+                passwordConfirmationClass = 'has-success';
             } else {
-                newPasswordReentryClass += 'error';
-                newPasswordReentryWarning = <span>{'Retyped password does not match new password'}</span>;
+                passwordConfirmationClass = 'has-error';
+                passwordConfirmationWarning = <span>{'Retyped password does not match new password'}</span>;
             }
         }
-
-        passwordChangeClass = this.state.isPasswordChangeSuccessful ? 'success-message' : 
-            this.state.isPasswordChangeSuccessful === false ? 'error-message' : undefined;
 
         return (
             <div>
                 <form onSubmit={this.handlePasswordChangeSubmit}>
-                    <h3>Password Change</h3>
-                    <p className={passwordChangeClass}>{this.state.passwordChangeMessage}</p>
-                    <div className={currentPasswordClass}>
-                        <input type="password"
-                            name="currentPassword"
-                            className="form-control"
-                            placeholder="Current password"
+                    <FormGroup>
+                        <Label>Current Password</Label>
+                        <input type='password'
+                            name='currentPassword'
+                            className='form-control'
+                            placeholder='Current password'
                             value={this.state.currentPassword}
                             onChange={this.handleInputChange} />
-                        {currentPasswordWarning}
-                    </div>
+                    </FormGroup>
 
-                    <div className={newPasswordClass}>
-                        <input type="password"
-                            name="newPassword"
-                            className="form-control"
-                            placeholder="New password"
+                    <FormGroup bsClass={newPasswordClass}>
+                        <Label>New Password</Label>
+                        <input type='password'
+                            name='newPassword'
+                            className='form-control'
+                            placeholder='New password'
                             value={this.state.newPassword}
                             onChange={this.handleInputChange} />
                         {newPasswordWarning}
-                    </div>
+                    </FormGroup>
 
-                    <div className={newPasswordReentryClass}>
-                        <input type="password"
-                            name="newPasswordReentry"
-                            className="form-control"
-                            placeholder="Retype new password"
+                    <Label>Confirm New Password</Label>
+                    <FormGroup bsClass={passwordConfirmationClass}>
+                        <input type='password'
+                            name='newPasswordReentry'
+                            className='form-control'
+                            placeholder='Retype new password'
                             value={this.state.newPasswordReentry}
                             onChange={this.handleInputChange} />
-                        {newPasswordReentryWarning}
-                    </div>
+                        {passwordConfirmationWarning}
+                    </FormGroup>
 
-                    <button 
-                        className='btn'>
-                        Submit Change
-                    </button>
+                    <Button bsStyle='primary'>Submit</Button>
                 </form>
             </div>
         );
     }
 }
 
-export default SettingsAccountPasswordChange;
+export default PasswordSettings;

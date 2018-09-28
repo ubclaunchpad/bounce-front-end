@@ -13,8 +13,7 @@ class SettingsSidebar extends Component {
 
     render() {
         return (
-            <div className="settings-sidebar">
-                <h2 className="sidebar-label">Setting</h2>
+            <div className='settings-sidebar'>
                 <ul>
                     <li><a>Account Settings</a></li>
                     <li><a>Privacy</a></li>

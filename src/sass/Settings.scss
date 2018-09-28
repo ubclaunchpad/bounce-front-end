@@ -21,46 +21,9 @@ h2 {
 
     a {
         text-decoration: none;
-        color: #333;
     }
 
     a:hover {
         cursor: pointer;
-    }
-}
-
-.settings-account-settings {
-    display: inline-block;
-    padding-left: 15px;
-    width: 500px;
-
-    input.form-control {
-        margin-bottom: 10px;
-    }
-
-    h2 {
-        color: $pallete-blue;
-    }
-
-    h3 {
-        color: $pallete-dark-grey;
-    }
-
-    .error-message {
-        border: 0.5px solid #a94442;
-        border-radius: 20px;
-        display: inline-block;
-        padding: 1px 5px;
-    }
-
-    .success-message {
-        border: 0.5px solid #28a745;
-        border-radius: 20px;
-        display: inline-block;
-        padding: 1px 5px;
-    }
-
-    .btn, .btn:focus {
-        outline: none;
     }
 }

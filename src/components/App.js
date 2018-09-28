@@ -13,8 +13,8 @@ import Home from './Home';
 import ViewClub from './clubs/ViewClub';
 import CreateAccount from './accounts/CreateAccount';
 import CreateClub from './clubs/CreateClub';
-import EditAccountMainPage from './settings/SettingsMainPage';
 import '../css/App.css';
+import AccountSettings from './accounts/AccountSettings';
 /* eslint-enable no-unused-vars */
 
 class App extends Component {
@@ -22,7 +22,6 @@ class App extends Component {
         super(props);
         this.state = {
             isNewAccount: false,
-            username: undefined,
             searchQuery: undefined,
         };
 
@@ -39,13 +38,9 @@ class App extends Component {
     /**
      * Updates the state to indicate that the user is signed in.
      * @param {Boolean} isNewAccount whether or not this account was just created
-     * @param {String} username
      */
-    onSignIn(isNewAccount, username) {
-        this.setState({
-            isNewAccount: isNewAccount,
-            username: username,
-        });
+    onSignIn(isNewAccount) {
+        this.setState({isNewAccount: isNewAccount});
     }
 
     /**
@@ -92,7 +87,6 @@ class App extends Component {
      */
     getHomePage() {
         return <Home
-            username={this.state.username}
             isNewAccount={this.state.isNewAccount}
             client={this.props.client}
             searchQuery={this.state.searchQuery}
@@ -107,8 +101,11 @@ class App extends Component {
         this.setState({ searchQuery: query });
     }
 
+    /**
+     * Returns an AccountSettings page.
+     */
     getAccountSettingsPage() {
-        return <EditAccountMainPage
+        return <AccountSettings
             client={this.props.client}
         />;
     }
