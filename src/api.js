@@ -40,6 +40,13 @@ export default class BounceClient {
     }
 
     /**
+     * Set token to null
+     */
+    handleLogOut() {
+        this.token = null;
+    }
+
+    /**
      * Returns true if the user is signed in and false otherwise.
      */
     isSignedIn() {
