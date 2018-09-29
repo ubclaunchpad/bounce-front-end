@@ -36,12 +36,12 @@ class NavbarSignedIn extends Component {
                         Explore
                     </Button>
                 </NavItem>
-                <NavDropdown 
-                    noCaret
+                <NavDropdown
                     eventKey={3}
                     title={
-                        <div>
+                        <div className="accountButton">
                             <Image src={UserDefaultLogo}/>
+                            <span>Account</span>
                         </div>
                     } 
                     id="profile-dropdown" >

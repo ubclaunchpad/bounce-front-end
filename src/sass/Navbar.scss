@@ -1,3 +1,5 @@
+@import 'App';
+
 #navbar {
     a:first
     .container {
@@ -13,14 +15,11 @@
     }
 
     .navbar-form {
+        padding: 0;
         margin: 0;
         border: none;
         padding-left: 0;
         padding-right: 0;
-    }
-
-    .navbar-form {
-        padding: 0px;
 
         .form-group {
             display: inline-block;
@@ -64,6 +63,36 @@
             li:last-child {
                 a {
                     padding-bottom: 8px;
+                }
+            }
+        }
+
+        .dropdown {
+            .accountButton {
+                display: inline-block;
+                img {
+                    display: none;
+                }
+                span {
+                    display: list-item;
+                    color: $pallete-dark-grey;
+                    margin-left: 10px;
+                    margin-top: 7px;
+                    font-size: 18px;
+                }
+                @media screen and (min-width: 768px) {
+                    img {
+                        display: list-item;
+                    }
+                    span {
+                        display: none;
+                    }
+                }
+            }
+
+            .caret {
+                @media screen and (min-width: 768px) {
+                    display: none;
                 }
             }
         }
