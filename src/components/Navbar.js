@@ -126,7 +126,7 @@ class BounceNavbar extends Component {
             pageRedirect = <Redirect to='/'></Redirect>;
         }
         if (this.state.goToSignIn) {
-            pageRedirect = <Redirect to='/sign-in'></Redirect>
+            pageRedirect = <Redirect to='/sign-in'></Redirect>;
         }
         if (this.state.goToMyClubs) {
             // Stub: direct page to my Clubs
