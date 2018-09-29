@@ -38,6 +38,10 @@ class BounceNavbar extends Component {
         this.handleInput = this.handleInput.bind(this);
     }
 
+    /**
+     * Set goTo props to false after component updates so page
+     * does not rerender on every component update
+     */
     componentDidUpdate() {
         if (this.state.goToHome) {
             this.setState({ goToHome: false });
@@ -53,6 +57,10 @@ class BounceNavbar extends Component {
         }
     }
 
+    /**
+     * Set client token to null, allowing navbarComponent to render
+     * NavbarLoggedOut instead of NavbarSignedIn
+     */
     handleLogOut() {
         this.props.client.handleLogOut();
         this.props.onSearch();
