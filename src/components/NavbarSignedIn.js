@@ -47,6 +47,12 @@ class NavbarSignedIn extends Component {
                     id="profile-dropdown" >
                     <MenuItem eventKey={3.1}>Profile</MenuItem>
                     <MenuItem eventKey={3.2}>Settings</MenuItem>
+                    <MenuItem divider />
+                    <MenuItem 
+                        eventKey={3.3}
+                        onClick={this.props.handleLogOut} >
+                            Log Out
+                    </MenuItem>
                 </NavDropdown>
             </Nav>
         );

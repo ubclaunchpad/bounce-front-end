@@ -29,6 +29,7 @@ class BounceNavbar extends Component {
             query: undefined,
         };
 
+        this.handleLogOut = this.handleLogOut.bind(this);
         this.handleHomeClick = this.handleHomeClick.bind(this);
         this.handleSignInClick = this.handleSignInClick.bind(this);
         this.handleMyClubsClick = this.handleMyClubsClick.bind(this);
@@ -50,6 +51,11 @@ class BounceNavbar extends Component {
         if (this.state.goToExplore) {
             this.setState({ goToExplore: false });
         }
+    }
+
+    handleLogOut() {
+        this.props.client.handleLogOut();
+        this.props.onSearch();
     }
 
     /**
@@ -123,7 +129,9 @@ class BounceNavbar extends Component {
 
         navbarComponent = this.props.client.isSignedIn() ?
             <NavbarSignedIn 
-                handleSignInClick={this.handleSignInClick} /> :
+                handleLogOut={this.handleLogOut}
+                handleMyClubsClick={this.handleMyClubsClick}
+                handleExploreClick={this.handleExploreClick} /> :
             <NavbarLoggedOut
                 handleSignInClick={this.handleSignInClick} />;
 
