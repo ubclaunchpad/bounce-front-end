@@ -20,14 +20,16 @@ class NavbarSignedIn extends Component {
     render() {
         return (
             <Nav pullRight>
-                <NavItem eventKey={1} href="#">
+                <NavItem eventKey={1} href="#"
+                    className="navButton">
                     <Button
                         bsClass='btn btn-secondary'
                         onClick={this.props.handleMyClubsClick}>
                         My Clubs
                     </Button>
                 </NavItem>
-                <NavItem eventKey={2} href="#">
+                <NavItem eventKey={2} href="#"
+                    className="navButton">
                     <Button
                         bsClass='btn btn-secondary'
                         onClick={this.props.handleExploreClick}>
@@ -45,7 +47,6 @@ class NavbarSignedIn extends Component {
                     id="profile-dropdown" >
                     <MenuItem eventKey={3.1}>Profile</MenuItem>
                     <MenuItem eventKey={3.2}>Settings</MenuItem>
-
                 </NavDropdown>
             </Nav>
         );

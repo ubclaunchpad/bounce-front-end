@@ -1,28 +1,72 @@
 #navbar {
-
+    a:first
     .container {
         display: block;
     }
 
     form {
-        margin: 0;
+        margin: 0px;
+    }
+
+    hr {
+        margin: 0px;
     }
 
     .navbar-form {
         margin: 0;
-        border-top: none;
+        border: none;
         padding-left: 0;
         padding-right: 0;
     }
 
-    .form-group {
-        display: inline-block;
-        width: calc(100% - 40px);
+    .navbar-form {
+        padding: 0px;
+
+        .form-group {
+            display: inline-block;
+            width: calc(100% - 40px);
+            margin: 0;
+        }
+
+        button {
+            box-sizing: border-box;
+            vertical-align: top;
+        }
     }
 
     ul.nav.navbar-nav {
         margin-top: 0;
         margin-bottom: 0;
+
+        a {
+            padding-top: 8px;
+            padding-bottom: 0px;
+            @media screen and (min-width: 768px) {
+                padding-bottom: 8px;
+            }
+        }
+
+        .dropdown {
+            display: block;
+        }
+
+        .navButton {
+            display: inline-block;
+            a {
+                padding-right: 0px;
+                button {
+                    width: 110px;
+                }
+            }
+        }
+
+        &:last-child {
+            li:last-child {
+                a {
+                    padding-bottom: 8px;
+                }
+            }
+        }
     }
 
     button{
@@ -30,10 +74,5 @@
         .btn-secondary {
             margin-left: 15px; 
         }
-    }
-
-    a {
-        padding-top: 7px;
-        padding-bottom: 7px;
     }
 }

@@ -127,10 +127,6 @@ class BounceNavbar extends Component {
             <NavbarLoggedOut
                 handleSignInClick={this.handleSignInClick} />;
 
-        // if (this.props.client.isSignedIn()) {
-        //     navbar
-        // }
-
         return (
             <Navbar id='navbar' toggleNavKey={1} fluid>
                 <Navbar.Header>
