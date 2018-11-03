@@ -28,16 +28,18 @@ class Cards extends Component {
             }
             return (
                 <div className='card' key={index}>
-                    <h4
-                        key={index + 100}
-                        className='card-title'>
-                        {item.name}
-                    </h4>
                     <div
                         className='card-body'
                         key={index + 200}
                         style={style}>
-                        <p>{item.description}</p>
+                        <h4
+                            key={index + 100}
+                            className='card-title'>
+                            {item.name}
+                        </h4>
+                        <p className='card-desc'>
+                            {item.description}
+                        </p>
                     </div>
                 </div>
             );
