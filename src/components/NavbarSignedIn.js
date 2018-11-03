@@ -13,10 +13,6 @@ import {
 /* eslint-enable no-unused-vars */
 
 class NavbarSignedIn extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <Nav pullRight>
@@ -57,7 +53,6 @@ class NavbarSignedIn extends Component {
             </Nav>
         );
     }
-
 }
 
 export default NavbarSignedIn;

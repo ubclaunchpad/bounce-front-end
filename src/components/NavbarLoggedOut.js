@@ -9,10 +9,6 @@ import {
 /* eslint-enable no-unused-vars */
 
 class NavbarLoggedOut extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <Nav pullRight>
@@ -26,7 +22,6 @@ class NavbarLoggedOut extends Component {
             </Nav>
         );
     }
-
 }
 
 export default NavbarLoggedOut;

@@ -62,7 +62,7 @@ class BounceNavbar extends Component {
      * NavbarLoggedOut instead of NavbarSignedIn
      */
     handleLogOut() {
-        this.props.client.handleLogOut();
+        this.props.client.signOut();
         this.props.onSearch();
     }
 
@@ -145,6 +145,7 @@ class BounceNavbar extends Component {
 
         return (
             <Navbar id='navbar' toggleNavKey={1} fluid>
+                {pageRedirect}
                 <Navbar.Header>
                     <BrowserRouter>
                         <NavLink to='/' onClick={this.handleHomeClick}>
@@ -174,12 +175,8 @@ class BounceNavbar extends Component {
                             </Navbar.Form>
                         </NavItem>
                     </Nav>
-                    
                     {navbarComponent}
                 </Navbar.Collapse>
-                
-                {pageRedirect}
-
             </Navbar>
         );
     }
