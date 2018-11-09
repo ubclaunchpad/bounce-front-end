@@ -20,16 +20,29 @@ input.form-control {
 }
 
 .btn {
-    border-color: $pallete-light-grey;
+    border-color: white;
     border-radius: 4em;
 }
 
 .btn.btn-primary {
-    background-color: $pallete-green;
+    background-color: white;
+    color: #80cdd1;
+    padding: 10px 25px;
+    font-size: 16px;
+    text-transform: uppercase;
+    border-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 
     &:hover {
-        border-color: $pallete-light-grey;
+
     }
+}
+
+.gradient {
+  background: -webkit-linear-gradient(#26C7D9,#83DAD2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .btn.btn-secondary {

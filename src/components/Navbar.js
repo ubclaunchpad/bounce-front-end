@@ -11,6 +11,7 @@ import {
 } from 'react-bootstrap';
 import SmallLogo from '../media/small-logo.png';
 import '../css/Navbar.css';
+import { Link } from 'react-router-dom';
 /* eslint-enable no-unused-vars */
 
 class BounceNavbar extends Component {
@@ -91,8 +92,14 @@ class BounceNavbar extends Component {
                                 <Glyphicon glyph='search'></Glyphicon>
                             </Button>
                         </form>
+                        <Link to='/create-account'>
+                            <Button>Create Account</Button>
+                        </Link>
                     </Navbar.Form>
+
                 </Navbar.Collapse>
+
+
                 {homeRedirect}
             </Navbar>
         );

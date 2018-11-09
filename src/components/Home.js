@@ -7,7 +7,9 @@ import {
 
 import Clubs from './clubs/Clubs';
 import LargeLogo from '../media/large-logo.png';
+import HeroLogo from '../media/hero-logo.png';
 import '../css/Home.css';
+import Background from '../media/hero-back.png';
 /* eslint-enable no-unused-vars */
 
 class Home extends Component {
@@ -27,29 +29,40 @@ class Home extends Component {
         }
 
         return (
-            <div className='container home'>
-                <Row>
-                    <Col sm={6}>
-                        <h1>Huddle</h1>
-                        <h2>Find a club that matches your interests.</h2>
-                        <p>Find a club, get involved, and make new friends!</p>
-                        <br />
-                        <Link to='/sign-in'>
-                            <Button bsStyle='primary'>Explore Clubs</Button>
-                        </Link>
-                        <Link to='/create-account'>
-                            <Button>Create Account</Button>
-                        </Link>
-                    </Col>
-                    <Col sm={6}>
-                        <Image
-                            src={LargeLogo}
-                            alt='logo'
-                            className='large-logo'
-                            responsive
-                        />
-                    </Col>
-                </Row>
+            <div className='hero-banner'>
+                <div className='container home white'>
+
+                    <Row>
+                        <Col sm={6}>
+                        <div className='hero-text-spacing'>
+                            <h1 className='white'><b>HUDDLE</b></h1>
+
+                            <h2 className='white'>Find a club that matches you</h2>
+                            <br />
+                            <h3 className='white'>Browse events, get involved, and make new friends!</h3>
+                            <br />
+                            <br />
+                            <Link to='/sign-in'>
+                                <Button bsStyle='primary'>Explore Clubs</Button>
+                            </Link>
+                            </div>
+                           {/*
+                            <Link to='/create-account'>
+                                <Button>Create Account</Button>
+                            </Link>
+                           */}
+                     </Col>
+                     <Col sm={6}>
+                            <Image
+                                src={HeroLogo}
+                                alt='logo'
+                                className='large-logo'
+                                responsive
+                            />
+                        </Col>
+                    </Row>
+
+                </div>
             </div>
         );
     }
