@@ -19,7 +19,7 @@ class NavbarSignedIn extends Component {
         this.state = {
             goToSettings: false,
             goToProfile: false
-        }
+        };
 
         this.handleSettingsClick = this.handleSettingsClick.bind(this);
     }
@@ -37,7 +37,7 @@ class NavbarSignedIn extends Component {
     render() {
         let pageRedirect;
         if (this.state.goToSettings) {
-            pageRedirect = <Redirect to='/account-settings'></Redirect>
+            pageRedirect = <Redirect to='/account-settings'></Redirect>;
         }
 
         return (
