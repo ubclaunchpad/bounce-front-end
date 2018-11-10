@@ -144,7 +144,7 @@ class BounceNavbar extends Component {
                 handleSignInClick={this.handleSignInClick} />;
 
         return (
-            <Navbar id='navbar' toggleNavKey={1} fluid>
+            <Navbar id='navbar' fluid>
                 {pageRedirect}
                 <Navbar.Header>
                     <BrowserRouter>
