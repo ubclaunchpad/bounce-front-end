@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { NavLink, BrowserRouter, Redirect } from 'react-router-dom';
 import {
+    Nav,
     Navbar,
     FormControl,
     FormGroup,
@@ -92,10 +93,17 @@ class BounceNavbar extends Component {
                                 <Glyphicon glyph='search'></Glyphicon>
                             </Button>
                         </form>
+                        <Nav pullRight>
+
                         <Link to='/create-account'>
-                            <Button>Create Account</Button>
+                            <h3 className='white navbar-options'>START A CLUB</h3>
                         </Link>
+                        <h4 className='white navbar-options'>SIGN UP</h4>
+                        <h4 className='white navbar-options'>SIGN IN</h4>
+                        </Nav>
+
                     </Navbar.Form>
+
 
                 </Navbar.Collapse>
 
