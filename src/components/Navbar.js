@@ -11,6 +11,7 @@ import {
     Image
 } from 'react-bootstrap';
 import SmallLogo from '../media/small-logo.png';
+import PlainGradientLogo from '../media/plain-gradient-logo.png';
 import '../css/Navbar.css';
 import { Link } from 'react-router-dom';
 /* eslint-enable no-unused-vars */
@@ -73,7 +74,7 @@ class BounceNavbar extends Component {
                     <BrowserRouter>
                         <NavLink to='/' onClick={this.handleHomeClick}>
                             <Navbar.Brand>
-                                <Image src={SmallLogo}></Image>
+                                <Image src={PlainGradientLogo}></Image>
                             </Navbar.Brand>
                         </NavLink>
                     </BrowserRouter>
