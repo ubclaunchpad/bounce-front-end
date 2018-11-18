@@ -144,7 +144,7 @@ class BounceNavbar extends Component {
                 handleSignInClick={this.handleSignInClick} />;
 
         return (
-            <Navbar id='navbar' toggleNavKey={1} fluid fixedTop>
+            <Navbar id='navbar' toggleNavKey={1} fluid>
                 {pageRedirect}
                 <Navbar.Header>
                     <BrowserRouter>
@@ -160,7 +160,7 @@ class BounceNavbar extends Component {
                     <Nav>
                         <NavItem eventKey={1} href="#">
                             <Navbar.Form>
-                                <form onSubmit={this.handleSubmit}>
+                                <form>
                                     <FormGroup>
                                         <FormControl
                                             type='text'
@@ -169,7 +169,10 @@ class BounceNavbar extends Component {
                                         />
                                     </FormGroup>
                                     <Button type='submit'>
-                                        <Glyphicon glyph='search'></Glyphicon>
+                                        <Glyphicon
+                                            glyph='search'
+                                            onClick={this.handleSubmit}>
+                                        </Glyphicon>
                                     </Button>
                                 </form>
                             </Navbar.Form>
