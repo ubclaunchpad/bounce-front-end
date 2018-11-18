@@ -34,25 +34,25 @@ class Home extends Component {
 
                     <Row>
                         <Col sm={6}>
-                        <div className='hero-text-spacing'>
-                            <h1 className='white'><b>HUDDLE</b></h1>
+                            <div className='hero-text-spacing'>
+                                <h1 className='white'><b>HUDDLE</b></h1>
 
-                            <h2 className='white'>Find a club that matches you</h2>
-                            <br />
-                            <h3 className='white'>Browse events, get involved, and make new friends!</h3>
-                            <br />
-                            <br />
-                            <Link to='/sign-in'>
-                                <Button bsStyle='primary'>Explore Clubs</Button>
-                            </Link>
+                                <h2 className='white'>Find a club that matches you</h2>
+                                <br />
+                                <h3 className='white'>Browse events, get involved, and make new friends!</h3>
+                                <br />
+                                <br />
+                                <Link to='/sign-in'>
+                                    <Button bsStyle='primary'>Explore Clubs</Button>
+                                </Link>
                             </div>
-                           {/*
+                            {/*
                             <Link to='/create-account'>
                                 <Button>Create Account</Button>
                             </Link>
                            */}
-                     </Col>
-                     <Col sm={6}>
+                        </Col>
+                        <Col sm={6}>
                             <Image
                                 src={HeroLogo}
                                 alt='logo'

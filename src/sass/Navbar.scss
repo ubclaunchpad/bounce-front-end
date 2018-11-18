@@ -13,6 +13,31 @@
         display: inline-block;
     }
 
+    @media screen and (max-width: 767px) {
+      .navbar-collapse {
+        position: relative;
+        background-color: darkgray;
+        opacity: 1;
+        width: 80%;
+        float: right;
+        margin-top: -111px;
+        z-index: 10;
+        box-shadow: -18px 20px 20px 1000px rgba(0, 0, 0, 0.39);
+        border-radius: 15px;
+        background-image: linear-gradient(-75deg, #ffffff, #f1f1f1);
+      }
+      .navbar-options{
+        color: #77c5d6;
+      }
+      .navbar-toggle {
+        z-index: 11;
+        margin-top: 35px;
+      }
+      .navbar-nav > * {
+        display: block;
+      }
+    }
+
 }
 
 .navbar {

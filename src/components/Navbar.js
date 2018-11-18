@@ -96,11 +96,11 @@ class BounceNavbar extends Component {
                         </form>
                         <Nav pullRight>
 
-                        <Link to='/create-account'>
-                            <h3 className='white navbar-options'>START A CLUB</h3>
-                        </Link>
-                        <h4 className='white navbar-options'>SIGN UP</h4>
-                        <h4 className='white navbar-options'>SIGN IN</h4>
+                            <Link to='/create-account'>
+                                <h3 className='white navbar-options'>START A CLUB</h3>
+                            </Link>
+                            <h4 className='white navbar-options'>SIGN UP</h4>
+                            <h4 className='white navbar-options'>SIGN IN</h4>
                         </Nav>
 
                     </Navbar.Form>
