@@ -17,29 +17,78 @@ a {
 
 input.form-control {
     border-radius: 4em;
+    font-size: 16px;
+    padding-left: 25px;
 }
 
 .btn {
-    border-color: $pallete-light-grey;
-    border-radius: 4em;
+  border-radius: 4em;
+  // padding: 10px 25px;
+  font-size: 16px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-color: white;
+  outline:0;
+
+  &:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+    background-color: white !important;
+    color: #80cdd1 !important;
+    border-color: white;
+    outline:0;
+  }
+
+  &:focus {
+    background-color: white;
+    border-color: white;
+    outline:0 !important;
+  }
+
+  &:active {
+    outline:0;
+  }
+
+}
+
+.btn:active {
+  background-color: white !important;
+  color: #80cdd1 !important;
+  border-color: white !important;
+  transform:translateY(4px);
+  outline:0;
 }
 
 .btn.btn-primary {
-    background-color: $pallete-green;
+  // border-radius: 4em;
+  background-color: white;
+  color: #80cdd1;
+  padding: 10px 25px;
+  // font-size: 16px;
+  // text-transform: uppercase;
+  border-color: white;
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 
     &:hover {
-        border-color: $pallete-light-grey;
+      // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
     }
+
+    &:focus {
+      outline:0;
+    }
+}
+
+.btn-primary:active {
+  background-color: white !important;
+  color: #80cdd1 !important;
+  border-color: white !important;
+  transform:translateY(4px);
 }
 
 .btn.btn-secondary {
     background-color: white;
     color: $pallete-blue;
-}
-
-.btn.btn-default {
-    background-color: white;
-    color: $pallete-blue;
+    padding: 10px 10px;
 }
 
 .center {
@@ -62,7 +111,7 @@ form > input {
 }
 
 .label.label-default {
-    font-size: 14px;
+    font-size: 16px;
     background-color: transparent;
     color: $pallete-dark-grey;
 }
@@ -77,4 +126,16 @@ button {
 
 .glyphicon {
     color: $pallete-dark-grey;
+}
+
+.form-control {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-color: white;
+
+  &:hover, &:active, &:focus {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-color: white;
+  }
+
+
 }

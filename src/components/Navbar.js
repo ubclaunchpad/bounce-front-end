@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { NavLink, BrowserRouter, Redirect } from 'react-router-dom';
 import {
+    Nav,
     Navbar,
     FormControl,
     FormGroup,
@@ -10,7 +11,9 @@ import {
     Image
 } from 'react-bootstrap';
 import SmallLogo from '../media/small-logo.png';
+import PlainGradientLogo from '../media/plain-gradient-logo.png';
 import '../css/Navbar.css';
+import { Link } from 'react-router-dom';
 /* eslint-enable no-unused-vars */
 
 class BounceNavbar extends Component {
@@ -71,7 +74,7 @@ class BounceNavbar extends Component {
                     <BrowserRouter>
                         <NavLink to='/' onClick={this.handleHomeClick}>
                             <Navbar.Brand>
-                                <Image src={SmallLogo}></Image>
+                                <Image src={PlainGradientLogo}></Image>
                             </Navbar.Brand>
                         </NavLink>
                     </BrowserRouter>
@@ -91,8 +94,21 @@ class BounceNavbar extends Component {
                                 <Glyphicon glyph='search'></Glyphicon>
                             </Button>
                         </form>
+                        <Nav pullRight>
+
+                            <Link to='/create-account'>
+                                <h3 className='white navbar-options'>START A CLUB</h3>
+                            </Link>
+                            <h4 className='white navbar-options'>SIGN UP</h4>
+                            <h4 className='white navbar-options'>SIGN IN</h4>
+                        </Nav>
+
                     </Navbar.Form>
+
+
                 </Navbar.Collapse>
+
+
                 {homeRedirect}
             </Navbar>
         );

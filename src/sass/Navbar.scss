@@ -1,10 +1,70 @@
 #navbar {
 
+    margin-bottom: 0;
+    width: 100%;
+    background: transparent;
+
     .container {
-        display: block;
+        display: inline-block;
     }
 
     form {
         margin: 0;
+        display: inline-block;
     }
+
+    @media screen and (max-width: 767px) {
+      .navbar-collapse {
+        position: relative;
+        background-color: darkgray;
+        opacity: 1;
+        width: 80%;
+        float: right;
+        margin-top: -111px;
+        z-index: 10;
+        box-shadow: -18px 20px 20px 1000px rgba(0, 0, 0, 0.39);
+        border-radius: 15px;
+        background-image: linear-gradient(-75deg, #ffffff, #f1f1f1);
+      }
+      .navbar-options{
+        color: #77c5d6;
+      }
+      .navbar-toggle {
+        z-index: 11;
+        margin-top: 35px;
+      }
+      .navbar-nav > * {
+        display: block;
+      }
+    }
+
+}
+
+.navbar {
+  position: absolute;
+
+}
+
+.navbar-default {
+  border-color: transparent;
+}
+
+.navbar-form {
+  padding: 30px;
+}
+
+.navbar-brand {
+  height: 110px;
+  padding: 30px;
+}
+
+.form-group {
+  padding-right: 30px;
+}
+
+.navbar-options {
+  display: inline-block;
+  margin-left: 30px;
+  font-weight: 400;
+  margin-top: 10px;
 }
