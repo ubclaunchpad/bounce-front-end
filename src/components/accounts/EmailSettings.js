@@ -54,18 +54,26 @@ class EmailSettings extends Component {
     updateEmail() {
         return this.props.client.updateUser(
             this.props.client.getUsername(),
-            undefined,
-            this.state.newEmail
+            null,
+            this.state.newEmail,
+            this.state.currentPassword            
         ).then(response => {
+            console.log("message1");
             if (response.ok) {
+                console.log("message pass");
+
                 return true;
             } else {
+                console.log("message fail");
                 return false;
             }
         }).catch(() => {
             return false;
         });
     }
+
+   
+    
 
     /**
      * Check new email format then update user email address.
@@ -83,7 +91,9 @@ class EmailSettings extends Component {
         } else {
             this.setState({newEmailIsValid: false});
         }
+
     }
+    
 
     render() {
         let newEmailWarning, newEmailClass;
@@ -116,7 +126,17 @@ class EmailSettings extends Component {
                             autoComplete='new-password' />
                         {newEmailWarning}
                     </FormGroup>
-                    <Button bsStyle='primary' type='submit'>Submit</Button>
+
+                    <FormGroup>
+                        <Label>Current Password</Label>
+                        <input type='password'
+                            name='currentPassword'
+                            className='form-control'
+                            placeholder='Current password'
+                            value={this.state.currentPassword}
+                            onChange={this.handleInputChange} />
+                    </FormGroup>
+                    <Button bsStyle='primary' onClick="" type='submit'>Submit</Button>
                 </form>
             </div>
         );
