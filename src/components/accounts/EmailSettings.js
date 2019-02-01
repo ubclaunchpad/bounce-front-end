@@ -88,7 +88,7 @@ class EmailSettings extends Component {
     handleEmailChangeSubmit(event) {
         event.preventDefault();
 
-        let isCurrentPasswordValid, emailUpdateSuccessful;
+        let isCurrentPasswordValid, failure;
         const isNewEmailValid = this.handleEmailValidation(this.state.newEmail); 
 
         if(isNewEmailValid){
@@ -104,9 +104,9 @@ class EmailSettings extends Component {
                 })
                 .then( isUpdated => {
                     if(isUpdated){
-                        emailUpdateSuccessful = isUpdated;
+                        failure = !isUpdated;
                     } else {
-                        emailUpdateSuccessful = isUpdated;
+                        failure = isCurrentPasswordValid ? !isUpdated : undefined;
                     }
                 })
                 .then( () => {
@@ -115,7 +115,7 @@ class EmailSettings extends Component {
                         currentPassword: '',
                         newEmailIsValid: isNewEmailValid,
                         currentPasswordisValid: isCurrentPasswordValid,
-                        failed: !emailUpdateSuccessful
+                        failed: failure
                     });
                 });
         }  else {
@@ -124,7 +124,7 @@ class EmailSettings extends Component {
                 currentPassword: '',
                 newEmailIsValid: isNewEmailValid,
                 currentPasswordisValid: isCurrentPasswordValid,
-                failed: emailUpdateSuccessful
+                failed: failure
             });
         }
     }
