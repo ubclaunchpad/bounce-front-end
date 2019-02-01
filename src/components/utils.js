@@ -27,6 +27,26 @@ export const validatePassword = function(password) {
     return password.length === 0;
 };
 
+    /**
+     * Return true if user input current password correctly
+     */
+export const validateCurrentPassword = function(password) {
+    return this.props.client.authenticate(
+        this.props.client.getUsername(),
+        password
+    ).then(response => {
+        if (response.ok) {
+            return true;
+        } else if (response.status === 401) {
+            return false;
+        } else {
+            return undefined;
+        }
+    }).catch(() => {
+        return undefined;
+    });
+};
+
 /**
  * Returns true if the email is valid and false otherwise
  * @param {String} email

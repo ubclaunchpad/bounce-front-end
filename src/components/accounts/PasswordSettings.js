@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Button, Label, FormGroup } from 'react-bootstrap';
 
-import { validatePassword } from '../utils';
+import { validatePassword, validateCurrentPassword } from '../utils';
 import {
     PASSWORD_WARNING,
     VERIFY_PASSWORD_ERROR,
@@ -30,7 +30,7 @@ class PasswordSettings extends Component {
 
         this.validatePasswordReentry = this.validatePasswordReentry.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.validateCurrentPassword = this.validateCurrentPassword.bind(this);
+        this.validateCurrentPassword = validateCurrentPassword.bind(this);
         this.handlePasswordChangeSubmit = this.handlePasswordChangeSubmit.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
     }
@@ -75,26 +75,6 @@ class PasswordSettings extends Component {
             [event.target.name]: value,
             newPasswordIsValid: isNewPasswordValid,
             newPasswordReentryIsValid: isNewPasswordReentryValid
-        });
-    }
-
-    /**
-     * Return true if user input current password correctly
-     */
-    validateCurrentPassword(password) {
-        return this.props.client.authenticate(
-            this.props.client.getUsername(),
-            password
-        ).then(response => {
-            if (response.ok) {
-                return true;
-            } else if (response.status === 401) {
-                return false;
-            } else {
-                return undefined;
-            }
-        }).catch(() => {
-            return undefined;
         });
     }
 
