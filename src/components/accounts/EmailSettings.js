@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { Alert, Button, FormGroup, Label } from 'react-bootstrap';
-import  { validateCurrentPassword } from '../utils';
 import {
     EMAIL_WARNING, UNEXPECTED_ERROR, USER_UPDATED, INCORRECT_PASSWORD_WARNING
 } from '../../constants';
@@ -22,7 +21,6 @@ class EmailSettings extends Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleEmailChangeSubmit = this.handleEmailChangeSubmit.bind(this);
-        this.validateCurrentPassword = validateCurrentPassword.bind(this);
         this.updateEmail = this.updateEmail.bind(this);
     }
 
@@ -71,13 +69,9 @@ class EmailSettings extends Component {
             this.state.newEmail, 
             this.state.currentPassword
         ).then(response => {
-            if (response.ok) {
-                return true;
-            } else {
-                return false;
-            }
+            return response.status;
         }).catch(() => {
-            return false;
+            return 400;
         });
     }
 
@@ -91,22 +85,21 @@ class EmailSettings extends Component {
         let isCurrentPasswordValid, failure;
         const isNewEmailValid = this.handleEmailValidation(this.state.newEmail); 
 
-        if(isNewEmailValid){
-            this.validateCurrentPassword(this.state.currentPassword)
-                .then( isValid => {
-                    if(isValid){
-                        isCurrentPasswordValid = isValid;
-                        return this.updateEmail();
-                    } else {
-                        isCurrentPasswordValid = isValid;
-                        return false;
-                    }
-                })
-                .then( isUpdated => {
-                    if(isUpdated){
-                        failure = !isUpdated;
-                    } else {
-                        failure = isCurrentPasswordValid ? !isUpdated : undefined;
+        if (isNewEmailValid) {
+            this.updateEmail()
+                .then( status => {
+                    switch(status){
+                    case 200:
+                        failure = false;
+                        break;
+                    case 401:
+                        isCurrentPasswordValid = false;
+                        break;
+                    case 400:
+                        failure = true;
+                        break;
+                    default:
+                        break;
                     }
                 })
                 .then( () => {

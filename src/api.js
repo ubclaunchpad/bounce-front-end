@@ -130,7 +130,7 @@ export default class BounceClient {
         if (email) {
             body.email = email;
         }
-        if(currentPassword){
+        if (currentPassword) {
             body.password = currentPassword ;
         }
         return await this._request('PUT', '/users/' + username, body);
@@ -238,5 +238,26 @@ export default class BounceClient {
         const params = userId ? { user_id: userId } : undefined;
         return await this._request('DELETE', `/memberships/${clubName}`,
             undefined, params);
+    }
+
+    /**
+     * Return true if user input current password correctly
+     * @param {String} password
+     */
+    async validateCurrentPassword(password) {
+        return this.authenticate(
+            this.getUsername(),
+            password
+        ).then(response => {
+            if (response.ok) {
+                return true;
+            } else if (response.status === 401) {
+                return false;
+            } else {
+                return undefined;
+            }
+        }).catch(() => {
+            return undefined;
+        });
     }
 }
