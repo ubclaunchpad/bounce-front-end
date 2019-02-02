@@ -21,7 +21,7 @@ export const NOT_SIGNED_IN_ERROR = 'You must be signed in to perform this action
 export const PASSWORD_CONFIRM_WARNING = 'The passwords you entered do not match.';
 export const NO_CLUBS_FOUND = 'Sorry, no clubs match your search.';
 export const VERIFY_PASSWORD_ERROR = 'Sorry, we are having trouble verifying your password. Please try again later.';
-export const INCORRECT_PASSWORD_WARNING = 'Password is incorrect.';
+export const INCORRECT_PASSWORD_WARNING = 'Please enter a valid password.';
 export const PASSWORD_CHANGE_ERROR = 'Oops! Something went wrong during password change. ' +
 'Please try again later.';
 export const PASSWORD_CHANGE_UNSUCCESSFUL = 'Password change unsuccessful.';

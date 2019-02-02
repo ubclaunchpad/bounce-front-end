@@ -82,10 +82,10 @@ class EmailSettings extends Component {
     handleEmailChangeSubmit(event) {
         event.preventDefault();
 
-        let isCurrentPasswordValid, failure;
+        let failure;
         const isNewEmailValid = this.handleEmailValidation(this.state.newEmail); 
-
-        if (isNewEmailValid) {
+        let isCurrentPasswordValid = this.state.currentPassword.length > 0;
+        if (isNewEmailValid && isCurrentPasswordValid) {
             this.updateEmail()
                 .then( status => {
                     switch(status){
