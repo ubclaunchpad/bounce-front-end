@@ -1,5 +1,5 @@
-import store from "../store/configureStore";
-import { addArticle } from "../actions/index";
+import store from '../store/configureStore';
+import { addUsers } from '../actions/index';
 
 window.store = store;
-window.addArticle = addArticle;
+window.addUsers = addUsers;
