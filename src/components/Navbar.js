@@ -25,6 +25,7 @@ class BounceNavbar extends Component {
             goToSignIn: false,
             goToMyClubs: false,
             goToExplore: false,
+            goToCreateClub: false,
             signedIn: false,
             query: undefined,
         };
@@ -101,6 +102,14 @@ class BounceNavbar extends Component {
     }
 
     /**
+     * Redirects to Explore page when
+     * Explore button is clicked.
+     */
+    handleCreateClubClick() {
+        this.setState({ goToCreateClub: true });
+    }
+
+    /**
      * Updates component state when the user types in the search bar.
      * @param {Event} event
      */
@@ -134,12 +143,16 @@ class BounceNavbar extends Component {
         if (this.state.goToExplore) {
             // Stub: direct page to my Explore
         }
+        if (this.state.goToCreateClub) {
+            // Stub: direct page to create club
+        }
 
         navbarComponent = this.props.client.isSignedIn() ?
             <NavbarSignedIn
                 handleLogOut={this.handleLogOut}
                 handleMyClubsClick={this.handleMyClubsClick}
-                handleExploreClick={this.handleExploreClick} /> :
+                handleExploreClick={this.handleExploreClick}
+                handleCreateClubClick={this.handleCreateClubClick} /> :
             <NavbarLoggedOut
                 handleSignInClick={this.handleSignInClick} />;
 

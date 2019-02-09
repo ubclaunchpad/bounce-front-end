@@ -44,6 +44,14 @@ class NavbarSignedIn extends Component {
             <div>
                 {pageRedirect}
                 <Nav pullRight>
+                    <NavItem href="/create-club"
+                        className="navButton">
+                        <Button 
+                            bsClass='btn btn-secondary'
+                            onClick={this.props.handleCreateClub}>
+                            Create Club
+                        </Button>
+                        </NavItem>
                     <NavItem eventKey={1} href="#"
                         className="navButton">
                         <Button
