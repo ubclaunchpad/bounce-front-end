@@ -102,9 +102,6 @@ class PasswordSettings extends Component {
      * Update user password and return whether process was successful
      */
     updatePassword() {
-        // Stub
-        // username, password, and new password
-        // gotta do a put request 
 
         return this.props.client.updatePassword(
             this.props.client.getUsername(),
@@ -121,7 +118,6 @@ class PasswordSettings extends Component {
                 return undefined;
             }
         }).catch(() => {
-
             return undefined;
         });
 

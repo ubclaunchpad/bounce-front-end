@@ -58,13 +58,9 @@ class EmailSettings extends Component {
             this.state.newEmail,
             this.state.currentPassword            
         ).then(response => {
-            console.log("message1");
             if (response.ok) {
-                console.log("message pass");
-
                 return true;
             } else {
-                console.log("message fail");
                 return false;
             }
         }).catch(() => {

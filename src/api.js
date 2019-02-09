@@ -122,16 +122,16 @@ export default class BounceClient {
     * @param {String} fullName Optional, may be undefined
     * @param {String} email Optional, may be undefined
     */
-   async updatePassword(username, currentpassword, newpassword) {
-       let body = {};
-       if(currentpassword){
-           body.password = currentpassword;
-       }
-       if (newpassword) {
-           body.new_password = newpassword;
-       }
-       return await this._request('PUT', '/users/' + username, body);
-   }
+    async updatePassword(username, currentpassword, newpassword) {
+        let body = {};
+        if(currentpassword) {
+            body.password = currentpassword;
+        }
+        if (newpassword) {
+            body.new_password = newpassword;
+        }
+        return await this._request('PUT', '/users/' + username, body);
+    }
 
 
     /**
@@ -139,6 +139,7 @@ export default class BounceClient {
      * @param {String} username
      * @param {String} fullName Optional, may be undefined
      * @param {String} email Optional, may be undefined
+     * @param {String} password
      */
     async updateUser(username, fullName, email, password) {
         let body = {};
@@ -148,7 +149,7 @@ export default class BounceClient {
         if (email) {
             body.email = email;
         }
-        if(password){
+        if(password) {
             body.password = password;
         }
         return await this._request('PUT', '/users/' + username, body);
