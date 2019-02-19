@@ -18,7 +18,8 @@ class NavbarSignedIn extends Component {
         super();
         this.state = {
             goToSettings: false,
-            goToProfile: false
+            goToProfile: false,
+            goToCreateClubs: false
         };
 
         this.handleSettingsClick = this.handleSettingsClick.bind(this);
@@ -39,11 +40,18 @@ class NavbarSignedIn extends Component {
         if (this.state.goToSettings) {
             pageRedirect = <Redirect to='/account-settings'></Redirect>;
         }
-
         return (
             <div>
                 {pageRedirect}
                 <Nav pullRight>
+                    <NavItem eventKey={4} href="#"
+                        className="navButton">
+                        <Button
+                            bsClass='btn btn-secondary'
+                            onClick={this.props.handleCreateClubsClick}>
+                            Create Club
+                        </Button>
+                    </NavItem>
                     <NavItem eventKey={1} href="#"
                         className="navButton">
                         <Button

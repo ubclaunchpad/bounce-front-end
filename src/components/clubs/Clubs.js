@@ -33,7 +33,7 @@ class Clubs extends Component {
      */
     search() {
         // Do nothing if there is no query
-        if (!this.state.searchQuery) return;
+        // if (!this.state.searchQuery) return;
 
         this.props.client.searchClubs(this.state.searchQuery)
             .then(result => {
@@ -51,6 +51,20 @@ class Clubs extends Component {
                 this.setState({ errorMsg: UNEXPECTED_ERROR });
             });
     }
+
+
+    renderAllClubs() {
+        this.search();
+
+        // console.log(this.state.clubs);
+        return (
+            <div className='container page' >
+                {/* {this.state.clubs} */}
+            </div>
+        );
+    }
+
+
 
     render() {
         return (

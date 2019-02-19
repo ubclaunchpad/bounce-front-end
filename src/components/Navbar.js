@@ -23,6 +23,7 @@ class BounceNavbar extends Component {
         this.state = {
             goToHome: false,
             goToSignIn: false,
+            goToCreateClubs: false, 
             goToMyClubs: false,
             goToExplore: false,
             signedIn: false,
@@ -34,6 +35,7 @@ class BounceNavbar extends Component {
         this.handleSignInClick = this.handleSignInClick.bind(this);
         this.handleMyClubsClick = this.handleMyClubsClick.bind(this);
         this.handleExploreClick = this.handleExploreClick.bind(this);
+        this.handleCreateClubsClick = this.handleCreateClubsClick.bind(this); 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this);
     }
@@ -54,6 +56,9 @@ class BounceNavbar extends Component {
         }
         if (this.state.goToExplore) {
             this.setState({ goToExplore: false });
+        }
+        if (this.state.goToCreateClubs) { 
+            this.setState({ goToCreateClubs: false });
         }
     }
 
@@ -84,6 +89,9 @@ class BounceNavbar extends Component {
         this.props.onSearch();
     }
 
+    handleCreateClubsClick() {
+        this.setState({ goToCreateClubs: true});
+    }
     /**
      * Redirects to My Club page when
      * My Clubs button is clicked.
@@ -134,12 +142,17 @@ class BounceNavbar extends Component {
         if (this.state.goToExplore) {
             // Stub: direct page to my Explore
         }
+        if (this.state.goToCreateClubs) {
+            pageRedirect = <Redirect to='/create-club'></Redirect>;
+        }
 
         navbarComponent = this.props.client.isSignedIn() ?
             <NavbarSignedIn
                 handleLogOut={this.handleLogOut}
                 handleMyClubsClick={this.handleMyClubsClick}
-                handleExploreClick={this.handleExploreClick} /> :
+                handleExploreClick={this.handleExploreClick} 
+                handleCreateClubsClick={this.handleCreateClubsClick}
+            /> :
             <NavbarLoggedOut
                 handleSignInClick={this.handleSignInClick} />;
 
