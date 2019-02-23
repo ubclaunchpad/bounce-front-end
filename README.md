@@ -48,5 +48,5 @@ $ make test
 ### Debugging
 
 To use the redux dev tools:
-```install the chrome extension for it, Redux DevTools.
-```Then uncomment the     // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() in configureStore.js
+install the chrome extension for it, Redux DevTools.
+Then uncomment the     // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() in configureStore.js
