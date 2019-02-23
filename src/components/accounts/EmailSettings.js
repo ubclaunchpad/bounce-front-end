@@ -68,9 +68,6 @@ class EmailSettings extends Component {
         });
     }
 
-   
-    
-
     /**
      * Check new email format then update user email address.
      * @param {Event} event
@@ -132,7 +129,7 @@ class EmailSettings extends Component {
                             value={this.state.currentPassword}
                             onChange={this.handleInputChange} />
                     </FormGroup>
-                    <Button bsStyle='primary' onClick="" type='submit'>Submit</Button>
+                    <Button bsStyle='primary' type='submit'>Submit</Button>
                 </form>
             </div>
         );
