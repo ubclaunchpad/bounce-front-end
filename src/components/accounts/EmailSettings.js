@@ -54,8 +54,9 @@ class EmailSettings extends Component {
     updateEmail() {
         return this.props.client.updateUser(
             this.props.client.getUsername(),
-            undefined,
-            this.state.newEmail
+            null,
+            this.state.newEmail,
+            this.state.currentPassword            
         ).then(response => {
             if (response.ok) {
                 return true;
@@ -83,7 +84,9 @@ class EmailSettings extends Component {
         } else {
             this.setState({newEmailIsValid: false});
         }
+
     }
+    
 
     render() {
         let newEmailWarning, newEmailClass;
@@ -115,6 +118,16 @@ class EmailSettings extends Component {
                             onChange={this.handleInputChange}
                             autoComplete='new-password' />
                         {newEmailWarning}
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label>Current Password</Label>
+                        <input type='password'
+                            name='currentPassword'
+                            className='form-control'
+                            placeholder='Current password'
+                            value={this.state.currentPassword}
+                            onChange={this.handleInputChange} />
                     </FormGroup>
                     <Button bsStyle='primary' type='submit'>Submit</Button>
                 </form>

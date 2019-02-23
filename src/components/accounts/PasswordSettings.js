@@ -102,8 +102,15 @@ class PasswordSettings extends Component {
      * Update user password and return whether process was successful
      */
     updatePassword() {
-        // Stub
-        return true;
+        return this.props.client.updatePassword(
+            this.props.client.getUsername(),
+            this.state.currentPassword,
+            this.state.newPassword
+        ).then(response => {
+            return response.ok;
+        }).catch(() => {
+            return false;
+        });
     }
 
     /**
@@ -115,12 +122,12 @@ class PasswordSettings extends Component {
         event.preventDefault();
 
         let isPasswordValid;
-        const isNewPasswordValid = this.handlePasswordValidation(this.state.newPassword);
+        const isNewPasswordValid = true;
         let isNewPasswordReentryValid = this.validatePasswordReentry(this.state.newPasswordReentry);
         let isPasswordChangeSuccessful;
         let passwordChangeMessage;
 
-        if (isNewPasswordValid && isNewPasswordReentryValid) {
+        if ( isNewPasswordReentryValid) {
             this.validateCurrentPassword(this.state.currentPassword)
                 .then(isVerify => {
                     if (isVerify === true) {
@@ -163,7 +170,7 @@ class PasswordSettings extends Component {
             isPasswordValid = undefined;
             isPasswordChangeSuccessful = false;
             passwordChangeMessage = PASSWORD_CHANGE_UNSUCCESSFUL;
-            if (isNewPasswordValid === false) {
+            if (!isNewPasswordValid) {
                 isNewPasswordReentryValid = undefined;
             }
 
@@ -204,7 +211,7 @@ class PasswordSettings extends Component {
 
         return (
             <div>
-                <form onSubmit={this.handlePasswordChangeSubmit}>
+                <form>
                     <FormGroup>
                         <Label>Current Password</Label>
                         <input type='password'
@@ -237,7 +244,7 @@ class PasswordSettings extends Component {
                         {passwordConfirmationWarning}
                     </FormGroup>
 
-                    <Button bsStyle='primary'>Submit</Button>
+                    <Button bsStyle='primary' onClick={this.handlePasswordChangeSubmit} >Submit</Button>
                 </form>
             </div>
         );
