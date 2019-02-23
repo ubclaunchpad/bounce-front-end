@@ -1,9 +1,12 @@
 import {ADD_USER} from '../constants/action-types';
 
 const initialState =  {
-    user:{username:'',
+    user:{
+        username:'',
         fullName:'',
-        email : ''}
+        email: '',
+        token:''
+    }
 };
 
 function rootReducer(state = initialState, action){
