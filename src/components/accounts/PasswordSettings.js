@@ -102,25 +102,15 @@ class PasswordSettings extends Component {
      * Update user password and return whether process was successful
      */
     updatePassword() {
-
         return this.props.client.updatePassword(
             this.props.client.getUsername(),
-            this.state.currentPassword, 
+            this.state.currentPassword,
             this.state.newPassword
-            
         ).then(response => {
-            if (response.ok) {
-                return true;
-            } else if (response.status === 401) {
-
-                return false;
-            } else {
-                return undefined;
-            }
+            return response.ok;
         }).catch(() => {
-            return undefined;
+            return false;
         });
-
     }
 
     /**
@@ -132,7 +122,7 @@ class PasswordSettings extends Component {
         event.preventDefault();
 
         let isPasswordValid;
-        const isNewPasswordValid = true; // TODO MIGHT NEED TO GET RID 
+        const isNewPasswordValid = true;
         let isNewPasswordReentryValid = this.validatePasswordReentry(this.state.newPasswordReentry);
         let isPasswordChangeSuccessful;
         let passwordChangeMessage;
@@ -180,7 +170,7 @@ class PasswordSettings extends Component {
             isPasswordValid = undefined;
             isPasswordChangeSuccessful = false;
             passwordChangeMessage = PASSWORD_CHANGE_UNSUCCESSFUL;
-            if (isNewPasswordValid === false) {
+            if (!isNewPasswordValid) {
                 isNewPasswordReentryValid = undefined;
             }
 
