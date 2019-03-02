@@ -106,13 +106,15 @@ export default class BounceClient {
      * @param {String} username The username to give to the new user
      * @param {String} password The new user's password
      * @param {String} email The user's email
+     * @param {String} bio The user's bio
      */
-    async createUser(fullName, username, password, email) {
+    async createUser(fullName, username, password, email, bio) {
         return await this._request('POST', '/users', {
             full_name: fullName,
             username: username,
             password: password,
             email: email,
+            bio: bio
         });
     }
 

@@ -29,6 +29,7 @@ class CreateAccount extends Component {
             email: '',
             password: '',
             passwordConfirmation: '',
+            bio: '',
             usernameIsValid: undefined,
             emailIsValid: undefined,
             passwordIsValid: undefined,
@@ -61,7 +62,8 @@ class CreateAccount extends Component {
             this.state.fullName,
             this.state.username,
             this.state.password,
-            this.state.email
+            this.state.email,
+            this.state.bio
         ).then(response => {
             if (response.ok) {
                 // Automatically sign the user in after creating their account
@@ -216,7 +218,7 @@ class CreateAccount extends Component {
         }
 
         let errorMsg, usernameWarning, emailWarning, passwordWarning, passwordConfirmationWarning;
-        let usernameClass, emailClass, passwordClass, passwordConfirmationClass;
+        let usernameClass, emailClass, passwordClass, passwordConfirmationClass, bioClass;
 
         // Display error message if there is one
         if (this.state.errorMsg) {
@@ -313,6 +315,16 @@ class CreateAccount extends Component {
                             placeholder='Confirm Password'
                             className='form-control'
                             value={this.state.passwordConfirmation}
+                            onChange={this.handleInput} />
+                        {passwordConfirmationWarning}
+                    </FormGroup>
+                    <FormGroup bsClass={bioClass}>
+                        <Label>Bio</Label>
+                        <input type='bio'
+                            name='bio'
+                            placeholder='Bio'
+                            className='form-control'
+                            value={this.state.bio}
                             onChange={this.handleInput} />
                         {passwordConfirmationWarning}
                     </FormGroup>
