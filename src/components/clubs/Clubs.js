@@ -2,10 +2,13 @@
 import React, { Component } from 'react';
 import { Alert, PageHeader } from 'react-bootstrap';
 
+
 import { UNEXPECTED_ERROR, NO_CLUBS_FOUND } from '../../constants';
 import Cards from '../util/Cards';
 /* eslint-enable no-unused-vars */
-
+import store  from '../../store/configureStore.js';
+import { changeClub } from '../../actions/changeClub.js';
+import { changeQuery} from '../../actions/changeQuery.js'
 class Clubs extends Component {
     constructor(props) {
         super(props);
@@ -24,6 +27,7 @@ class Clubs extends Component {
      */
     componentWillReceiveProps(props) {
         this.setState({ searchQuery: props.searchQuery });
+        store.dispatch(changeQuery(props.searchQuery));
         this.search();
     }
 
@@ -41,6 +45,7 @@ class Clubs extends Component {
                     // Display results
                     result.json().then(body => {
                         this.setState({ clubs: body.results, errorMsg: undefined });
+                        store.dispatch(changeClub(body.results));
                     });
                 } else if (result.status === 404) {
                     this.setState({ errorMsg: NO_CLUBS_FOUND });
