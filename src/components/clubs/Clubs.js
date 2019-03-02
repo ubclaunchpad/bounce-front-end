@@ -8,7 +8,7 @@ import Cards from '../util/Cards';
 /* eslint-enable no-unused-vars */
 import store  from '../../store/configureStore.js';
 import { changeClub } from '../../actions/changeClub.js';
-import { changeQuery} from '../../actions/changeQuery.js'
+import { changeQuery} from '../../actions/changeQuery.js';
 class Clubs extends Component {
     constructor(props) {
         super(props);

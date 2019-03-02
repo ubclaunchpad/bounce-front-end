@@ -4,8 +4,8 @@ import {combineReducers} from 'redux';
 
 
 const rootReducer = combineReducers({
-  clubsReducer: clubsReducer,
-  userReducer: userReducer
+    clubsReducer: clubsReducer,
+    userReducer: userReducer
 });
 
 export default rootReducer;

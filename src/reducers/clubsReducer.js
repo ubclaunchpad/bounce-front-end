@@ -3,32 +3,32 @@ import {CLUB_LIST} from '../constants/action-types';
 
 
 const initialState =  {
-     clubs:[],
-     searchQuery:{}
+    clubs:[],
+    searchQuery:{}
 
 };
 
 function clubsReducer(state = initialState, action){
     switch(action.type){
-     case CHANGE_QUERY:
-            return {
-              ...state,
-              searchQuery: action.payload
-            }
-      case CLUB_LIST:
-            return{
-              ...state,
-                clubs:action.payload
+    case CHANGE_QUERY:
+        return {
+            ...state,
+            searchQuery: action.payload
+        };
+    case CLUB_LIST:
+        return{
+            ...state,
+            clubs:action.payload
 
-            }
-      default:
-            return initialState;
-
-
+        };
+    default:
+        return initialState;
 
 
 
-}
+
+
+    }
 }
 
 export default clubsReducer;
