@@ -6,7 +6,7 @@ import { Alert, PageHeader } from 'react-bootstrap';
 import { UNEXPECTED_ERROR, NO_CLUBS_FOUND } from '../../constants';
 import Cards from '../util/Cards';
 /* eslint-enable no-unused-vars */
-import store  from '../../store/configureStore.js';
+
 import { changeClub } from '../../actions/changeClub.js';
 import { changeQuery} from '../../actions/changeQuery.js';
 import { connect }   from 'react-redux';
@@ -14,8 +14,8 @@ class Clubs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          //  clubs: [],
-          //  searchQuery: props.searchQuery,
+            //  clubs: [],
+            //  searchQuery: props.searchQuery,
             errorMsg: undefined,
         };
 
@@ -27,7 +27,7 @@ class Clubs extends Component {
      * @param {Object} props
      */
     componentWillReceiveProps(props) {
-      //  this.setState({ searchQuery: props.searchQuery });
+        //  this.setState({ searchQuery: props.searchQuery });
         this.props.changeQuery(props.searchQuery);
         //store.dispatch(changeQuery(props.searchQuery));
         this.search();
@@ -78,18 +78,18 @@ class Clubs extends Component {
     }
 }
 const mapStoreToProps = (store) => {
-  return {
-    clubs:store.clubsReducer.clubs,
-    searchQuery: store.clubsReducer.searchQuery
-  }
-}
+    return {
+        clubs:store.clubsReducer.clubs,
+        searchQuery: store.clubsReducer.searchQuery
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
-  return{
-  changeClub: (payload) => dispatch(changeClub(payload)),
-  changeQuery: (payload) => dispatch(changeQuery(payload))
-}
-}
+    return{
+        changeClub: (payload) => dispatch(changeClub(payload)),
+        changeQuery: (payload) => dispatch(changeQuery(payload))
+    };
+};
 
 
 export default connect(mapStoreToProps,mapDispatchToProps)(Clubs);
