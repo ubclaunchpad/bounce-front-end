@@ -1,4 +1,4 @@
-const utils = require('../components/utils.js')
+const utils = require('../components/utils.js');
 
 it('Password is too short', () => {
     expect(utils.validatePassword('short')).toBe(false);
