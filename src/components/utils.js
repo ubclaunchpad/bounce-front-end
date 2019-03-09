@@ -35,3 +35,27 @@ export const validateEmail = function(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email.toLowerCase());
 };
+
+/**
+* Returns true if the username is valid and false otherwise
+* @param {String} username
+*/
+export const validateUsername = function(username) {
+    if (username.length < 3 || username.length > 20) {
+        return false;
+    }
+    const regexes = [
+        /[A-Z]+/,
+        /[a-z]+/,
+        /[0-9]+/,
+        /[.\-_]+/
+    ];
+    for (let i in regexes) {
+        let match = username.match(regexes[i]);
+        while (match !== null) {
+            username = username.replace(match[0], '');
+            match = username.match(regexes[i]);
+        }
+    }
+    return username.length === 0;
+};

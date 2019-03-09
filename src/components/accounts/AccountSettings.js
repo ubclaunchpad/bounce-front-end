@@ -16,7 +16,7 @@ class AccountSettings extends Component {
             );
         }
         return (
-            <div className='container page'>
+            <div className='container-page'>
                 <PageHeader>Account Settings</PageHeader>
                 <Col sm={3}>
                     <SettingsSidebar />

@@ -19,3 +19,19 @@ test('Valid Email', () => {
 test('Invalid Email', () => {
     expect(utils.validatePassword('Bingo.launchPad.com!')).toBe(false);
 });
+
+test('Username is too short', () => {
+    expect(utils.validateUsername('me')).toBe(false);
+});
+
+test('Username too long', () => {
+    expect(utils.validateUsername('MySuperLongUsernameIsUbcLaunchPad')).toBe(false);
+});
+
+test('Username contains invalid characters', () => {
+    expect(utils.validateUsername('invalidBecause%%#')).toBe(false);
+});
+
+test('Username is Valid', () => {
+    expect(utils.validateUsername('BingoBongo')).toBe(true);
+});

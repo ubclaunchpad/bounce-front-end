@@ -18,6 +18,7 @@ import {
     USERNAME_OR_EMAIL_TAKEN,
     USERNAME_WARNING,
 } from '../../constants';
+import {validatePassword, validateUsername, validateEmail } from '../utils';
 /* eslint-enable no-unused-vars */
 
 class CreateAccount extends Component {
@@ -37,7 +38,10 @@ class CreateAccount extends Component {
             isSignedIn: false,
             errorMsg: undefined,
         };
-
+        
+        this.validateUsername = validateUsername.bind(this);
+        this.validateEmail = validateEmail.bind(this);
+        this.validatePassword = validatePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this);
         this.handleSignInClick = this.handleSignInClick.bind(this);
@@ -134,68 +138,6 @@ class CreateAccount extends Component {
         this.setState({
             [event.target.name]: value,
         });
-    }
-
-    /**
-     * Returns true if the username is valid and false otherwise
-     * @param {String} username
-     */
-    validateUsername(username) {
-        if (username.length < 3 || username.length > 20) {
-            return false;
-        }
-        const regexes = [
-            /[A-Z]+/,
-            /[a-z]+/,
-            /[0-9]+/,
-            /[.\-_]+/
-        ];
-        for (let i in regexes) {
-            let match = username.match(regexes[i]);
-            while (match !== null) {
-                username = username.replace(match[0], '');
-                match = username.match(regexes[i]);
-            }
-        }
-        return username.length === 0;
-    }
-
-    /**
-     * Returns true if the password is valid and false otherwise
-     * @param {String} password
-     */
-    validatePassword(password) {
-        if (password.length < 8) {
-            return false;
-        }
-        const regexes = [
-            /[A-Z]+/,
-            /[a-z]+/,
-            /[0-9]+/,
-            /[.\-!@#$%^&*?_+ ]+/
-        ];
-        for (let i in regexes) {
-            let match = password.match(regexes[i]);
-            let count = 0;
-            while (match !== null) {
-                password = password.replace(match[0], '');
-                match = password.match(regexes[i]);
-                count++;
-            }
-            if (count === 0) {
-                return false;
-            }
-        }
-        return password.length === 0;
-    }
-
-    /**
-     * Returns true if the email is valid and false otherwise
-     * @param {String} email
-     */
-    validateEmail(email) {
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email.toLowerCase());
     }
 
     /**
