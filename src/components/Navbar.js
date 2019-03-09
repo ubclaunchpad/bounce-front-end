@@ -15,6 +15,8 @@ import SmallLogo from '../media/small-logo.png';
 import '../css/Navbar.css';
 import NavbarSignedIn from './NavbarSignedIn';
 import NavbarLoggedOut from './NavbarLoggedOut';
+import {connect} from 'react-redux';
+import {changeQuery} from '../actions/changeQuery';
 /* eslint-enable no-unused-vars */
 
 class BounceNavbar extends Component {
@@ -25,8 +27,7 @@ class BounceNavbar extends Component {
             goToSignIn: false,
             goToMyClubs: false,
             goToExplore: false,
-            signedIn: false,
-            query: undefined,
+            signedIn: false
         };
 
         this.handleLogOut = this.handleLogOut.bind(this);
@@ -62,8 +63,9 @@ class BounceNavbar extends Component {
      * NavbarLoggedOut instead of NavbarSignedIn
      */
     handleLogOut() {
+        this.props.changeQuery('');
         this.props.client.signOut();
-        this.props.onSearch();
+
     }
 
     /**
@@ -71,8 +73,11 @@ class BounceNavbar extends Component {
      * the Bounce logo is clicked.
      */
     handleHomeClick() {
-        this.setState({ goToHome: true });
-        this.props.onSearch();
+        this.props.changeQuery('');
+        this.setState({ goToHome: true});
+
+
+
     }
 
     /**
@@ -80,8 +85,9 @@ class BounceNavbar extends Component {
      * Sign In button is clicked.
      */
     handleSignInClick() {
+        this.props.changeQuery('');
         this.setState({ goToSignIn: true });
-        this.props.onSearch();
+
     }
 
     /**
@@ -106,7 +112,7 @@ class BounceNavbar extends Component {
      */
     handleInput(event) {
         event.preventDefault();
-        this.setState({ query: event.target.value });
+        this.props.changeQuery(event.target.value);
     }
 
     /**
@@ -116,10 +122,11 @@ class BounceNavbar extends Component {
         event.preventDefault();
         // Trigger redirect to Home page so it can display search results
         this.setState({ goToHome: true });
-        this.props.onSearch(this.state.query);
+
     }
 
     render() {
+
         let pageRedirect;
         let navbarComponent;
         if (this.state.goToHome) {
@@ -144,7 +151,7 @@ class BounceNavbar extends Component {
                 handleSignInClick={this.handleSignInClick} />;
 
         return (
-            <Navbar id='navbar' toggleNavKey={1} fluid>
+            <Navbar id='navbar' toggleNavKey = {1} fluid>
                 {pageRedirect}
                 <Navbar.Header>
                     <BrowserRouter>
@@ -165,6 +172,7 @@ class BounceNavbar extends Component {
                                         <FormControl
                                             type='text'
                                             placeholder='Search'
+                                            value = {this.props.searchQuery}
                                             onChange={this.handleInput}
                                         />
                                     </FormGroup>
@@ -185,4 +193,16 @@ class BounceNavbar extends Component {
     }
 }
 
-export default BounceNavbar;
+const mapStoreToProps = (store) => {
+    return {
+        searchQuery: store.clubsReducer.searchQuery
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return{
+        changeQuery: (payload) => dispatch(changeQuery(payload))
+    };
+};
+
+export default connect(mapStoreToProps,mapDispatchToProps)(BounceNavbar);
