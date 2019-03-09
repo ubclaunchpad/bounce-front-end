@@ -14,8 +14,6 @@ class Clubs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            //  clubs: [],
-            //  searchQuery: props.searchQuery,
             errorMsg: undefined,
         };
 
@@ -27,9 +25,7 @@ class Clubs extends Component {
      * @param {Object} props
      */
     componentWillReceiveProps(props) {
-        //  this.setState({ searchQuery: props.searchQuery });
         this.props.changeQuery(props.searchQuery);
-        //store.dispatch(changeQuery(props.searchQuery));
         this.search();
     }
 
@@ -48,7 +44,7 @@ class Clubs extends Component {
                     result.json().then(body => {
                         this.setState({errorMsg: undefined });
                         this.props.changeClub(body.results);
-                        //store.dispatch(changeClub(body.results));
+
                     });
                 } else if (result.status === 404) {
                     this.setState({ errorMsg: NO_CLUBS_FOUND });
