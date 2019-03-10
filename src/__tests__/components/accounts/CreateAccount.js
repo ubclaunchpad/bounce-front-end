@@ -2,8 +2,6 @@
 import React from 'react';
 import CreateAccount from '../../../components/accounts/CreateAccount';
 import { shallow, mount } from 'enzyme';
-import { createVerify } from 'crypto';
-
 
 it('renders Create Account component', () => {
     shallow(<CreateAccount />);
