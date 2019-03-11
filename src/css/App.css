@@ -1,0 +1,76 @@
+h1 {
+  color: #0CD3FE;
+}
+
+h2 {
+  color: #adadad;
+}
+
+a {
+  color: #0CD3FE;
+}
+
+input.form-control {
+  border-radius: 4em;
+}
+
+.btn {
+  border-color: #adadad;
+  border-radius: 4em;
+}
+
+.btn.btn-primary {
+  background-color: #a7f2e8;
+}
+.btn.btn-primary:hover {
+  border-color: #adadad;
+}
+
+.btn.btn-secondary {
+  background-color: white;
+  color: #0CD3FE;
+}
+
+.btn.btn-default {
+  background-color: white;
+  color: #0CD3FE;
+}
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+form {
+  text-align: left;
+  max-width: 30em;
+  margin: auto;
+}
+
+form > input {
+  width: 50%;
+  min-width: 6em;
+}
+
+.label.label-default {
+  font-size: 14px;
+  background-color: transparent;
+  color: #7F7F7F;
+}
+
+form > h1 {
+  text-align: center;
+}
+
+button {
+  margin-right: 0.5em;
+}
+
+.glyphicon {
+  color: #7F7F7F;
+}
+
+/*# sourceMappingURL=App.css.map */

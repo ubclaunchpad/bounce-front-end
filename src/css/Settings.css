@@ -1,0 +1,23 @@
+h2 {
+  margin: 0.5em 0;
+}
+
+.settings-sidebar {
+  display: inline-block;
+  vertical-align: top;
+}
+.settings-sidebar ul {
+  list-style: none;
+  padding: 0px;
+}
+.settings-sidebar ul ul {
+  padding-left: 20px;
+}
+.settings-sidebar a {
+  text-decoration: none;
+}
+.settings-sidebar a:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=Settings.css.map */
