@@ -320,7 +320,7 @@ class CreateAccount extends Component {
                     </FormGroup>
                     <FormGroup bsClass={bioClass}>
                         <Label>Bio</Label>
-                        <input type='bio'
+                        <textarea type='bio'
                             name='bio'
                             placeholder='Bio'
                             className='form-control'

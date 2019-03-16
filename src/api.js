@@ -123,14 +123,18 @@ export default class BounceClient {
      * @param {String} username
      * @param {String} fullName Optional, may be undefined
      * @param {String} email Optional, may be undefined
+     * @param {String} bio Optional, may be undefined
      */
-    async updateUser(username, fullName, email) {
+    async updateUser(username, fullName, email, bio) {
         let body = {};
         if (fullName) {
             body.full_name = fullName;
         }
         if (email) {
             body.email = email;
+        }
+        if (bio) {
+            body.bio = bio;
         }
         return await this._request('PUT', '/users/' + username, body);
     }

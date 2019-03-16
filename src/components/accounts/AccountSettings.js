@@ -5,6 +5,7 @@ import { Alert, PageHeader, Col } from 'react-bootstrap';
 import SettingsSidebar from './SettingsSidebar';
 import PasswordSettings from './PasswordSettings';
 import EmailSettings from './EmailSettings';
+import BioSettings from './BioSettings';
 import { NOT_SIGNED_IN_ERROR } from '../../constants';
 /* eslint-enable no-unused-vars */
 
@@ -27,6 +28,9 @@ class AccountSettings extends Component {
                             client={this.props.client} />
                         <br />
                         <EmailSettings
+                            client={this.props.client} />
+                         <br />
+                        <BioSettings
                             client={this.props.client} />
                     </div>
                 </Col>
