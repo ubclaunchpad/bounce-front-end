@@ -29,7 +29,7 @@ class AccountSettings extends Component {
                         <br />
                         <EmailSettings
                             client={this.props.client} />
-                         <br />
+                        <br />
                         <BioSettings
                             client={this.props.client} />
                     </div>

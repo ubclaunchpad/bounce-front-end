@@ -41,7 +41,7 @@ class BioSettings extends Component {
     }
 
 
-  /**
+    /**
      * Update user bio.
      * @param {Event} event
      
