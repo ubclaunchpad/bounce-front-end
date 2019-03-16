@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts start | node_modules/.bin/sass --watch src/sass/:src/css/",
     "build": "react-scripts build",
-    "test": "node_modules/.bin/sass --watch src/sass/:src/css/ && react-scripts test --env=jsdom --coverage --verbose",
+    "test": "node_modules/.bin/sass src/sass/:src/css/ && react-scripts test --env=jsdom --coverage --verbose",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
