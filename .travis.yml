@@ -5,4 +5,4 @@ install:
   make install
 script:
   - make lint
-  - npm test
+  - yarn test
