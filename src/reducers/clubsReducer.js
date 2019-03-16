@@ -1,11 +1,9 @@
 import {CHANGE_QUERY} from '../constants/action-types';
 import {CLUB_LIST} from '../constants/action-types';
 
-
 const initialState =  {
     clubs:[],
     searchQuery:{}
-
 };
 
 function clubsReducer(state = initialState, action){
@@ -23,11 +21,6 @@ function clubsReducer(state = initialState, action){
         };
     default:
         return initialState;
-
-
-
-
-
     }
 }
 
