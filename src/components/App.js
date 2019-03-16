@@ -15,6 +15,8 @@ import CreateAccount from './accounts/CreateAccount';
 import CreateClub from './clubs/CreateClub';
 import '../css/App.css';
 import AccountSettings from './accounts/AccountSettings';
+import store from '../store/configureStore';
+import {changeQuery} from '../actions/changeQuery';
 /* eslint-enable no-unused-vars */
 
 class App extends Component {
@@ -99,6 +101,7 @@ class App extends Component {
      */
     onSearch(query) {
         this.setState({ searchQuery: query });
+        store.dispatch(changeQuery(query));
     }
 
     /**

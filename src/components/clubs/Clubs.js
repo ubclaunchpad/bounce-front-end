@@ -2,16 +2,18 @@
 import React, { Component } from 'react';
 import { Alert, PageHeader } from 'react-bootstrap';
 
+
 import { UNEXPECTED_ERROR, NO_CLUBS_FOUND } from '../../constants';
 import Cards from '../util/Cards';
 /* eslint-enable no-unused-vars */
 
+import { changeClub } from '../../actions/changeClub.js';
+import { changeQuery} from '../../actions/changeQuery.js';
+import { connect }   from 'react-redux';
 class Clubs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            clubs: [],
-            searchQuery: props.searchQuery,
             errorMsg: undefined,
         };
 
@@ -23,7 +25,7 @@ class Clubs extends Component {
      * @param {Object} props
      */
     componentWillReceiveProps(props) {
-        this.setState({ searchQuery: props.searchQuery });
+        this.props.changeQuery(props.searchQuery);
         this.search();
     }
 
@@ -33,14 +35,16 @@ class Clubs extends Component {
      */
     search() {
         // Do nothing if there is no query
-        if (!this.state.searchQuery) return;
+        if (!this.props.searchQuery) return;
 
-        this.props.client.searchClubs(this.state.searchQuery)
+        this.props.client.searchClubs(this.props.searchQuery)
             .then(result => {
                 if (result.ok) {
                     // Display results
                     result.json().then(body => {
-                        this.setState({ clubs: body.results, errorMsg: undefined });
+                        this.setState({errorMsg: undefined });
+                        this.props.changeClub(body.results);
+
                     });
                 } else if (result.status === 404) {
                     this.setState({ errorMsg: NO_CLUBS_FOUND });
@@ -64,10 +68,24 @@ class Clubs extends Component {
                     <Alert bsStyle='warning'> {this.state.errorMsg} </Alert>
                 }
                 <PageHeader>Explore Clubs</PageHeader>
-                <Cards items={this.state.clubs} />
+                <Cards items={this.props.clubs} />
             </div>
         );
     }
 }
+const mapStoreToProps = (store) => {
+    return {
+        clubs:store.clubsReducer.clubs,
+        searchQuery: store.clubsReducer.searchQuery
+    };
+};
 
-export default Clubs;
+const mapDispatchToProps = (dispatch) => {
+    return{
+        changeClub: (payload) => dispatch(changeClub(payload)),
+        changeQuery: (payload) => dispatch(changeQuery(payload))
+    };
+};
+
+
+export default connect(mapStoreToProps,mapDispatchToProps)(Clubs);
