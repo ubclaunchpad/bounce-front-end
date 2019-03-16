@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Alert, FormGroup, Label, PageHeader, Button } from 'react-bootstrap';
-
+import store  from '../../store/configureStore';
+import { addUsers } from '../../actions/addUser.js';
 import { UNAUTHORIZED, SIGNIN_ERROR } from '../../constants';
 /* eslint-enable no-unused-vars */
 
@@ -38,6 +39,14 @@ class SignIn extends Component {
                 // Trigger a page transition in the parent component
                 this.props.onSignIn(false, this.state.username);
                 this.setState({ isSignedIn: true });
+                this.props.client.getUser(this.state.username)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(user => {
+                        user.token = this.props.client.token;
+                        store.dispatch(addUsers(user));
+                    });
             } else if (response.status === 401) {
                 // The users's credentials are invalid
                 this.setState({ errorMsg: UNAUTHORIZED });
