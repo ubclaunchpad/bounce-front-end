@@ -40,21 +40,6 @@ class BioSettings extends Component {
         return true;
     }
 
-
-    /**
-     * Update user bio.
-     * @param {Event} event
-     
-    
-    handleBioChangeSubmit(event) {
-        event.preventDefault();
-
-        this.updateBio()
-            .then(isUpdated => {
-                this.setState({ failed: !isUpdated }); 
-        }); 
-    } */
-
     render() {
         let newBioClass; 
         return (
