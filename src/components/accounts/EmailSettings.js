@@ -115,8 +115,7 @@ class EmailSettings extends Component {
                             className='form-control'
                             placeholder='New email'
                             value={this.state.newEmail}
-                            onChange={this.handleInputChange}
-                            autoComplete='new-password' />
+                            onChange={this.handleInputChange}  />       
                         {newEmailWarning}
                     </FormGroup>
 
