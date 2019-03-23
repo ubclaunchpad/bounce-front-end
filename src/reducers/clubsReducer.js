@@ -3,7 +3,8 @@ import {CLUB_LIST} from '../constants/action-types';
 
 const initialState =  {
     clubs:[],
-    searchQuery:{}
+    searchQuery:''
+
 };
 
 function clubsReducer(state = initialState, action){

@@ -5,7 +5,7 @@ import { Alert, Button, FormGroup, Label } from 'react-bootstrap';
 import {
     EMAIL_WARNING, UNEXPECTED_ERROR, USER_UPDATED
 } from '../../constants';
-import { validateEmail } from '../utils';
+import { validateEmail, tempSetState } from '../utils';
 import '../../css/Settings.css';
 /* eslint-enable no-unused-vars */
 
@@ -56,13 +56,9 @@ class EmailSettings extends Component {
             this.props.client.getUsername(),
             null,
             this.state.newEmail,
-            this.state.currentPassword            
+            this.state.currentPassword
         ).then(response => {
-            if (response.ok) {
-                return true;
-            } else {
-                return false;
-            }
+            return response.ok;
         }).catch(() => {
             return false;
         });
@@ -84,9 +80,8 @@ class EmailSettings extends Component {
         } else {
             this.setState({newEmailIsValid: false});
         }
-
     }
-    
+
 
     render() {
         let newEmailWarning, newEmailClass;
@@ -115,7 +110,7 @@ class EmailSettings extends Component {
                             className='form-control'
                             placeholder='New email'
                             value={this.state.newEmail}
-                            onChange={this.handleInputChange}  />       
+                            onChange={this.handleInputChange}  />
                         {newEmailWarning}
                     </FormGroup>
 

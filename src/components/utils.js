@@ -35,3 +35,20 @@ export const validateEmail = function(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email.toLowerCase());
 };
+
+/**
+ * Temporarily sets the value corresponding to the key `key` on `component` to
+ * `tempValue`, and returs it to its original value, or `resetValue` if it is
+ * defined.
+ * @param {Object} component
+ * @param {String} key
+ * @param {*} tempValue
+ * @param {*} resetValue
+ */
+export const tempSetState = function (component, key, tempValue, resetValue) {
+    const oldValue = component.state[key];
+    component.setState({ [key]: tempValue });
+    setTimeout(() => {
+        component.setState({[key]: resetValue || oldValue});
+    }, 2500);
+};

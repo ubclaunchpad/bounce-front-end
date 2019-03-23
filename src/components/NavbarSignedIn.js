@@ -1,16 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import {
     Nav,
     NavItem,
-    NavDropdown,
+    DropdownButton,
     MenuItem,
-    Button,
-    Image
+    Glyphicon
 } from 'react-bootstrap';
 import '../css/Navbar.css';
-import UserDefaultLogo from '../media/user-default-logo.png';
 /* eslint-enable no-unused-vars */
 
 class NavbarSignedIn extends Component {
@@ -41,49 +39,26 @@ class NavbarSignedIn extends Component {
         }
 
         return (
-            <div>
+            <Nav pullRight>
                 {pageRedirect}
-                <Nav pullRight>
-                    <NavItem eventKey={1} href="#"
-                        className="navButton">
-                        <Button
-                            bsClass='btn btn-secondary'
-                            onClick={this.props.handleMyClubsClick}>
-                            My Clubs
-                        </Button>
-                    </NavItem>
-                    <NavItem eventKey={2} href="#"
-                        className="navButton">
-                        <Button
-                            bsClass='btn btn-secondary'
-                            onClick={this.props.handleExploreClick}>
-                            Explore
-                        </Button>
-                    </NavItem>
-                    <NavDropdown
+                <NavItem>
+                    <DropdownButton id="account"
                         eventKey={3}
-                        title={
-                            <div className="accountButton">
-                                <Image src={UserDefaultLogo}/>
-                                <span>Account</span>
-                            </div>
-                        } 
-                        id="profile-dropdown" >
-                        <MenuItem eventKey={3.1} href=''>Profile</MenuItem>
-                        <MenuItem 
+                        title={<Glyphicon glyph="user" />}>
+                        <MenuItem
                             eventKey={3.2}
                             onClick={this.handleSettingsClick}>
                             Settings
                         </MenuItem>
                         <MenuItem divider />
-                        <MenuItem 
+                        <MenuItem
                             eventKey={3.3}
                             onClick={this.props.handleLogOut}>
-                                Log Out
+                            Log Out
                         </MenuItem>
-                    </NavDropdown>
-                </Nav>
-            </div>
+                    </DropdownButton>
+                </NavItem>
+            </Nav>
         );
     }
 }

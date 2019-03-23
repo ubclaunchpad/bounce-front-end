@@ -7,9 +7,7 @@ import {
 
 import Clubs from './clubs/Clubs';
 import LargeLogo from '../media/large-logo.png';
-import '../css/Home.css';
-import store from '../store/configureStore';
-import {Provider} from 'react-redux';
+import {connect} from 'react-redux';
 /* eslint-enable no-unused-vars */
 
 class Home extends Component {
@@ -21,11 +19,10 @@ class Home extends Component {
     render() {
         if (this.props.client.isSignedIn() || this.props.searchQuery) {
             // Display clubs when the user is signed in or if they are searching
-            return <Provider store = {store}><Clubs
+            return <Clubs
                 isNewAccount={this.props.isNewAccount}
-                searchQuery={this.props.searchQuery}
                 client={this.props.client}
-            /> </Provider>;
+            />;
         }
 
         return (
@@ -56,5 +53,11 @@ class Home extends Component {
         );
     }
 }
+const mapStoreToProps = (store) => {
+    return {
+        searchQuery: store.clubsReducer.searchQuery
+    };
+};
 
-export default Home;
+
+export default connect(mapStoreToProps)(Home);
