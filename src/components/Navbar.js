@@ -17,7 +17,8 @@ import NavbarSignedIn from './NavbarSignedIn';
 import NavbarLoggedOut from './NavbarLoggedOut';
 import {connect} from 'react-redux';
 import { changeQuery } from '../actions/changeQuery';
-import { changeClubs } from '../actions/changeClubs.js';
+import { changeClubs } from '../actions/changeClubs';
+import { addUser } from '../actions/addUser';
 import { UNEXPECTED_ERROR, NO_CLUBS_FOUND } from '../constants';
 /* eslint-enable no-unused-vars */
 
@@ -37,6 +38,11 @@ class BounceNavbar extends Component {
         this.handleSignInClick = this.handleSignInClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this);
+        this.search = this.search.bind(this);
+    }
+
+    componentWillReceiveProps() {
+        this.search();
     }
 
     /**
@@ -65,6 +71,8 @@ class BounceNavbar extends Component {
     handleLogOut() {
         this.props.changeQuery('');
         this.props.client.signOut();
+        this.props.addUser({});
+        this.setState({ goToHome: true });
     }
 
     /**
@@ -101,7 +109,10 @@ class BounceNavbar extends Component {
         event.preventDefault();
         // Do nothing if there is no query
         if (!this.props.searchQuery) return;
+        this.search();
+    }
 
+    search() {
         this.props.client.searchClubs(this.props.searchQuery)
             .then(result => {
                 if (result.ok) {
@@ -124,7 +135,6 @@ class BounceNavbar extends Component {
     }
 
     render() {
-
         let pageRedirect;
         let navbarComponent;
         if (this.state.goToHome) {
@@ -134,7 +144,7 @@ class BounceNavbar extends Component {
             pageRedirect = <Redirect to='/sign-in'></Redirect>;
         }
 
-        navbarComponent = this.props.client.isSignedIn() ?
+        navbarComponent = this.props.user.username ?
             <NavbarSignedIn
                 handleLogOut={this.handleLogOut} /> :
             <NavbarLoggedOut
@@ -183,15 +193,17 @@ class BounceNavbar extends Component {
 
 const mapStoreToProps = (store) => {
     return {
-        searchQuery: store.clubsReducer.searchQuery
+        searchQuery: store.clubsReducer.searchQuery,
+        user: store.userReducer.user
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         changeClubs: (payload) => dispatch(changeClubs(payload)),
-        changeQuery: (payload) => dispatch(changeQuery(payload))
+        changeQuery: (payload) => dispatch(changeQuery(payload)),
+        addUser: (payload) => dispatch(addUser(payload))
     };
 };
 
-export default connect(mapStoreToProps,mapDispatchToProps)(BounceNavbar);
+export default connect(mapStoreToProps, mapDispatchToProps)(BounceNavbar);

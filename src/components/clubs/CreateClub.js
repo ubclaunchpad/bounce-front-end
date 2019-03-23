@@ -105,7 +105,7 @@ class CreateClub extends Component {
 
                     <FormGroup>
                         <Label>Description</Label>
-                        <input type='text'
+                        <textarea type='text'
                             name='description'
                             placeholder='Description'
                             className='form-control'

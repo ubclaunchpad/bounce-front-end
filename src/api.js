@@ -182,6 +182,7 @@ export default class BounceClient {
      * @param {String} query
      */
     async searchClubs(query) {
+        if (!query) return await this._request('GET', '/clubs/search');
         return await this._request('GET', `/clubs/search?query=${query}`);
     }
 

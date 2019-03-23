@@ -1,7 +1,7 @@
 import {ADD_USER} from '../constants/action-types';
 
 const initialState =  {
-    user:{
+    user: {
         username:'',
         fullName:'',
         email: '',
