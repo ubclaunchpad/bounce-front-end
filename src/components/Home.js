@@ -17,7 +17,7 @@ class Home extends Component {
     }
 
     render() {
-        if (this.props.client.isSignedIn() || this.props.searchQuery) {
+        if (this.props.user.username || this.props.searchQuery) {
             // Display clubs when the user is signed in or if they are searching
             return <Clubs
                 isNewAccount={this.props.isNewAccount}
@@ -53,11 +53,12 @@ class Home extends Component {
         );
     }
 }
+
 const mapStoreToProps = (store) => {
     return {
-        searchQuery: store.clubsReducer.searchQuery
+        searchQuery: store.clubsReducer.searchQuery,
+        user: store.userReducer.user
     };
 };
-
 
 export default connect(mapStoreToProps)(Home);

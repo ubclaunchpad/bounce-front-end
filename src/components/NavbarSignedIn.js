@@ -1,13 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import {
     Nav,
     NavItem,
     DropdownButton,
     MenuItem,
-    Glyphicon
+    Glyphicon,
+    Button
 } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import '../css/Navbar.css';
 /* eslint-enable no-unused-vars */
 
@@ -41,6 +43,11 @@ class NavbarSignedIn extends Component {
         return (
             <Nav pullRight>
                 {pageRedirect}
+                <LinkContainer to='/create-club'>
+                    <NavItem>
+                        <Button>Create Club</Button>
+                    </NavItem>
+                </LinkContainer>
                 <NavItem>
                     <DropdownButton id="account"
                         eventKey={3}
