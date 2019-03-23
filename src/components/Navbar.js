@@ -16,7 +16,9 @@ import '../css/Navbar.css';
 import NavbarSignedIn from './NavbarSignedIn';
 import NavbarLoggedOut from './NavbarLoggedOut';
 import {connect} from 'react-redux';
-import {changeQuery} from '../actions/changeQuery';
+import { changeQuery } from '../actions/changeQuery';
+import { changeClubs } from '../actions/changeClubs.js';
+import { UNEXPECTED_ERROR, NO_CLUBS_FOUND } from '../constants';
 /* eslint-enable no-unused-vars */
 
 class BounceNavbar extends Component {
@@ -33,8 +35,6 @@ class BounceNavbar extends Component {
         this.handleLogOut = this.handleLogOut.bind(this);
         this.handleHomeClick = this.handleHomeClick.bind(this);
         this.handleSignInClick = this.handleSignInClick.bind(this);
-        this.handleMyClubsClick = this.handleMyClubsClick.bind(this);
-        this.handleExploreClick = this.handleExploreClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInput = this.handleInput.bind(this);
     }
@@ -65,7 +65,6 @@ class BounceNavbar extends Component {
     handleLogOut() {
         this.props.changeQuery('');
         this.props.client.signOut();
-
     }
 
     /**
@@ -75,9 +74,6 @@ class BounceNavbar extends Component {
     handleHomeClick() {
         this.props.changeQuery('');
         this.setState({ goToHome: true});
-
-
-
     }
 
     /**
@@ -87,23 +83,6 @@ class BounceNavbar extends Component {
     handleSignInClick() {
         this.props.changeQuery('');
         this.setState({ goToSignIn: true });
-
-    }
-
-    /**
-     * Redirects to My Club page when
-     * My Clubs button is clicked.
-     */
-    handleMyClubsClick() {
-        this.setState({ goToMyClubs: true });
-    }
-
-    /**
-     * Redirects to Explore page when
-     * Explore button is clicked.
-     */
-    handleExploreClick() {
-        this.setState({ goToExplore: true });
     }
 
     /**
@@ -120,9 +99,28 @@ class BounceNavbar extends Component {
      */
     handleSubmit(event) {
         event.preventDefault();
-        // Trigger redirect to Home page so it can display search results
-        this.setState({ goToHome: true });
+        // Do nothing if there is no query
+        if (!this.props.searchQuery) return;
 
+        this.props.client.searchClubs(this.props.searchQuery)
+            .then(result => {
+                if (result.ok) {
+                    // Display results
+                    result.json().then(body => {
+                        this.props.changeClubs(body.results.map(item => {
+                            return Object.assign(item, {link: `/clubs/${item.name}`});
+                        }));
+                        // Trigger redirect to Home page so it can display search results
+                        this.setState({ goToHome: true });
+                    });
+                } else if (result.status === 404) {
+                    this.setState({ errorMsg: NO_CLUBS_FOUND });
+                } else {
+                    this.setState({ errorMsg: UNEXPECTED_ERROR });
+                }
+            }).catch(() => {
+                this.setState({ errorMsg: UNEXPECTED_ERROR });
+            });
     }
 
     render() {
@@ -135,18 +133,10 @@ class BounceNavbar extends Component {
         if (this.state.goToSignIn) {
             pageRedirect = <Redirect to='/sign-in'></Redirect>;
         }
-        if (this.state.goToMyClubs) {
-            // Stub: direct page to my Clubs
-        }
-        if (this.state.goToExplore) {
-            // Stub: direct page to my Explore
-        }
 
         navbarComponent = this.props.client.isSignedIn() ?
             <NavbarSignedIn
-                handleLogOut={this.handleLogOut}
-                handleMyClubsClick={this.handleMyClubsClick}
-                handleExploreClick={this.handleExploreClick} /> :
+                handleLogOut={this.handleLogOut} /> :
             <NavbarLoggedOut
                 handleSignInClick={this.handleSignInClick} />;
 
@@ -167,22 +157,20 @@ class BounceNavbar extends Component {
                     <Nav>
                         <NavItem eventKey={1} href="#">
                             <Navbar.Form>
-                                <form>
-                                    <FormGroup>
-                                        <FormControl
-                                            type='text'
-                                            placeholder='Search'
-                                            value = {this.props.searchQuery}
-                                            onChange={this.handleInput}
-                                        />
-                                    </FormGroup>
-                                    <Button type='submit'>
-                                        <Glyphicon
-                                            glyph='search'
-                                            onClick={this.handleSubmit}>
-                                        </Glyphicon>
-                                    </Button>
-                                </form>
+                                <FormGroup>
+                                    <FormControl
+                                        type='text'
+                                        placeholder='Search'
+                                        value = {this.props.searchQuery}
+                                        onChange={this.handleInput}
+                                    />
+                                </FormGroup>
+                                <Button type='submit'>
+                                    <Glyphicon
+                                        glyph='search'
+                                        onClick={this.handleSubmit}>
+                                    </Glyphicon>
+                                </Button>
                             </Navbar.Form>
                         </NavItem>
                     </Nav>
@@ -200,7 +188,8 @@ const mapStoreToProps = (store) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return{
+    return {
+        changeClubs: (payload) => dispatch(changeClubs(payload)),
         changeQuery: (payload) => dispatch(changeQuery(payload))
     };
 };

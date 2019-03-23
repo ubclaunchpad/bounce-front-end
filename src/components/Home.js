@@ -8,8 +8,6 @@ import {
 import Clubs from './clubs/Clubs';
 import LargeLogo from '../media/large-logo.png';
 import {connect} from 'react-redux';
-import {changeQuery} from '../actions/changeQuery';
-
 /* eslint-enable no-unused-vars */
 
 class Home extends Component {

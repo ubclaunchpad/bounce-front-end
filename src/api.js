@@ -106,13 +106,15 @@ export default class BounceClient {
      * @param {String} username The username to give to the new user
      * @param {String} password The new user's password
      * @param {String} email The user's email
+     * @param {String} bio The user's bio
      */
-    async createUser(fullName, username, password, email) {
+    async createUser(fullName, username, password, email, bio) {
         return await this._request('POST', '/users', {
             full_name: fullName,
             username: username,
             password: password,
             email: email,
+            bio: bio
         });
     }
 
@@ -139,15 +141,19 @@ export default class BounceClient {
      * @param {String} username
      * @param {String} fullName Optional, may be undefined
      * @param {String} email Optional, may be undefined
-     * @param {String} password
+     * @param {String} bio Optional, may be undefined
+     * @param {String} password Optional, may be undefined
      */
-    async updateUser(username, fullName, email, password) {
+    async updateUser(username, fullName, email, password, bio) {
         let body = {};
         if (fullName) {
             body.full_name = fullName;
         }
         if (email) {
             body.email = email;
+        }
+        if (bio) {
+            body.bio = bio;
         }
         if(password) {
             body.password = password;

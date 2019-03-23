@@ -10,7 +10,7 @@ const initialState =  {
 };
 
 function userReducer(state = initialState, action){
-    if (action.type == ADD_USER){
+    if (action.type === ADD_USER){
         return Object.assign({}, state, {
             user: action.payload
         });
