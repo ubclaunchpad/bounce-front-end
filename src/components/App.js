@@ -77,10 +77,10 @@ class App extends Component {
      * @param {Object} filter provides the club name based on the URI
      */
     getViewClubPage(filter) {
-        const name = decodeURIComponent(filter.match.params.name);
+        const id = decodeURIComponent(filter.match.params.id);
         return <ViewClub
             client={this.props.client}
-            name={name}
+            id={id}
         />;
     }
 
@@ -117,7 +117,7 @@ class App extends Component {
                         <Route exact path='/' render={this.getHomePage} />
                         <Route path='/sign-in' render={this.getSignInPage} />
                         <Route path='/create-club' render={this.getCreateClubPage} />
-                        <Route path='/clubs/:name' component={this.getViewClubPage} />
+                        <Route path='/clubs/:id' component={this.getViewClubPage} />
                         <Route path='/create-account' render={this.getCreateAccountPage} />
                         <Route path='/account-settings' render={this.getAccountSettingsPage} />
                         <Route path='*' render={() => <Redirect to='/' />} />

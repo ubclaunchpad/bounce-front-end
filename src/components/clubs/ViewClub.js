@@ -54,7 +54,7 @@ class ViewClub extends Component {
      */
     componentDidMount() {
         // Fetch the club's info after rendering
-        this.props.client.getClub(this.props.name)
+        this.props.client.getClub(this.props.id)
             .then(response => {
                 if (response.ok) {
                     response.json().then(body => {
@@ -89,7 +89,7 @@ class ViewClub extends Component {
                 return;
             });
 
-        this.props.client.getMemberships(this.props.name).then(response => {
+        this.props.client.getMemberships(this.props.id).then(response => {
             if (response.ok) {
                 response.json().then(body => {
                     // Check if we're a president or admin of this club
@@ -124,7 +124,7 @@ class ViewClub extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.props.client.updateClub(
-            this.props.name,
+            this.props.id,
             this.state.name,
             this.state.description,
             this.state.websiteUrl,

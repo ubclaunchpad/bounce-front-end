@@ -142,7 +142,7 @@ export default class BounceClient {
      * @param {String} fullName Optional, may be undefined
      * @param {String} email Optional, may be undefined
      * @param {String} bio Optional, may be undefined
-     * @param {String} password Optional, may be undefined
+     * @param {String} password
      */
     async updateUser(username, fullName, email, password, bio) {
         let body = {};
@@ -171,33 +171,32 @@ export default class BounceClient {
 
     /**
      * Fetch information about a club
-     * @param {String} name
+     * @param {String} id
      */
-    async getClub(name) {
-        return await this._request('GET', '/clubs/' + name);
+    async getClub(id) {
+        return await this._request('GET', '/clubs/' + id);
     }
 
     /**
      * Returns a list of clubs that match the given query.
      * @param {String} query
      */
-    async searchClubs(query) {
-        if (!query) return await this._request('GET', '/clubs/search');
-        return await this._request('GET', `/clubs/search?query=${query}`);
+    async searchClubs(params) {
+        return await this._request('GET', '/clubs/search', null, params);
     }
 
     /**
      * Create a new club with the given properties
-     * @param {String} name
+     * @param {String} id
      * @param {String} description
      * @param {String} websiteUrl
      * @param {String} facebookUrl
      * @param {String} instagramUrl
      * @param {String} twitterUrl
      */
-    async createClub(name, description, websiteUrl, facebookUrl, instagramUrl, twitterUrl) {
+    async createClub(id, description, websiteUrl, facebookUrl, instagramUrl, twitterUrl) {
         return await this._request('POST', '/clubs', {
-            name: name,
+            id: id,
             description: description,
             website_url: websiteUrl,
             facebook_url: facebookUrl,
@@ -216,7 +215,7 @@ export default class BounceClient {
      * @param {String} instagramUrl (optional) The club's new instagramUrl
      * @param {String} twitterUrl (optional) The club's new twitterUrl
      */
-    async updateClub(name, newName, description, websiteUrl, facebookUrl, instagramUrl, twitterUrl) {
+    async updateClub(id, newName, description, websiteUrl, facebookUrl, instagramUrl, twitterUrl) {
         const attrs = {
             name: newName,
             description: description,
@@ -231,38 +230,38 @@ export default class BounceClient {
                 delete attrs[attr];
             }
         }
-        return await this._request('PUT', '/clubs/' + name, attrs);
+        return await this._request('PUT', '/clubs/' + id, attrs);
     }
 
     /**
      * Delete the club with the given name
      * @param {String} name
      */
-    async deleteClub(name) {
-        return await this._request('DELETE', '/clubs/' + name);
+    async deleteClub(id) {
+        return await this._request('DELETE', '/clubs/' + id);
     }
 
     /**
      * Fetches the memberships for the given club. If a userId is provided only
      * the membership for that user will be returned.
-     * @param {String} clubName
+     * @param {String} clubID
      * @param {String} userId (optional, may be undefined)
      */
-    async getMemberships(clubName, userId) {
+    async getMemberships(clubID, userId) {
         const params = userId ? { user_id: userId } : undefined;
-        return await this._request('GET', `/memberships/${clubName}`,
+        return await this._request('GET', `/memberships/${clubID}`,
             undefined, params);
     }
 
     /**
      * Deletes the memberships for the given club. If a userId is provided only
      * the membership for that user will be deleted.
-     * @param {String} clubName
+     * @param {String} clubID
      * @param {String} userId (optional, may be undefined)
      */
-    async deleteMemberships(clubName, userId) {
+    async deleteMemberships(clubID, userId) {
         const params = userId ? { user_id: userId } : undefined;
-        return await this._request('DELETE', `/memberships/${clubName}`,
+        return await this._request('DELETE', `/memberships/${clubID}`,
             undefined, params);
     }
 }

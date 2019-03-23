@@ -113,13 +113,13 @@ class BounceNavbar extends Component {
     }
 
     search() {
-        this.props.client.searchClubs(this.props.searchQuery)
+        this.props.client.searchClubs({name:this.props.searchQuery, description:this.props.searchQuery})
             .then(result => {
                 if (result.ok) {
                     // Display results
                     result.json().then(body => {
                         this.props.changeClubs(body.results.map(item => {
-                            return Object.assign(item, {link: `/clubs/${item.name}`});
+                            return Object.assign(item, {link: `/clubs/${item.id}`});
                         }));
                         // Trigger redirect to Home page so it can display search results
                         this.setState({ goToHome: true });
