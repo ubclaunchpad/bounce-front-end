@@ -142,9 +142,9 @@ export default class BounceClient {
      * @param {String} fullName Optional, may be undefined
      * @param {String} email Optional, may be undefined
      * @param {String} bio Optional, may be undefined
-     * @param {String} password
+     * @param {String} password Optional, may be undefined
      */
-    async updateUser(username, fullName, email, password,  bio) {
+    async updateUser(username, fullName, email, password, bio) {
         let body = {};
         if (fullName) {
             body.full_name = fullName;
@@ -182,6 +182,7 @@ export default class BounceClient {
      * @param {String} query
      */
     async searchClubs(query) {
+        if (!query) return await this._request('GET', '/clubs/search');
         return await this._request('GET', `/clubs/search?query=${query}`);
     }
 

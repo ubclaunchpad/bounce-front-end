@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { Button, Label, FormGroup } from 'react-bootstrap';
+import { Alert, Button, Label, FormGroup } from 'react-bootstrap';
 
+import { UNEXPECTED_ERROR } from '../../constants';
+import { tempSetState } from '../utils';
 import '../../css/Settings.css';
 /* eslint-enable no-unused-vars */
 
@@ -11,13 +13,11 @@ class BioSettings extends Component {
         this.state = {
             currentBio: '',
             newBio: '',
-            BioChangeMessage: undefined
+            success: null
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.updateBio = this.updateBio.bind(this);
-        //this.handleBioChangeSubmit = this.handleBioChangeSubmit.bind(this);
-
+        this.handleBioChangeSubmit = this.handleBioChangeSubmit.bind(this);
     }
 
     /**
@@ -32,37 +32,37 @@ class BioSettings extends Component {
         });
     }
 
-    /**
-     * Update user bio and return whether process was successful
-     */
-    updateBio() {
-        // Stub
-        return true;
-    }
-
-
-    /**
-     * Update user bio.
-     * @param {Event} event
-     
-    
-    handleBioChangeSubmit(event) {
+    async handleBioChangeSubmit(event) {
         event.preventDefault();
 
-        this.updateBio()
-            .then(isUpdated => {
-                this.setState({ failed: !isUpdated }); 
-        }); 
-    } */
+        const response = await this.props.client.updateUser(
+            this.props.client.getUsername(),
+            undefined,
+            undefined,
+            undefined,
+            this.state.newBio);
+        tempSetState(this, 'success', await response.ok);
+    }
 
     render() {
-        let newBioClass; 
+        let newBioClass;
+        if (this.state.success) {
+            newBioClass = 'has-success';
+        } else if (this.state.success !== null) {
+            newBioClass = 'has-error';
+        }
         return (
             <div>
                 <form onSubmit={this.handleBioChangeSubmit}>
+                    {this.state.success === false &&
+                        <Alert bsStyle='danger'>{UNEXPECTED_ERROR}</Alert>
+                    }
+                    {this.state.success &&
+                        <Alert bsStyle='success'>{'Your bio has been updated!'}</Alert>
+                    }
                     <FormGroup bsClass={newBioClass}>
                         <Label>New Bio</Label>
-                        <textarea type='bio'
+                        <textarea
                             name='newBio'
                             className='form-control'
                             placeholder='New bio'

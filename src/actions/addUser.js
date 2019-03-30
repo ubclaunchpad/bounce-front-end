@@ -1,5 +1,5 @@
 import {ADD_USER} from '../constants/action-types';
 
-export function addUsers(payload){
+export function addUser(payload) {
     return {type: ADD_USER, payload};
 }

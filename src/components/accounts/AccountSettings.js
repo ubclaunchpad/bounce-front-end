@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { Alert, PageHeader, Col } from 'react-bootstrap';
 
-import SettingsSidebar from './SettingsSidebar';
 import PasswordSettings from './PasswordSettings';
 import EmailSettings from './EmailSettings';
 import BioSettings from './BioSettings';
@@ -19,9 +18,6 @@ class AccountSettings extends Component {
         return (
             <div className='container page'>
                 <PageHeader>Account Settings</PageHeader>
-                <Col sm={3}>
-                    <SettingsSidebar />
-                </Col>
                 <Col>
                     <div className='container'>
                         <PasswordSettings

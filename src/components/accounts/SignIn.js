@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Alert, FormGroup, Label, PageHeader, Button } from 'react-bootstrap';
 import store  from '../../store/configureStore';
-import { addUsers } from '../../actions/addUser.js';
+import { addUser } from '../../actions/addUser.js';
 import { UNAUTHORIZED, SIGNIN_ERROR } from '../../constants';
 /* eslint-enable no-unused-vars */
 
@@ -45,7 +45,7 @@ class SignIn extends Component {
                     })
                     .then(user => {
                         user.token = this.props.client.token;
-                        store.dispatch(addUsers(user));
+                        store.dispatch(addUser(user));
                     });
             } else if (response.status === 401) {
                 // The users's credentials are invalid
