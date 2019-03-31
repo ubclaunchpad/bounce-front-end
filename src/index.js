@@ -13,3 +13,5 @@ ReactDOM.render(
     <Provider store = {store}>
         <App client={client}/>
     </Provider>, document.getElementById('root'));
+
+export default App;

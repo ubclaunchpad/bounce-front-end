@@ -60,7 +60,7 @@ export const validateUsername = function(username) {
     return username.length === 0;
 };
 
-/*
+/** 
  * Temporarily sets the value corresponding to the key `key` on `component` to
  * `tempValue`, and returs it to its original value, or `resetValue` if it is
  * defined.
