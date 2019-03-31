@@ -1,7 +1,7 @@
 import {ADD_USER} from '../constants/action-types';
 
 const initialState =  {
-    user:{
+    user: {
         username:'',
         fullName:'',
         email: '',
@@ -9,8 +9,8 @@ const initialState =  {
     }
 };
 
-function rootReducer(state = initialState, action){
-    if (action.type == ADD_USER){
+function userReducer(state = initialState, action){
+    if (action.type === ADD_USER){
         return Object.assign({}, state, {
             user: action.payload
         });
@@ -18,4 +18,4 @@ function rootReducer(state = initialState, action){
     return state;
 }
 
-export default rootReducer;
+export default userReducer;

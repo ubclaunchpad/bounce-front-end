@@ -1,5 +1,10 @@
 import store from '../store/configureStore';
-import { addUsers } from '../actions/index';
+import { addUser} from '../actions/addUser';
+import { changeClubs} from '../actions/changeClubs';
+import {changeQuery} from '../actions/changeQuery';
+
 
 window.store = store;
-window.addUsers = addUsers;
+window.addUser = addUser;
+window.changeClubs = changeClubs;
+window.changeQuery = changeQuery;

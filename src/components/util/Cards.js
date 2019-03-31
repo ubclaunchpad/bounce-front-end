@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import '../../css/Cards.css';
 /* eslint-enable no-unused-vars */
@@ -27,17 +28,18 @@ class Cards extends Component {
             if (item.imageUrl) {
                 style = { backgroundImage: `url(${item.imageUrl})` };
             }
+            const title = (<h4
+                key={index + 100}
+                className='card-title'>
+                {item.name}
+            </h4>);
             return (
                 <div className='card' key={index}>
                     <div
                         className='card-body'
                         key={index + 200}
                         style={style}>
-                        <h4
-                            key={index + 100}
-                            className='card-title'>
-                            {item.name}
-                        </h4>
+                        {item.link ? <Link to={item.link}>{title}</Link> : title}
                         <p className='card-desc'>
                             {item.description}
                         </p>

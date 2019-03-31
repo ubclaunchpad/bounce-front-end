@@ -14,6 +14,8 @@ import {
     PageHeader,
     Row,
 } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import {
     CLUB_ALREADY_EXISTS,
@@ -87,17 +89,16 @@ class ViewClub extends Component {
                 return;
             });
 
-        // Check if the user has permission to edit this club
-        let userId;
-        if (this.props.client.token) {
-            userId = this.props.client.getUserIdFromToken();
-        }
-        this.props.client.getMemberships(this.props.name, userId).then(response => {
+        this.props.client.getMemberships(this.props.name).then(response => {
             if (response.ok) {
                 response.json().then(body => {
-                    // TODO: Check the user's role
+                    // Check if we're a president or admin of this club
+                    const admin = body.find(member => {
+                        return (member.username === this.props.user.username &&
+                            ['President', 'Admin'].indexOf(member.role) !== -1);
+                    });
                     this.setState({
-                        isEditable: true,
+                        isEditable: !!admin,
                         memberships: body,
                     });
                 });
@@ -188,7 +189,7 @@ class ViewClub extends Component {
 
                 <FormGroup>
                     <Label>Description</Label>
-                    <input type='text'
+                    <textarea type='text'
                         name='description'
                         placeholder='Description'
                         className='form-control'
@@ -261,27 +262,31 @@ class ViewClub extends Component {
         if (this.state.twitterUrl) {
             websiteUrl = <a href={this.state.twitterUrl}>Twitter</a>;
         }
-        return <div>
-            <p>{this.state.description}</p>
-            {websiteUrl}
-            {facebookUrl}
-            {instagramUrl}
-            {twitterUrl}
-        </div>;
+        return <Col>
+            <div className='container'>
+                <p>{this.state.description}</p>
+                {websiteUrl}
+                {facebookUrl}
+                {instagramUrl}
+                {twitterUrl}
+            </div>
+        </Col>;
     }
 
     render() {
         // Create member list
         let members = this.state.memberships.map(membership => {
             return (
-                <div className='card' key={membership.user_id}>
-                    <div className='card-body' key={membership.user_id}>
-                        <h6
-                            key={membership.user_id}
-                            className='card-title'>
-                            {membership.full_name}
-                        </h6>
-                    </div>
+                <div>
+                    <Link to='/'
+                        key={membership.user_id}
+                        className='card-title'>
+                        {membership.full_name}
+                        &nbsp;
+                        {['President', 'Admin'].indexOf(membership.role) !== -1 &&
+                            `(${membership.role})`}
+                    </Link>
+                    <br/>
                 </div>
             );
         });
@@ -347,15 +352,7 @@ class ViewClub extends Component {
                         </h3>
                     </Row>
                     <Row className='show-grid'>
-                        <Col className='col'>
-                            {members.splice(0, members.length / 3)}
-                        </Col>
-                        <Col className='col'>
-                            {members.splice(members.length / 3, members.length * 2 / 3)}
-                        </Col>
-                        <Col className='col'>
-                            {members.splice(members.length / 3, members.length)}
-                        </Col>
+                        {members}
                     </Row>
                 </Grid>
             </div>
@@ -363,4 +360,10 @@ class ViewClub extends Component {
     }
 }
 
-export default ViewClub;
+const mapStoreToProps = (store) => {
+    return {
+        user: store.userReducer.user
+    };
+};
+
+export default connect(mapStoreToProps)(ViewClub);

@@ -15,6 +15,9 @@ import CreateAccount from './accounts/CreateAccount';
 import CreateClub from './clubs/CreateClub';
 import '../css/App.css';
 import AccountSettings from './accounts/AccountSettings';
+import {changeQuery} from '../actions/changeQuery';
+import { connect }   from 'react-redux';
+
 /* eslint-enable no-unused-vars */
 
 class App extends Component {
@@ -22,7 +25,7 @@ class App extends Component {
         super(props);
         this.state = {
             isNewAccount: false,
-            searchQuery: undefined,
+        
         };
 
         this.onSignIn = this.onSignIn.bind(this);
@@ -31,7 +34,6 @@ class App extends Component {
         this.getCreateClubPage = this.getCreateClubPage.bind(this);
         this.getViewClubPage = this.getViewClubPage.bind(this);
         this.getHomePage = this.getHomePage.bind(this);
-        this.onSearch = this.onSearch.bind(this);
         this.getAccountSettingsPage = this.getAccountSettingsPage.bind(this);
     }
 
@@ -89,17 +91,10 @@ class App extends Component {
         return <Home
             isNewAccount={this.state.isNewAccount}
             client={this.props.client}
-            searchQuery={this.state.searchQuery}
+
         />;
     }
 
-    /**
-     * Stores the search query as component state.
-     * @param {String} query
-     */
-    onSearch(query) {
-        this.setState({ searchQuery: query });
-    }
 
     /**
      * Returns an AccountSettings page.
@@ -116,7 +111,7 @@ class App extends Component {
                 <div>
                     <BounceNavbar
                         client={this.props.client}
-                        onSearch={this.onSearch}
+                        onSearch={this.props.searchQuery}
                     />
                     <Switch>
                         <Route exact path='/' render={this.getHomePage} />
@@ -133,4 +128,16 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStoreToProps = (store) => {
+    return {
+        searchQuery: store.clubsReducer.searchQuery
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return{
+        changeQuery: (payload) => dispatch(changeQuery(payload))
+    };
+};
+
+export default connect(mapStoreToProps,mapDispatchToProps)(App);

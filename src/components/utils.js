@@ -59,3 +59,20 @@ export const validateUsername = function(username) {
     }
     return username.length === 0;
 };
+
+/*
+ * Temporarily sets the value corresponding to the key `key` on `component` to
+ * `tempValue`, and returs it to its original value, or `resetValue` if it is
+ * defined.
+ * @param {Object} component
+ * @param {String} key
+ * @param {*} tempValue
+ * @param {*} resetValue
+ */
+export const tempSetState = function (component, key, tempValue, resetValue) {
+    const oldValue = component.state[key];
+    component.setState({ [key]: tempValue });
+    setTimeout(() => {
+        component.setState({[key]: resetValue || oldValue});
+    }, 2500);
+};
