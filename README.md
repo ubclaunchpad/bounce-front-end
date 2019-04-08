@@ -4,6 +4,8 @@
 
 Frontend for our application that brings people together based on common interests.
 
+![screenshot](/.static/bounce-frontend.png)
+
 ## Installation
 
 Clone the repository:
