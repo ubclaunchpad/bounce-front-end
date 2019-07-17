@@ -42,9 +42,17 @@ class EmailSettings extends Component {
      */
     handleInputChange(event) {
         const value = event.target.value;
+        switch(event.target.name){
+        case 'newEmail':
+            this.setState({
+                newEmailIsValid: this.handleEmailValidation(value),
+            });
+            break;
+        default:
+            break;
+        }
         this.setState({
-            [event.target.name]: value,
-            newEmailIsValid: this.handleEmailValidation(value),
+            [event.target.name]: value
         });
     }
 

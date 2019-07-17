@@ -37,6 +37,30 @@ export const validateEmail = function(email) {
 };
 
 /**
+* Returns true if the username is valid and false otherwise
+* @param {String} username
+*/
+export const validateUsername = function(username) {
+    if (username.length < 3 || username.length > 20) {
+        return false;
+    }
+    const regexes = [
+        /[A-Z]+/,
+        /[a-z]+/,
+        /[0-9]+/,
+        /[.\-_]+/
+    ];
+    for (let i in regexes) {
+        let match = username.match(regexes[i]);
+        while (match !== null) {
+            username = username.replace(match[0], '');
+            match = username.match(regexes[i]);
+        }
+    }
+    return username.length === 0;
+};
+
+/** 
  * Temporarily sets the value corresponding to the key `key` on `component` to
  * `tempValue`, and returs it to its original value, or `resetValue` if it is
  * defined.

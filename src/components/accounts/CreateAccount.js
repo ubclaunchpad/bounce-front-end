@@ -18,6 +18,7 @@ import {
     USERNAME_OR_EMAIL_TAKEN,
     USERNAME_WARNING,
 } from '../../constants';
+import {validatePassword, validateUsername, validateEmail } from '../utils';
 /* eslint-enable no-unused-vars */
 
 class CreateAccount extends Component {
@@ -38,11 +39,10 @@ class CreateAccount extends Component {
             isSignedIn: false,
             errorMsg: undefined,
         };
-
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleInput = this.handleInput.bind(this);
-        this.handleSignInClick = this.handleSignInClick.bind(this);
-        this.signIn = this.signIn.bind(this);
+        
+        this.validateUsername = validateUsername.bind(this);
+        this.validateEmail = validateEmail.bind(this);
+        this.validatePassword = validatePassword.bind(this);
     }
 
     /**
@@ -50,7 +50,7 @@ class CreateAccount extends Component {
      * Account' form by attempting to create the new account.
      * @param {Event} event
      */
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
         if (!this.state.usernameIsValid
             || !this.state.emailIsValid
@@ -87,7 +87,7 @@ class CreateAccount extends Component {
     /**
      * Signs the user in after account creation.
      */
-    signIn() {
+    signIn = () => {
         this.props.client.authenticate(this.state.username, this.state.password)
             .then(response => {
                 if (response.ok) {
@@ -103,12 +103,13 @@ class CreateAccount extends Component {
             });
     }
 
+
     /**
      * Updates the component state when the user types in an input field.
      * @param {Event} event
      */
-    handleInput(event) {
-        // Make sure the value matches the requirements for its field
+    handleInput = (event) => {
+        // Make sure the value matches the requirements for its field        
         const value = event.target.value;
         switch (event.target.name) {
         case 'username':
@@ -132,6 +133,8 @@ class CreateAccount extends Component {
                 'passwordsMatch': this.state.password === value
             });
             break;
+        default:
+            break;
         }
         this.setState({
             [event.target.name]: value,
@@ -139,73 +142,11 @@ class CreateAccount extends Component {
     }
 
     /**
-     * Returns true if the username is valid and false otherwise
-     * @param {String} username
-     */
-    validateUsername(username) {
-        if (username.length < 3 || username.length > 20) {
-            return false;
-        }
-        const regexes = [
-            /[A-Z]+/,
-            /[a-z]+/,
-            /[0-9]+/,
-            /[.\-_]+/
-        ];
-        for (let i in regexes) {
-            let match = username.match(regexes[i]);
-            while (match !== null) {
-                username = username.replace(match[0], '');
-                match = username.match(regexes[i]);
-            }
-        }
-        return username.length === 0;
-    }
-
-    /**
-     * Returns true if the password is valid and false otherwise
-     * @param {String} password
-     */
-    validatePassword(password) {
-        if (password.length < 8) {
-            return false;
-        }
-        const regexes = [
-            /[A-Z]+/,
-            /[a-z]+/,
-            /[0-9]+/,
-            /[.\-!@#$%^&*?_+ ]+/
-        ];
-        for (let i in regexes) {
-            let match = password.match(regexes[i]);
-            let count = 0;
-            while (match !== null) {
-                password = password.replace(match[0], '');
-                match = password.match(regexes[i]);
-                count++;
-            }
-            if (count === 0) {
-                return false;
-            }
-        }
-        return password.length === 0;
-    }
-
-    /**
-     * Returns true if the email is valid and false otherwise
-     * @param {String} email
-     */
-    validateEmail(email) {
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email.toLowerCase());
-    }
-
-    /**
      * Triggers a redirect to the SignIn page when the user hits the
      * "Sign In" button.
      * @param {Event} event
      */
-    handleSignInClick(event) {
+    handleSignInClick = (event) => {
         event.preventDefault();
         this.setState({ goToSignIn: true });
     }

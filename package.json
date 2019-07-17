@@ -19,11 +19,14 @@
   "scripts": {
     "start": "react-scripts start | node_modules/.bin/sass --watch src/sass/:src/css/",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom --coverage",
+    "test": "node_modules/.bin/sass src/sass/:src/css/ && react-scripts test --env=jsdom --coverage --verbose",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.10.0",
     "eslint": "^4.19.1",
-    "eslint-plugin-react": "^7.9.1"
+    "eslint-plugin-react": "^7.12.4",
+    "react-test-renderer": "^16.8.3"
   }
 }
